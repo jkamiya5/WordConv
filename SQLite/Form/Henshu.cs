@@ -17,11 +17,7 @@ namespace WordConvTool.Forms
 {
     public partial class Henshu : Form
     {
-        /// <summary>
-        /// 
-        /// </summary>
         private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
-        private object p;
 
         public Henshu()
         {
@@ -120,10 +116,10 @@ namespace WordConvTool.Forms
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            this.searchAction(this);
+            this.searchAction(this.tanitsuDataGridView);
         }
 
-        private void searchAction(Henshu henshu)
+        private void searchAction(DataGridView dataGridView)
         {
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             using (var context = new MyContext())
@@ -155,25 +151,9 @@ namespace WordConvTool.Forms
                 }
             }
 
-            this.henshuViewDispSetthing(ref dataGridView1, wordList);
+            this.henshuViewDispSetthing(ref dataGridView, wordList);
         }
 
-        private void henshuViewDispSetthing(ref DataGridView dataGridView1, List<HenshuWordBo> wordList)
-        {
-            dataGridView1.DataSource = wordList;
-            dataGridView1.Columns["RONRI_NAME1"].HeaderText = "論理名1";
-            dataGridView1.Columns["BUTSURI_NAME"].HeaderText = "物理名";
-            dataGridView1.Columns["USER_NAME"].HeaderText = "登録ユーザー名";
-            dataGridView1.Columns["CRE_DATE"].HeaderText = "登録日付";
-            dataGridView1.Columns["WORD_ID"].Visible = false;
-            dataGridView1.Columns["VERSION"].Visible = false;
-            dataGridView1.Columns["RONRI_NAME1"].ReadOnly = true;
-            dataGridView1.Columns["USER_NAME"].ReadOnly = true;
-            dataGridView1.Columns["CRE_DATE"].ReadOnly = true;
-
-            common.addCheckBox(ref this.dataGridView1);
-            common.viewWidthSetting(ref this.dataGridView1, 20, 100);
-        }
 
         private bool isContains(string tango, List<HenshuWordBo> wordList)
         {
@@ -190,12 +170,14 @@ namespace WordConvTool.Forms
             return false;
         }
 
+
         private void clearBtn_Click(object sender, EventArgs e)
         {
             this.textBox1.Text = "";
             this.textBox2.Text = "";
             this.textBox3.Text = "";
         }
+
 
         private void addBtn_Click(object sender, EventArgs e)
         {
@@ -231,36 +213,34 @@ namespace WordConvTool.Forms
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             HenshuWordBo word = new HenshuWordBo();
             word.RONRI_NAME1 = this.textBox1.Text;
-            //word.RONRI_NAME2 = this.textBox2.Text;
             word.BUTSURI_NAME = this.textBox3.Text;
             wordList.Add(word);
 
-            this.henshuViewDispSetthing(ref dataGridView1, wordList);
+            this.henshuViewDispSetthing(ref this.tanitsuDataGridView, wordList);
         }
 
 
         private void registBtn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < this.tanitsuDataGridView.Rows.Count; i++)
             {
-                if (this.dataGridView1.Rows[i].Cells[0].Value == null)
+                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value == null)
                 {
                     continue;
                 }
-                if (this.dataGridView1.Rows[i].Cells[0].Value.Equals(true))
+                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value.Equals(true))
                 {
                     using (var context = new MyContext())
                     {
-                        long condtion = Convert.ToInt64(this.dataGridView1.Rows[i].Cells["WORD_ID"].Value.ToString());
+                        long condtion = Convert.ToInt64(this.tanitsuDataGridView.Rows[i].Cells["WORD_ID"].Value.ToString());
                         var upWord = context.WordDic
                             .Where(x => x.WORD_ID == condtion);
 
                         if (upWord.Count() == 1)
                         {
                             var w = context.WordDic.Single(x => x.WORD_ID == condtion);
-                            w.RONRI_NAME1 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
-                            //w.RONRI_NAME2 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME2"].Value);
-                            w.BUTSURI_NAME = Convert.ToString(this.dataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+                            w.RONRI_NAME1 = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
+                            w.BUTSURI_NAME = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
                             w.CRE_DATE = System.DateTime.Now.ToString();
                             context.SaveChanges();
                             continue;
@@ -269,9 +249,8 @@ namespace WordConvTool.Forms
                         UserMst user = new UserMst();
                         user.USER_NAME = "ジョウジ";
                         WordDic word = new WordDic();
-                        word.RONRI_NAME1 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
-                        //word.RONRI_NAME2 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME2"].Value);
-                        word.BUTSURI_NAME = Convert.ToString(this.dataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+                        word.RONRI_NAME1 = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
+                        word.BUTSURI_NAME = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
                         word.CRE_DATE = System.DateTime.Now.ToString();
                         word.User = user;
                         context.WordDic.Add(word);
@@ -280,22 +259,23 @@ namespace WordConvTool.Forms
                 }
             }
             MessageBox.Show("辞書テーブルに登録・更新しました。");
-            this.searchAction(this);
+            this.searchAction(this.tanitsuDataGridView);
         }
+
 
         private void delete_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < this.tanitsuDataGridView.Rows.Count; i++)
             {
-                if (this.dataGridView1.Rows[i].Cells[0].Value == null)
+                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value == null)
                 {
                     continue;
                 }
-                if (this.dataGridView1.Rows[i].Cells[0].Value.Equals(true))
+                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value.Equals(true))
                 {
                     using (var context = new MyContext())
                     {
-                        long condtion = Convert.ToInt64(this.dataGridView1.Rows[i].Cells["WORD_ID"].Value.ToString());
+                        long condtion = Convert.ToInt64(this.tanitsuDataGridView.Rows[i].Cells["WORD_ID"].Value.ToString());
                         var toRemoveWord = new WordDic { WORD_ID = condtion };
                         context.WordDic.Attach(toRemoveWord);
                         context.WordDic.Remove(toRemoveWord);
@@ -304,53 +284,53 @@ namespace WordConvTool.Forms
                 }
             }
             MessageBox.Show("辞書テーブルから削除されました。");
-            this.searchAction(this);
+            this.searchAction(this.tanitsuDataGridView);
         }
 
         private void ikkatsuRegistBtn_Click(object sender, EventArgs e)
         {
-            List<HenshuWordBo> wordList = new List<HenshuWordBo>();
+            IkkatsuRegistBtnService ikkatsuRegistService = new IkkatsuRegistBtnService();
+            IkkatsuRegistBtnServiceInBo inBo = new IkkatsuRegistBtnServiceInBo();
+            ikkatsuRegistService.setInBo(inBo);
+            IkkatsuRegistBtnServiceOutBo outBo = ikkatsuRegistService.execute();
+            MessageBox.Show("辞書テーブルに登録・更新しました。");
+        }
 
-            if (!String.IsNullOrEmpty(Clipboard.GetText()))
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if (e.TabPageIndex == Constant.TANITSU_TOROKU)
             {
-                string key = Clipboard.GetText();
-                string nl = Environment.NewLine;
-                String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);
-
-                foreach (String ronriName in keys)
-                {
-                    using (var context = new MyContext())
-                    {
-                        IQueryable<HenshuWordBo> words = from a in context.WordDic
-                                                         join b in context.UserMst on a.USER_ID equals b.USER_ID
-                                                         select new HenshuWordBo
-                                                         {
-                                                             WORD_ID = a.WORD_ID,
-                                                             RONRI_NAME1 = a.RONRI_NAME1,
-                                                             BUTSURI_NAME = a.BUTSURI_NAME,
-                                                             USER_NAME = b.USER_NAME,
-                                                             CRE_DATE = a.CRE_DATE,
-                                                             VERSION = (int)a.VERSION
-                                                         };
-
-                        HenshuWordBo[] dispWords = words.Where(x => x.RONRI_NAME1 == ronriName).ToArray();
-
-                        foreach (var word in dispWords)
-                        {
-                            HenshuWordBo w = new HenshuWordBo();
-                            w.WORD_ID = word.WORD_ID;
-                            w.RONRI_NAME1 = word.RONRI_NAME1;
-                            w.BUTSURI_NAME = word.BUTSURI_NAME;
-                            w.USER_NAME = word.USER_NAME;
-                            w.CRE_DATE = word.CRE_DATE;
-                            w.VERSION = (int)word.VERSION;
-                            wordList.Add(w);
-                        }
-                    }
-                }
+                TanitsuTorokuService tanitsuService = new TanitsuTorokuService();
+                TanitsuTorokuServiceInBo inBo = new TanitsuTorokuServiceInBo();
+                tanitsuService.setInBo(inBo);
+                TanitsuTorokuServiceOutBo outBo = tanitsuService.execute();
+                this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
             }
+            else if (e.TabPageIndex == Constant.IKKATSU_TOROKU)
+            {
+                IkkatsuTorokuService ikkatsuService = new IkkatsuTorokuService();
+                IkkatsuTorokuServiceInBo inBo = new IkkatsuTorokuServiceInBo();
+                ikkatsuService.setInBo(inBo);
+                IkkatsuTorokuServiceOutBo outBo = ikkatsuService.execute();
+                this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
+            }
+        }
 
-            this.henshuViewDispSetthing(ref dataGridView2, wordList);
+        private void henshuViewDispSetthing(ref DataGridView dataGridView, List<HenshuWordBo> wordList)
+        {
+            dataGridView.DataSource = wordList;
+            dataGridView.Columns["RONRI_NAME1"].HeaderText = "論理名1";
+            dataGridView.Columns["BUTSURI_NAME"].HeaderText = "物理名";
+            dataGridView.Columns["USER_NAME"].HeaderText = "登録ユーザー名";
+            dataGridView.Columns["CRE_DATE"].HeaderText = "登録日付";
+            dataGridView.Columns["WORD_ID"].Visible = false;
+            dataGridView.Columns["VERSION"].Visible = false;
+            dataGridView.Columns["RONRI_NAME1"].ReadOnly = true;
+            dataGridView.Columns["USER_NAME"].ReadOnly = true;
+            dataGridView.Columns["CRE_DATE"].ReadOnly = true;
+
+            common.addCheckBox(ref dataGridView);
+            common.viewWidthSetting(ref dataGridView, 20, 100);
         }
     }
 }

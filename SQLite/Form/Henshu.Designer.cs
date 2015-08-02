@@ -40,19 +40,19 @@
             this.clearBtn = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tanitsuDataGridView = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ikkatsuRegistBtn = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ikkatsuDataGridView = new System.Windows.Forms.DataGridView();
             this.readFile = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ikkatsuDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -67,6 +67,7 @@
             this.tabControl1.Size = new System.Drawing.Size(387, 399);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
@@ -81,7 +82,7 @@
             this.tabPage1.Controls.Add(this.clearBtn);
             this.tabPage1.Controls.Add(this.textBox3);
             this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.tanitsuDataGridView);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
@@ -135,10 +136,10 @@
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // regist
+            // registBtn
             // 
             this.registBtn.Location = new System.Drawing.Point(43, 323);
-            this.registBtn.Name = "regist";
+            this.registBtn.Name = "registBtn";
             this.registBtn.Size = new System.Drawing.Size(115, 25);
             this.registBtn.TabIndex = 19;
             this.registBtn.Text = "登録";
@@ -181,15 +182,15 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 138);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(346, 175);
-            this.dataGridView1.TabIndex = 18;
+            this.tanitsuDataGridView.AllowUserToResizeColumns = false;
+            this.tanitsuDataGridView.AllowUserToResizeRows = false;
+            this.tanitsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tanitsuDataGridView.Location = new System.Drawing.Point(13, 138);
+            this.tanitsuDataGridView.Name = "dataGridView1";
+            this.tanitsuDataGridView.RowHeadersVisible = false;
+            this.tanitsuDataGridView.RowTemplate.Height = 21;
+            this.tanitsuDataGridView.Size = new System.Drawing.Size(346, 175);
+            this.tanitsuDataGridView.TabIndex = 18;
             // 
             // textBox1
             // 
@@ -201,7 +202,7 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ikkatsuRegistBtn);
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.ikkatsuDataGridView);
             this.tabPage2.Controls.Add(this.readFile);
             this.tabPage2.Controls.Add(this.openFile);
             this.tabPage2.Controls.Add(this.textBox4);
@@ -213,10 +214,10 @@
             this.tabPage2.Text = "一括登録";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ikkatsuRegistBtn
             // 
             this.ikkatsuRegistBtn.Location = new System.Drawing.Point(182, 322);
-            this.ikkatsuRegistBtn.Name = "button3";
+            this.ikkatsuRegistBtn.Name = "ikkatsuRegistBtn";
             this.ikkatsuRegistBtn.Size = new System.Drawing.Size(123, 25);
             this.ikkatsuRegistBtn.TabIndex = 15;
             this.ikkatsuRegistBtn.Text = "登録";
@@ -225,12 +226,15 @@
             // 
             // dataGridView2
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(13, 94);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 21;
-            this.dataGridView2.Size = new System.Drawing.Size(344, 212);
-            this.dataGridView2.TabIndex = 12;
+            this.ikkatsuDataGridView.AllowUserToResizeColumns = false;
+            this.ikkatsuDataGridView.AllowUserToResizeRows = false;
+            this.ikkatsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ikkatsuDataGridView.Location = new System.Drawing.Point(13, 94);
+            this.ikkatsuDataGridView.RowHeadersVisible = false;
+            this.ikkatsuDataGridView.Name = "dataGridView2";
+            this.ikkatsuDataGridView.RowTemplate.Height = 21;
+            this.ikkatsuDataGridView.Size = new System.Drawing.Size(344, 212);
+            this.ikkatsuDataGridView.TabIndex = 12;
             // 
             // readFile
             // 
@@ -270,10 +274,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ikkatsuDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,10 +293,10 @@
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView tanitsuDataGridView;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button ikkatsuRegistBtn;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView ikkatsuDataGridView;
         private System.Windows.Forms.Button readFile;
         private System.Windows.Forms.Button openFile;
         private System.Windows.Forms.TextBox textBox4;
