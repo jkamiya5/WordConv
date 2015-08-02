@@ -19,25 +19,20 @@ namespace WordConvertTool
         [STAThread]
         static void Main()
         {
-            //Program.createDb();
+            Program.ExecuteDDL();
             BaseForm baseForm = new BaseForm();
             Application.Run();
         }
 
-        private static void createDb()
-        {
-            ExecuteDDL();
-
-        }
 
         static void ExecuteDDL()
         {
             var path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "WordConverter.db");
 
-            //if (File.Exists(path))
-            //{
-            //    return;
-            //}
+            if (File.Exists(path))
+            {
+                return;
+            }
 
             System.Data.SQLite.SQLiteConnection.CreateFile(path);
             System.Diagnostics.Debug.Write(path);
@@ -89,59 +84,5 @@ namespace WordConvertTool
             }
         }
     }
-
-    //[Table("WORD_DIC")]
-    //public class WordDic
-    //{
-    //    [Key]
-    //    public long WORD_ID { get; set; }
-    //    public string RONRI_NAME1 { get; set; }
-    //    public string RONRI_NAME2 { get; set; }
-    //    public string BUTSURI_NAME { get; set; }
-    //    public long USER_ID { get; set; }
-    //    public int VERSION { get; set; }
-    //    public int CRE_DATE { get; set; }
-    //    public virtual UserMst User { get; set; }
-    //}
-
-    //[Table("WORD_SHINSEI")]
-    //public class WordShinsei
-    //{
-    //    [Key]
-    //    public long SHINSEI_ID { get; set; }
-    //    public string RONRI_NAME1 { get; set; }
-    //    public string RONRI_NAME2 { get; set; }
-    //    public string BUTSURI_NAME { get; set; }
-    //    public long WORD_ID { get; set; }
-    //    public int STATUS { get; set; }
-    //    public int USER_ID { get; set; }
-    //    public int VERSION { get; set; }
-    //    public int CRE_DATE { get; set; }
-    //    public virtual UserMst User { get; set; }
-    //}
-
-    //[Table("USER_MST")]
-    //public class UserMst
-    //{
-    //    [Key]
-    //    public long USER_ID { get; set; }
-    //    public string USER_NAME { get; set; }
-    //    public int ROLE { get; set; }
-    //    public string MAIL_ID { get; set; }
-    //    public string PASSWORD { get; set; }
-    //    public string MAIL_ADDRESS { get; set; }
-    //    public int SANKA_KAHI { get; set; }
-    //    public int DELETE_FLG { get; set; }
-    //    public int VERSION { get; set; }
-    //    public virtual ICollection<WordDic> Words { get; set; }
-    //    public virtual ICollection<WordShinsei> Shinseis { get; set; }
-    //}
-
-    //public class ItemCatalog : System.Data.Entity.DbContext
-    //{
-    //    public System.Data.Entity.DbSet<WordDic> WordDic { get; set; }
-    //    public System.Data.Entity.DbSet<WordShinsei> WordShinsei { get; set; }
-    //    public System.Data.Entity.DbSet<UserMst> UserMst { get; set; }
-    //}
 }
 

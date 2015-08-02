@@ -110,46 +110,41 @@ namespace WordConvTool.Forms
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
+            this.searchAction(this);
+        }
+
+        private void searchAction(Henshu henshu)
+        {
             string dbConnectionString = ConfigurationManager.AppSettings.Get("DataSource");
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
-
-            using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
+            using (var context = new MyContext())
             {
-                cn.Open();
-                SQLiteCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM WORD_DIC where RONRI_NAME1 = '" + this.textBox1.Text + "'";
-
-                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                List<WordDic> words = context.WordDic.Where(x => x.RONRI_NAME1 == this.textBox1.Text).ToList();
+                foreach (var word in words)
                 {
-                    while (reader.Read())
-                    {
-                        if (!isContains(reader["BUTSURI_NAME"].ToString(), wordList))
-                        {
-                            HenshuWordBo word = new HenshuWordBo();
-                            word.RONRI_NAME1 = reader["RONRI_NAME1"].ToString();
-                            word.RONRI_NAME2 = reader["RONRI_NAME2"].ToString();
-                            word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString();
-                            word.USER_ID = reader["USER_ID"].ToString();
-                            wordList.Add(word);
-                        }
-                    }
+                    HenshuWordBo w = new HenshuWordBo();
+                    w.WORD_ID = word.WORD_ID;
+                    w.RONRI_NAME1 = word.RONRI_NAME1;
+                    w.BUTSURI_NAME = word.BUTSURI_NAME;
+                    w.USER_ID = (int)word.USER_ID;
+                    w.VERSION = (int)word.VERSION;
+                    wordList.Add(w);
                 }
-                cn.Close();
             }
-
             common.addCheckBox(ref this.dataGridView1);
             common.viewSetting(ref this.dataGridView1, 20, 65);
-            this.dispView(ref dataGridView1, wordList);
+            this.dispView(ref this.dataGridView1, wordList);
         }
 
         private void dispView(ref DataGridView dataGridView1, List<HenshuWordBo> wordList)
         {
             dataGridView1.DataSource = wordList;
+            dataGridView1.Columns["WORD_ID"].Visible = false;
+            dataGridView1.Columns["VERSION"].Visible = false;
             dataGridView1.Columns[0].HeaderText = "";
-            dataGridView1.Columns[1].HeaderText = "論理名1";
-            dataGridView1.Columns[2].HeaderText = "論理名2";
-            dataGridView1.Columns[3].HeaderText = "物理名";
-            dataGridView1.Columns[4].HeaderText = "ユーザーID";
+            dataGridView1.Columns["RONRI_NAME1"].HeaderText = "論理名1";
+            dataGridView1.Columns["RONRI_NAME2"].HeaderText = "論理名2";
+            dataGridView1.Columns["BUTSURI_NAME"].HeaderText = "物理名";
         }
 
         private bool isContains(string tango, List<HenshuWordBo> wordList)
@@ -187,6 +182,24 @@ namespace WordConvTool.Forms
                 return;
             }
 
+            using (var context = new MyContext())
+            {
+                var products = context.WordDic
+                    .Where(x => x.RONRI_NAME1 == this.textBox1.Text)
+                    .ToArray();
+
+                if (products.Count() > 0)
+                {
+                    MessageBox.Show(
+                        "既に登録されています\n",
+                        "入力エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             HenshuWordBo word = new HenshuWordBo();
             word.RONRI_NAME1 = this.textBox1.Text;
@@ -203,23 +216,70 @@ namespace WordConvTool.Forms
 
         private void regist_Click(object sender, EventArgs e)
         {
-            using (var context = new MyContext())
+            for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
             {
-                UserMst user = new UserMst();
-                user.USER_NAME = "ジョウジ";
-                WordDic word = new WordDic();
-                word.RONRI_NAME1 = this.textBox1.Text;
-                word.RONRI_NAME2 = this.textBox2.Text;
-                word.BUTSURI_NAME = this.textBox3.Text;
-                word.User = user;
-                context.WordDic.Add(word);
-                context.SaveChanges();
+                if (this.dataGridView1.Rows[i].Cells[0].Value == null)
+                {
+                    continue;
+                }
+                if (this.dataGridView1.Rows[i].Cells[0].Value.Equals(true))
+                {
+                    using (var context = new MyContext())
+                    {
+                        long condtion = Convert.ToInt64(this.dataGridView1.Rows[i].Cells["WORD_ID"].Value.ToString());
+                        var upWord = context.WordDic
+                            .Where(x => x.WORD_ID == condtion);
+
+                        if (upWord.Count() == 1)
+                        {
+                            var w = context.WordDic.Single(x => x.WORD_ID == condtion);
+                            w.RONRI_NAME1 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
+                            w.RONRI_NAME2 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME2"].Value);
+                            w.BUTSURI_NAME = Convert.ToString(this.dataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+
+                        }
+                        context.SaveChanges();
+                    }
+                    using (var context = new MyContext())
+                    {
+                        UserMst user = new UserMst();
+                        user.USER_NAME = "ジョウジ";
+                        WordDic word = new WordDic();
+                        word.RONRI_NAME1 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
+                        word.RONRI_NAME2 = Convert.ToString(this.dataGridView1.Rows[i].Cells["RONRI_NAME2"].Value);
+                        word.BUTSURI_NAME = Convert.ToString(this.dataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+                        word.User = user;
+                        context.WordDic.Add(word);
+                        context.SaveChanges();
+                    }
+                    MessageBox.Show("辞書テーブルに登録されました。");
+                }
             }
+            this.searchAction(this);
         }
 
         private void delete_Click(object sender, EventArgs e)
         {
-
+            for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
+            {
+                if (this.dataGridView1.Rows[i].Cells[0].Value == null)
+                {
+                    continue;
+                }
+                if (this.dataGridView1.Rows[i].Cells[0].Value.Equals(true))
+                {
+                    using (var context = new MyContext())
+                    {
+                        long condtion = Convert.ToInt64(this.dataGridView1.Rows[i].Cells["WORD_ID"].Value.ToString());
+                        var toRemoveWord = new WordDic { WORD_ID = condtion };
+                        context.WordDic.Attach(toRemoveWord);
+                        context.WordDic.Remove(toRemoveWord);
+                        context.SaveChanges();
+                    }
+                }
+            }
+            MessageBox.Show("辞書テーブルから削除されました。");
+            this.searchAction(this);
         }
     }
 }
