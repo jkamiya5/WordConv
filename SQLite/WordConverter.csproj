@@ -86,21 +86,21 @@
     <Compile Include="Form\Ichiran.Designer.cs">
       <DependentUpon>Ichiran.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\IkkatsuRegistBtnService.cs" />
-    <Compile Include="Form\IkkatsuRegistBtnServiceInBo.cs" />
-    <Compile Include="Form\IkkatsuRegistBtnServiceOutBo.cs" />
-    <Compile Include="Form\IkkatsuTorokuService.cs" />
-    <Compile Include="Form\IkkatsuTorokuServiceInBo.cs" />
-    <Compile Include="Form\IkkatsuTorokuServiceOutBo.cs" />
+    <Compile Include="Services\IkkatsuRegistBtnService.cs" />
+    <Compile Include="Models\IkkatsuRegistBtnServiceInBo.cs" />
+    <Compile Include="Models\IkkatsuRegistBtnServiceOutBo.cs" />
+    <Compile Include="Services\IkkatsuTorokuService.cs" />
+    <Compile Include="Models\IkkatsuTorokuServiceInBo.cs" />
+    <Compile Include="Models\IkkatsuTorokuServiceOutBo.cs" />
     <Compile Include="Form\Shinsei.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Shinsei.Designer.cs">
       <DependentUpon>Shinsei.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\TanitsuTorokuService.cs" />
-    <Compile Include="Form\TanitsuTorokuServiceInBo.cs" />
-    <Compile Include="Form\TanitsuTorokuServiceOutBo.cs" />
+    <Compile Include="Services\TanitsuTorokuService.cs" />
+    <Compile Include="Models\TanitsuTorokuServiceInBo.cs" />
+    <Compile Include="Models\TanitsuTorokuServiceOutBo.cs" />
     <Compile Include="Models\WordDicDisp.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
