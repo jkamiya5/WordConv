@@ -49,7 +49,7 @@ namespace WordConvertTool
             this.dataGridView.DataSource = shinsei;
 
             common.addCheckBox(ref this.dataGridView);
-            common.viewSetting(ref this.dataGridView, 20, 65);
+            common.viewWidthSetting(ref this.dataGridView, 20, 65);
 
             return this.dataGridView;
         }

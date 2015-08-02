@@ -288,10 +288,10 @@ namespace WordConvertTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 単一登録ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            Henshu shinsei = new Henshu();
+            Henshu henshu = new Henshu(Constant.TANITSU_TOROKU);
         }
 
         private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
@@ -308,6 +308,12 @@ namespace WordConvertTool
         private void label2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Close();
+        }
+
+        private void 一括登録ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Henshu henshu = new Henshu(Constant.IKKATSU_TOROKU);
         }
     }
 }

@@ -92,6 +92,7 @@
     <Compile Include="Form\Shinsei.Designer.cs">
       <DependentUpon>Shinsei.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\WordDicDisp.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -63,7 +63,7 @@ namespace WordConvTool
         /// <param name="dataGridView"></param>
         /// <param name="checkBoxObjWidth"></param>
         /// <param name="textBoxObjWidth"></param>
-        internal void viewSetting(ref DataGridView dataGridView, int checkBoxObjWidth, int textBoxObjWidth)
+        internal void viewWidthSetting(ref DataGridView dataGridView, int checkBoxObjWidth, int textBoxObjWidth)
         {
             int j = 0;
             foreach (Object obj in dataGridView.Columns)

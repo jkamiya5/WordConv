@@ -9,5 +9,7 @@ namespace WordConvTool.Model
     public static class Constant
     {
         public static string NONE_WORD = "変換候補がありません。";
+        public static int TANITSU_TOROKU = 0;
+        public static int IKKATSU_TOROKU = 1;
     }
 }

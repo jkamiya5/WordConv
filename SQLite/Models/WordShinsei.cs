@@ -20,7 +20,7 @@ namespace WordConvTool.Model
         public int STATUS { get; set; }
         public long USER_ID { get; set; }
         public int VERSION { get; set; }
-        public int CRE_DATE { get; set; }
+        public string CRE_DATE { get; set; }
         public virtual UserMst User { get; set; }
     }
 }

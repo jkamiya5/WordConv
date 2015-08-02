@@ -50,7 +50,7 @@ namespace WordConvertTool
                 sql += "  , BUTSURI_NAME TEXT";
                 sql += "  , USER_ID INTEGER";
                 sql += "  , VERSION INTEGER";
-                sql += "  , CRE_DATE INTEGER";
+                sql += "  , CRE_DATE TEXT";
                 sql += "  , FOREIGN KEY (USER_ID) REFERENCES USER_MST(USER_ID)";
                 sql += "); ";
                 sql += "CREATE TABLE WORD_SHINSEI( ";
@@ -62,7 +62,7 @@ namespace WordConvertTool
                 sql += "  , STATUS INTEGER";
                 sql += "  , USER_ID INTEGER";
                 sql += "  , VERSION INTEGER";
-                sql += "  , CRE_DATE INTEGER";
+                sql += "  , CRE_DATE TEXT";
                 sql += "  , FOREIGN KEY (USER_ID) REFERENCES USER_MST(USER_ID)";
                 sql += "); ";
                 sql += "CREATE TABLE USER_MST( ";

@@ -18,7 +18,7 @@ namespace WordConvTool.Model
         public string BUTSURI_NAME { get; set; }
         public long USER_ID { get; set; }
         public Int64 VERSION { get; set; }
-        public Int64 CRE_DATE { get; set; }
+        public string CRE_DATE { get; set; }
         public virtual UserMst User { get; set; }
     }
 }
