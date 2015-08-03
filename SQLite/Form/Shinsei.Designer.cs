@@ -215,6 +215,7 @@
             this.Controls.Add(this.yomi2TextBox);
             this.Controls.Add(this.yomi1TextBox);
             this.Controls.Add(this.viewChangeRadioGroupBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Shinsei";
             this.Text = "Shinsei";

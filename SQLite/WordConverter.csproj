@@ -86,9 +86,9 @@
     <Compile Include="Form\Ichiran.Designer.cs">
       <DependentUpon>Ichiran.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\IchiranBoCreateService.cs" />
-    <Compile Include="Form\IchiranBoCreateServiceInBo.cs" />
-    <Compile Include="Form\IchiranBoCreateServiceOutBo.cs" />
+    <Compile Include="Services\IchiranBoCreateService.cs" />
+    <Compile Include="Models\IchiranBoCreateServiceInBo.cs" />
+    <Compile Include="Models\IchiranBoCreateServiceOutBo.cs" />
     <Compile Include="Services\TanitsuTorokuDeleteService.cs" />
     <Compile Include="Models\TanitsuTorokuDeleteServiceOutBo.cs" />
     <Compile Include="Services\TanitsuTorokuRegistService.cs" />
@@ -156,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Ichiran.resx">
       <DependentUpon>Ichiran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Shinsei.resx">
+      <DependentUpon>Shinsei.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
