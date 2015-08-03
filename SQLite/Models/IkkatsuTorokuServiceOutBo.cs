@@ -6,7 +6,7 @@ using WordConvertTool;
 
 namespace SQLite.Form
 {
-    class IkkatsuTorokuServiceOutBo
+    class IkkatsuTorokuInitServiceOutBo
     {
         public List<HenshuWordBo> henshuWordBoList { get; set; }
     }

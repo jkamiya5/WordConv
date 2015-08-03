@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SQLite.Form
 {
-    class IkkatsuTorokuServiceInBo
+    class IkkatsuTorokuInitServiceInBo
     {
         public String clipboardText { get; set; }
     }

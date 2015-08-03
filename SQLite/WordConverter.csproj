@@ -86,10 +86,19 @@
     <Compile Include="Form\Ichiran.Designer.cs">
       <DependentUpon>Ichiran.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\IchiranBoCreateService.cs" />
+    <Compile Include="Form\IchiranBoCreateServiceInBo.cs" />
+    <Compile Include="Form\IchiranBoCreateServiceOutBo.cs" />
+    <Compile Include="Services\TanitsuTorokuDeleteService.cs" />
+    <Compile Include="Models\TanitsuTorokuDeleteServiceOutBo.cs" />
+    <Compile Include="Services\TanitsuTorokuRegistService.cs" />
+    <Compile Include="Models\TanitsuTorokuRegistServiceInBo.cs" />
+    <Compile Include="Models\TanitsuTorokuRegistServiceOutBo.cs" />
+    <Compile Include="Models\TanitsuTorokuDeleteServiceInBo.cs" />
     <Compile Include="Services\IkkatsuRegistBtnService.cs" />
     <Compile Include="Models\IkkatsuRegistBtnServiceInBo.cs" />
     <Compile Include="Models\IkkatsuRegistBtnServiceOutBo.cs" />
-    <Compile Include="Services\IkkatsuTorokuService.cs" />
+    <Compile Include="Services\IkkatsuTorokuInitService.cs" />
     <Compile Include="Models\IkkatsuTorokuServiceInBo.cs" />
     <Compile Include="Models\IkkatsuTorokuServiceOutBo.cs" />
     <Compile Include="Form\Shinsei.cs">
@@ -98,10 +107,11 @@
     <Compile Include="Form\Shinsei.Designer.cs">
       <DependentUpon>Shinsei.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interface\IService.cs" />
     <Compile Include="Services\TanitsuTorokuService.cs" />
     <Compile Include="Models\TanitsuTorokuServiceInBo.cs" />
     <Compile Include="Models\TanitsuTorokuServiceOutBo.cs" />
-    <Compile Include="Models\WordDicDisp.cs" />
+    <Compile Include="Models\WordDicDispBo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,9 +119,9 @@
     </Compile>
     <Compile Include="Services\CommonBase.cs" />
     <Compile Include="Services\DispManager.cs" />
-    <Compile Include="Services\IStrategyDisp.cs" />
+    <Compile Include="Interface\IStrategyDisp.cs" />
     <Compile Include="Models\Constant.cs" />
-    <Compile Include="Models\IBo.cs" />
+    <Compile Include="Interface\IBo.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

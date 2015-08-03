@@ -30,39 +30,39 @@ namespace WordConvertTool
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ichiranDataGridView = new System.Windows.Forms.DataGridView();
             this.wordList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.申請ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.単一登録ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label2 = new System.Windows.Forms.Label();
             this.一括登録ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.プロパティ作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.ichiranDataGridView)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.AliceBlue;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ichiranDataGridView.AllowUserToResizeColumns = false;
+            this.ichiranDataGridView.AllowUserToResizeRows = false;
+            this.ichiranDataGridView.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.ichiranDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.ichiranDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ichiranDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.wordList});
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 8);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(300, 491);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
-            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
-            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
-            this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
+            this.ichiranDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ichiranDataGridView.Location = new System.Drawing.Point(0, 8);
+            this.ichiranDataGridView.Margin = new System.Windows.Forms.Padding(0);
+            this.ichiranDataGridView.Name = "dataGridView1";
+            this.ichiranDataGridView.RowHeadersVisible = false;
+            this.ichiranDataGridView.RowTemplate.Height = 21;
+            this.ichiranDataGridView.Size = new System.Drawing.Size(300, 491);
+            this.ichiranDataGridView.TabIndex = 0;
+            this.ichiranDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
+            this.ichiranDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
+            this.ichiranDataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // wordList
             // 
@@ -89,9 +89,9 @@ namespace WordConvertTool
             this.申請ToolStripMenuItem.Text = "申請";
             this.申請ToolStripMenuItem.Click += new System.EventHandler(this.申請ToolStripMenuItem_Click);
             // 
-            // 編集ToolStripMenuItem
+            // 単一登録ToolStripMenuItem
             // 
-            this.単一登録ToolStripMenuItem.Name = "編集ToolStripMenuItem";
+            this.単一登録ToolStripMenuItem.Name = "単一登録ToolStripMenuItem";
             this.単一登録ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.単一登録ToolStripMenuItem.Text = "単一登録";
             this.単一登録ToolStripMenuItem.Click += new System.EventHandler(this.単一登録ToolStripMenuItem_Click);
@@ -101,9 +101,17 @@ namespace WordConvertTool
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.申請ToolStripMenuItem,
             this.単一登録ToolStripMenuItem,
-            this.一括登録ToolStripMenuItem});
+            this.一括登録ToolStripMenuItem,
+            this.プロパティ作成ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            // 
+            // 一括登録ToolStripMenuItem
+            // 
+            this.一括登録ToolStripMenuItem.Name = "一括登録ToolStripMenuItem";
+            this.一括登録ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.一括登録ToolStripMenuItem.Text = "一括登録";
+            this.一括登録ToolStripMenuItem.Click += new System.EventHandler(this.一括登録ToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -121,12 +129,12 @@ namespace WordConvertTool
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Ichiran_MouseDown);
             this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Ichiran_MouseMove);
             // 
-            // 一括登録ToolStripMenuItem
+            // bo作成ToolStripMenuItem
             // 
-            this.一括登録ToolStripMenuItem.Name = "一括登録ToolStripMenuItem";
-            this.一括登録ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.一括登録ToolStripMenuItem.Text = "一括登録";
-            this.一括登録ToolStripMenuItem.Click += new System.EventHandler(this.一括登録ToolStripMenuItem_Click);
+            this.プロパティ作成ToolStripMenuItem.Name = "プロパティ作成ToolStripMenuItem";
+            this.プロパティ作成ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.プロパティ作成ToolStripMenuItem.Text = "プロパティ作成";
+            this.プロパティ作成ToolStripMenuItem.Click += new System.EventHandler(this.bo作成ToolStripMenuItem_Click);
             // 
             // Ichiran
             // 
@@ -135,13 +143,12 @@ namespace WordConvertTool
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(300, 500);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ichiranDataGridView);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Ichiran";
             this.Text = "Ichiran";
-            this.Deactivate += new System.EventHandler(this.Ichiran_Deactivate);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ichiranDataGridView)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -149,7 +156,7 @@ namespace WordConvertTool
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView ichiranDataGridView;
         private DataGridViewTextBoxColumn wordList;
         private ToolStripMenuItem 申請ToolStripMenuItem;
         private ToolStripMenuItem 単一登録ToolStripMenuItem;
@@ -157,6 +164,7 @@ namespace WordConvertTool
         private Label label1;
         private Label label2;
         private ToolStripMenuItem 一括登録ToolStripMenuItem;
+        private ToolStripMenuItem プロパティ作成ToolStripMenuItem;
     }
 }
 

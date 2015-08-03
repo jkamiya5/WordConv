@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using WordConvertTool;
 using WordConvTool.Model;
 using SQLite.Form;
+using SQLite.Models;
 
 namespace WordConvTool.Forms
 {
@@ -222,77 +223,32 @@ namespace WordConvTool.Forms
 
         private void registBtn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.tanitsuDataGridView.Rows.Count; i++)
-            {
-                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value == null)
-                {
-                    continue;
-                }
-                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value.Equals(true))
-                {
-                    using (var context = new MyContext())
-                    {
-                        long condtion = Convert.ToInt64(this.tanitsuDataGridView.Rows[i].Cells["WORD_ID"].Value.ToString());
-                        var upWord = context.WordDic
-                            .Where(x => x.WORD_ID == condtion);
-
-                        if (upWord.Count() == 1)
-                        {
-                            var w = context.WordDic.Single(x => x.WORD_ID == condtion);
-                            w.RONRI_NAME1 = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
-                            w.BUTSURI_NAME = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
-                            w.CRE_DATE = System.DateTime.Now.ToString();
-                            context.SaveChanges();
-                            continue;
-                        }
-
-                        UserMst user = new UserMst();
-                        user.USER_NAME = "ジョウジ";
-                        WordDic word = new WordDic();
-                        word.RONRI_NAME1 = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
-                        word.BUTSURI_NAME = Convert.ToString(this.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
-                        word.CRE_DATE = System.DateTime.Now.ToString();
-                        word.User = user;
-                        context.WordDic.Add(word);
-                        context.SaveChanges();
-                    }
-                }
-            }
-            MessageBox.Show("辞書テーブルに登録・更新しました。");
+            TanitsuTorokuRegistService registService = new TanitsuTorokuRegistService();
+            TanitsuTorokuRegistServiceInBo registServiceInBo = new TanitsuTorokuRegistServiceInBo();
+            registServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
+            registService.setInBo(registServiceInBo);
+            TanitsuTorokuRegistServiceOutBo registServiceOutBo = registService.execute();
             this.searchAction(this.tanitsuDataGridView);
         }
 
 
         private void delete_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.tanitsuDataGridView.Rows.Count; i++)
-            {
-                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value == null)
-                {
-                    continue;
-                }
-                if (this.tanitsuDataGridView.Rows[i].Cells[0].Value.Equals(true))
-                {
-                    using (var context = new MyContext())
-                    {
-                        long condtion = Convert.ToInt64(this.tanitsuDataGridView.Rows[i].Cells["WORD_ID"].Value.ToString());
-                        var toRemoveWord = new WordDic { WORD_ID = condtion };
-                        context.WordDic.Attach(toRemoveWord);
-                        context.WordDic.Remove(toRemoveWord);
-                        context.SaveChanges();
-                    }
-                }
-            }
-            MessageBox.Show("辞書テーブルから削除されました。");
+            TanitsuTorokuDeleteService deleteService = new TanitsuTorokuDeleteService();
+            TanitsuTorokuDeleteServiceInBo deleteServiceInBo = new TanitsuTorokuDeleteServiceInBo();
+            deleteServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
+            deleteService.setInBo(deleteServiceInBo);
+            TanitsuTorokuDeleteServiceOutBo deleteServiceOutBo = (TanitsuTorokuDeleteServiceOutBo)deleteService.execute();
             this.searchAction(this.tanitsuDataGridView);
         }
 
         private void ikkatsuRegistBtn_Click(object sender, EventArgs e)
         {
-            IkkatsuRegistBtnService ikkatsuRegistService = new IkkatsuRegistBtnService();
-            IkkatsuRegistBtnServiceInBo inBo = new IkkatsuRegistBtnServiceInBo();
+            IkkatsuTorokuIkkatsuRegistService ikkatsuRegistService = new IkkatsuTorokuIkkatsuRegistService();
+            IkkatsuTorokuIkkatsuRegistServiceInBo inBo = new IkkatsuTorokuIkkatsuRegistServiceInBo();
+            inBo.ikkatsuDataGridView = this.ikkatsuDataGridView;
             ikkatsuRegistService.setInBo(inBo);
-            IkkatsuRegistBtnServiceOutBo outBo = ikkatsuRegistService.execute();
+            IkkatsuTorokuIkkatsuRegistServiceOutBo outBo = ikkatsuRegistService.execute();
             MessageBox.Show("辞書テーブルに登録・更新しました。");
         }
 
@@ -300,18 +256,19 @@ namespace WordConvTool.Forms
         {
             if (e.TabPageIndex == Constant.TANITSU_TOROKU)
             {
-                TanitsuTorokuService tanitsuService = new TanitsuTorokuService();
-                TanitsuTorokuServiceInBo inBo = new TanitsuTorokuServiceInBo();
+                TanitsuTorokuInitService tanitsuService = new TanitsuTorokuInitService();
+                TanitsuTorokuInitServiceInBo inBo = new TanitsuTorokuInitServiceInBo();
                 tanitsuService.setInBo(inBo);
-                TanitsuTorokuServiceOutBo outBo = tanitsuService.execute();
+                TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
             }
             else if (e.TabPageIndex == Constant.IKKATSU_TOROKU)
             {
-                IkkatsuTorokuService ikkatsuService = new IkkatsuTorokuService();
-                IkkatsuTorokuServiceInBo inBo = new IkkatsuTorokuServiceInBo();
+                IkkatsuTorokuInitService ikkatsuService = new IkkatsuTorokuInitService();
+                IkkatsuTorokuInitServiceInBo inBo = new IkkatsuTorokuInitServiceInBo();
+                inBo.clipboardText = Clipboard.GetText();
                 ikkatsuService.setInBo(inBo);
-                IkkatsuTorokuServiceOutBo outBo = ikkatsuService.execute();
+                IkkatsuTorokuInitServiceOutBo outBo = ikkatsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
             }
         }
@@ -332,5 +289,6 @@ namespace WordConvTool.Forms
             common.addCheckBox(ref dataGridView);
             common.viewWidthSetting(ref dataGridView, 20, 100);
         }
+
     }
 }

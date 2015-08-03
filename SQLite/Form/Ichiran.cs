@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using WordConvTool.Forms;
 using WordConvTool.Model;
 using System.Configuration;
+using SQLite.Form;
 
 namespace WordConvertTool
 {
@@ -130,10 +131,10 @@ namespace WordConvertTool
                 wordList.Add(word);
             }
 
-            dataGridView1.DataSource = wordList;
-            dataGridView1.Columns["RONRI_NAME1"].Width = 90;
-            dataGridView1.Columns["BUTSURI_NAME"].Width = 205;
-            dataGridView1.ReadOnly = true;
+            ichiranDataGridView.DataSource = wordList;
+            ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
+            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 185;
+            ichiranDataGridView.ReadOnly = true;
 
             //隠していたフォームを表示する
             this.Show();
@@ -197,7 +198,7 @@ namespace WordConvertTool
         private void setClipBordMyValue()
         {
             String val = "";
-            foreach (DataGridViewCell c in dataGridView1.SelectedCells)
+            foreach (DataGridViewCell c in ichiranDataGridView.SelectedCells)
             {
                 if (!String.IsNullOrEmpty(c.Value.ToString()))
                 {
@@ -247,21 +248,12 @@ namespace WordConvertTool
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Ichiran_Deactivate(object sender, EventArgs e)
-        {
-        }
-
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //右クリックのときのみ
             if (e.Button == MouseButtons.Right)
             {
-                int idx = dataGridView1.CurrentCell.RowIndex;
+                int idx = ichiranDataGridView.CurrentCell.RowIndex;
                 int rowindex = e.RowIndex;
                 //コンテキストメニューを表示する
                 this.contextMenuStrip1.Show();
@@ -294,15 +286,11 @@ namespace WordConvertTool
             Henshu henshu = new Henshu(Constant.TANITSU_TOROKU);
         }
 
-        private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            this.dataGridView1.RowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            this.ichiranDataGridView.RowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
+            this.ichiranDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
         }
 
         private void label2_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -314,6 +302,16 @@ namespace WordConvertTool
         {
             this.Close();
             Henshu henshu = new Henshu(Constant.IKKATSU_TOROKU);
+        }
+
+        private void bo作成ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IchiranBoCreateService boCreateService = new IchiranBoCreateService();
+            IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
+            boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
+            boCreateService.setInBo(boCreateServiceInBo);
+            IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
+            Clipboard.SetText(registServiceOutBo.boText);
         }
     }
 }

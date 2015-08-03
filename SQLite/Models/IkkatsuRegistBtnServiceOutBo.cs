@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SQLite.Form
 {
-    class IkkatsuRegistBtnServiceOutBo
+    class IkkatsuTorokuIkkatsuRegistServiceOutBo
     {
     }
 }

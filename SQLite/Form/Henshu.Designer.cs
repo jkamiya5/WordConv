@@ -180,13 +180,13 @@
             this.textBox2.Size = new System.Drawing.Size(267, 19);
             this.textBox2.TabIndex = 13;
             // 
-            // dataGridView1
+            // tanitsuDataGridView
             // 
             this.tanitsuDataGridView.AllowUserToResizeColumns = false;
             this.tanitsuDataGridView.AllowUserToResizeRows = false;
             this.tanitsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tanitsuDataGridView.Location = new System.Drawing.Point(13, 138);
-            this.tanitsuDataGridView.Name = "dataGridView1";
+            this.tanitsuDataGridView.Name = "tanitsuDataGridView";
             this.tanitsuDataGridView.RowHeadersVisible = false;
             this.tanitsuDataGridView.RowTemplate.Height = 21;
             this.tanitsuDataGridView.Size = new System.Drawing.Size(346, 175);
@@ -224,14 +224,14 @@
             this.ikkatsuRegistBtn.UseVisualStyleBackColor = true;
             this.ikkatsuRegistBtn.Click += new System.EventHandler(this.ikkatsuRegistBtn_Click);
             // 
-            // dataGridView2
+            // ikkatsuDataGridView
             // 
             this.ikkatsuDataGridView.AllowUserToResizeColumns = false;
             this.ikkatsuDataGridView.AllowUserToResizeRows = false;
             this.ikkatsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ikkatsuDataGridView.Location = new System.Drawing.Point(13, 94);
+            this.ikkatsuDataGridView.Name = "ikkatsuDataGridView";
             this.ikkatsuDataGridView.RowHeadersVisible = false;
-            this.ikkatsuDataGridView.Name = "dataGridView2";
             this.ikkatsuDataGridView.RowTemplate.Height = 21;
             this.ikkatsuDataGridView.Size = new System.Drawing.Size(344, 212);
             this.ikkatsuDataGridView.TabIndex = 12;

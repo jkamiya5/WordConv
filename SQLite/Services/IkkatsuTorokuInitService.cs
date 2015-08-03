@@ -7,18 +7,18 @@ using WordConvertTool;
 
 namespace SQLite.Form
 {
-    class IkkatsuTorokuService
+    class IkkatsuTorokuInitService
     {
-        private IkkatsuTorokuServiceInBo inBo = new IkkatsuTorokuServiceInBo();
+        private IkkatsuTorokuInitServiceInBo inBo = new IkkatsuTorokuInitServiceInBo();
 
-        internal void setInBo(IkkatsuTorokuServiceInBo InBo)
+        internal void setInBo(IkkatsuTorokuInitServiceInBo InBo)
         {
             this.inBo = InBo;
         }
 
-        internal IkkatsuTorokuServiceOutBo execute()
+        internal IkkatsuTorokuInitServiceOutBo execute()
         {
-            IkkatsuTorokuServiceOutBo outBo = new IkkatsuTorokuServiceOutBo();
+            IkkatsuTorokuInitServiceOutBo outBo = new IkkatsuTorokuInitServiceOutBo();
 
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
 

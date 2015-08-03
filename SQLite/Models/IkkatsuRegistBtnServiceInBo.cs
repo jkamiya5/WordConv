@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace SQLite.Form
 {
-    class IkkatsuRegistBtnServiceInBo
+    class IkkatsuTorokuIkkatsuRegistServiceInBo
     {
         public DataGridView ikkatsuDataGridView { get; set; }
     }

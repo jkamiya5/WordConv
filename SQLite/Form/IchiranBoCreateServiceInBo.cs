@@ -6,7 +6,8 @@ using WordConvTool.Service;
 
 namespace SQLite.Form
 {
-    class TanitsuTorokuInitServiceInBo : IBo
+    public class IchiranBoCreateServiceInBo : IBo
     {
+        public System.Windows.Forms.DataGridView ichiranDataGridView { get; set; }
     }
 }

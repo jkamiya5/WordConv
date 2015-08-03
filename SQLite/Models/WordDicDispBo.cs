@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SQLite.Form
 {
-    class WordDicDisp
+    class WordDicDispBo
     {
         public long WORD_ID { get; set; }
         public string RONRI_NAME1 { get; set; }

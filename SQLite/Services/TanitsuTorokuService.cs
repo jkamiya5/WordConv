@@ -1,20 +1,25 @@
-﻿using System;
+﻿using SQLite.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WordConvTool.Service;
 
 namespace SQLite.Form
 {
-    class TanitsuTorokuService
+    class TanitsuTorokuInitService : IService<TanitsuTorokuInitServiceOutBo>
     {
-        internal void setInBo(TanitsuTorokuServiceInBo inBo)
+        private TanitsuTorokuInitServiceInBo inBo;
+
+        public void setInBo(WordConvTool.Service.IBo inBo)
         {
-            throw new NotImplementedException();
+            this.inBo = (TanitsuTorokuInitServiceInBo)inBo;
         }
 
-        internal TanitsuTorokuServiceOutBo execute()
+        public TanitsuTorokuInitServiceOutBo execute()
         {
-            throw new NotImplementedException();
+            TanitsuTorokuInitServiceOutBo outBo = new TanitsuTorokuInitServiceOutBo();
+            return outBo;
         }
     }
 }
