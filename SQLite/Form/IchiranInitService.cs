@@ -10,15 +10,29 @@ using WordConvTool.Model;
 
 namespace SQLite.Form
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class IchiranInitService : IService<IchiranInitServiceOutBo>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private IchiranInitServiceInBo inBo = new IchiranInitServiceInBo();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(WordConvTool.Service.IBo inBo)
         {
             this.inBo = (IchiranInitServiceInBo)inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IchiranInitServiceOutBo execute()
         {
             IchiranInitServiceOutBo outBo = new IchiranInitServiceOutBo();

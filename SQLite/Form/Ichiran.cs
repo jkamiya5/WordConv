@@ -75,31 +75,6 @@ namespace WordConvertTool
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        /// <summary>
-        /// クリップボードに変換候補一覧の値を設定
-        /// </summary>
-        private void setClipBordMyValue()
-        {
-            String val = "";
-            foreach (DataGridViewCell c in ichiranDataGridView.SelectedCells)
-            {
-                if (!String.IsNullOrEmpty(c.Value.ToString()))
-                {
-                    val += c.Value + System.Environment.NewLine;
-                }
-            }
-            if (val.Trim() != Constant.NONE_WORD)
-            {
-                this.Close();
-                Clipboard.SetText(val);
-            }
-            else
-            {
-                this.Close();
-                Shinsei shinsei = new Shinsei(Clipboard.GetText());
-            }
-        }
-
         //マウスのクリック位置を記憶
         private Point mousePoint;
 
@@ -236,7 +211,7 @@ namespace WordConvertTool
 
             ichiranDataGridView.DataSource = initServiceOutBo.wordList;
             ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
-            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 160;
+            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 185;
             ichiranDataGridView.ReadOnly = true;
 
             //隠していたフォームを表示する
@@ -245,6 +220,31 @@ namespace WordConvertTool
 
             //透過性
             this.Opacity = 0.94;
+        }
+
+        /// <summary>
+        /// クリップボードに変換候補一覧の値を設定
+        /// </summary>
+        private void setClipBordMyValue()
+        {
+            String val = "";
+            foreach (DataGridViewCell c in ichiranDataGridView.SelectedCells)
+            {
+                if (!String.IsNullOrEmpty(c.Value.ToString()))
+                {
+                    val += c.Value + System.Environment.NewLine;
+                }
+            }
+            if (val.Trim() != Constant.NONE_WORD)
+            {
+                this.Close();
+                Clipboard.SetText(val);
+            }
+            else
+            {
+                this.Close();
+                Shinsei shinsei = new Shinsei(Clipboard.GetText());
+            }
         }
     }
 }

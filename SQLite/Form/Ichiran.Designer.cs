@@ -53,12 +53,12 @@ namespace WordConvertTool
             this.ichiranDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.wordList});
             this.ichiranDataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ichiranDataGridView.Location = new System.Drawing.Point(0, 8);
+            this.ichiranDataGridView.Location = new System.Drawing.Point(0, 9);
             this.ichiranDataGridView.Margin = new System.Windows.Forms.Padding(0);
             this.ichiranDataGridView.Name = "ichiranDataGridView";
             this.ichiranDataGridView.RowHeadersVisible = false;
             this.ichiranDataGridView.RowTemplate.Height = 21;
-            this.ichiranDataGridView.Size = new System.Drawing.Size(300, 491);
+            this.ichiranDataGridView.Size = new System.Drawing.Size(330, 490);
             this.ichiranDataGridView.TabIndex = 0;
             this.ichiranDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             this.ichiranDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
@@ -67,11 +67,11 @@ namespace WordConvertTool
             // wordList
             // 
             this.wordList.HeaderText = "wordList";
-            this.wordList.MinimumWidth = 300;
+            this.wordList.MinimumWidth = 330;
             this.wordList.Name = "wordList";
             this.wordList.ReadOnly = true;
             this.wordList.Visible = false;
-            this.wordList.Width = 450;
+            this.wordList.Width = 330;
             // 
             // label1
             // 
@@ -79,7 +79,7 @@ namespace WordConvertTool
             this.label1.Location = new System.Drawing.Point(1, 1);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(300, 495);
+            this.label1.Size = new System.Drawing.Size(330, 495);
             this.label1.TabIndex = 1;
             // 
             // 申請ToolStripMenuItem
@@ -128,7 +128,7 @@ namespace WordConvertTool
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(300, 27);
+            this.label2.Size = new System.Drawing.Size(330, 27);
             this.label2.TabIndex = 3;
             this.label2.Text = "WordConverter";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,7 +141,7 @@ namespace WordConvertTool
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(300, 500);
+            this.ClientSize = new System.Drawing.Size(330, 500);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ichiranDataGridView);
             this.Controls.Add(this.label1);
