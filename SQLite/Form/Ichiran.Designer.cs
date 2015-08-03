@@ -58,7 +58,7 @@ namespace WordConvertTool
             this.ichiranDataGridView.Name = "ichiranDataGridView";
             this.ichiranDataGridView.RowHeadersVisible = false;
             this.ichiranDataGridView.RowTemplate.Height = 21;
-            this.ichiranDataGridView.Size = new System.Drawing.Size(300, 493);
+            this.ichiranDataGridView.Size = new System.Drawing.Size(300, 491);
             this.ichiranDataGridView.TabIndex = 0;
             this.ichiranDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             this.ichiranDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);

@@ -47,7 +47,7 @@
             this.ikkatsuDataGridView = new System.Windows.Forms.DataGridView();
             this.readFile = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.filePath = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
@@ -205,7 +205,7 @@
             this.tabPage2.Controls.Add(this.ikkatsuDataGridView);
             this.tabPage2.Controls.Add(this.readFile);
             this.tabPage2.Controls.Add(this.openFile);
-            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.filePath);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -258,10 +258,10 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(28, 31);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(287, 19);
-            this.textBox4.TabIndex = 9;
+            this.filePath.Location = new System.Drawing.Point(28, 31);
+            this.filePath.Name = "textBox4";
+            this.filePath.Size = new System.Drawing.Size(287, 19);
+            this.filePath.TabIndex = 9;
             // 
             // Henshu
             // 
@@ -300,7 +300,7 @@
         private System.Windows.Forms.DataGridView ikkatsuDataGridView;
         private System.Windows.Forms.Button readFile;
         private System.Windows.Forms.Button openFile;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox filePath;
         private System.Windows.Forms.Button delete;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;

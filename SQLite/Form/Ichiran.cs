@@ -133,7 +133,7 @@ namespace WordConvertTool
 
             ichiranDataGridView.DataSource = wordList;
             ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
-            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 185;
+            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 160;
             ichiranDataGridView.ReadOnly = true;
 
             //隠していたフォームを表示する

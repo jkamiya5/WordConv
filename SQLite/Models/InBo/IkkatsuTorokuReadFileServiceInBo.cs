@@ -8,5 +8,6 @@ namespace SQLite.Form
 {
     class IkkatsuTorokuReadFileServiceInBo : IBo
     {
+        public string Filename { get; set; }
     }
 }
