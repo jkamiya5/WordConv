@@ -82,4 +82,28 @@ namespace WordConvTool
             }
         }
     }
+
+    public static class StringExtensions
+    {
+        public static string ToTitleCase(this string self)
+        {
+            return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(self);
+        }
+
+        public static string ToPascalCase(this string self)
+        {
+            String butsuriName = "";
+            String inParams = Convert.ToString(self);
+            string UNDER_SCORE = "_";
+            String[] names = inParams.Split(new string[] { UNDER_SCORE }, StringSplitOptions.None);
+            foreach (String s in names)
+            {
+                String str = "";
+                str = s.ToLower();
+                str = str.ToTitleCase();
+                butsuriName += str;
+            }
+            return butsuriName;
+        }
+    }
 }

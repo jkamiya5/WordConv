@@ -86,21 +86,24 @@
     <Compile Include="Form\Ichiran.Designer.cs">
       <DependentUpon>Ichiran.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\IkkatsuTorokuReadFileService.cs" />
+    <Compile Include="Models\InBo\IkkatsuTorokuReadFileServiceInBo.cs" />
+    <Compile Include="Models\OutBo\IkkatsuTorokuReadFileServiceOutBo.cs" />
     <Compile Include="Services\IchiranBoCreateService.cs" />
-    <Compile Include="Models\IchiranBoCreateServiceInBo.cs" />
-    <Compile Include="Models\IchiranBoCreateServiceOutBo.cs" />
+    <Compile Include="Models\InBo\IchiranBoCreateServiceInBo.cs" />
+    <Compile Include="Models\OutBo\IchiranBoCreateServiceOutBo.cs" />
     <Compile Include="Services\TanitsuTorokuDeleteService.cs" />
-    <Compile Include="Models\TanitsuTorokuDeleteServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuDeleteServiceOutBo.cs" />
     <Compile Include="Services\TanitsuTorokuRegistService.cs" />
-    <Compile Include="Models\TanitsuTorokuRegistServiceInBo.cs" />
-    <Compile Include="Models\TanitsuTorokuRegistServiceOutBo.cs" />
-    <Compile Include="Models\TanitsuTorokuDeleteServiceInBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuRegistServiceInBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuRegistServiceOutBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuDeleteServiceInBo.cs" />
     <Compile Include="Services\IkkatsuRegistBtnService.cs" />
-    <Compile Include="Models\IkkatsuRegistBtnServiceInBo.cs" />
-    <Compile Include="Models\IkkatsuRegistBtnServiceOutBo.cs" />
+    <Compile Include="Models\InBo\IkkatsuRegistBtnServiceInBo.cs" />
+    <Compile Include="Models\OutBo\IkkatsuRegistBtnServiceOutBo.cs" />
     <Compile Include="Services\IkkatsuTorokuInitService.cs" />
-    <Compile Include="Models\IkkatsuTorokuServiceInBo.cs" />
-    <Compile Include="Models\IkkatsuTorokuServiceOutBo.cs" />
+    <Compile Include="Models\InBo\IkkatsuTorokuServiceInBo.cs" />
+    <Compile Include="Models\OutBo\IkkatsuTorokuServiceOutBo.cs" />
     <Compile Include="Form\Shinsei.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,8 +112,8 @@
     </Compile>
     <Compile Include="Interface\IService.cs" />
     <Compile Include="Services\TanitsuTorokuService.cs" />
-    <Compile Include="Models\TanitsuTorokuServiceInBo.cs" />
-    <Compile Include="Models\TanitsuTorokuServiceOutBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuServiceInBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuServiceOutBo.cs" />
     <Compile Include="Models\WordDicDispBo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -126,11 +129,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ShinseiBo.cs" />
-    <Compile Include="Models\UserMst.cs" />
-    <Compile Include="Models\Word.cs" />
-    <Compile Include="Models\WordBo.cs" />
-    <Compile Include="Models\WordDic.cs" />
-    <Compile Include="Models\WordShinsei.cs" />
+    <Compile Include="Models\Entity\UserMst.cs" />
+    <Compile Include="Models\HenshuWordBo.cs" />
+    <Compile Include="Models\IchiranWordBo.cs" />
+    <Compile Include="Models\Entity\WordDic.cs" />
+    <Compile Include="Models\Entity\WordShinsei.cs" />
     <Compile Include="Services\StrategyDispBase.cs" />
     <Compile Include="Services\StrategyKoushin.cs" />
     <Compile Include="Services\StrategyShinki.cs" />

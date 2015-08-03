@@ -18,8 +18,14 @@ namespace WordConvTool.Forms
 {
     public partial class Henshu : Form
     {
+        /// <summary>
+        /// 共通関数インクルード
+        /// </summary>
         private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public Henshu()
         {
             InitializeComponent();
@@ -27,6 +33,10 @@ namespace WordConvTool.Forms
             this.Activate();
         }
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="selectedTanIndex"></param>
         public Henshu(int selectedTanIndex)
         {
             InitializeComponent();
@@ -35,8 +45,19 @@ namespace WordConvTool.Forms
             this.tabControl1.SelectedIndex = selectedTanIndex;
         }
 
+        /// <summary>
+        /// 「読み込み」アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void readFile_Click(object sender, EventArgs e)
         {
+            IkkatsuTorokuReadFileService readFileService = new IkkatsuTorokuReadFileService();
+            IkkatsuTorokuReadFileServiceInBo readFileServiceInBo = new IkkatsuTorokuReadFileServiceInBo();
+            readFileService.setInBo(readFileServiceInBo);
+            IkkatsuTorokuReadFileServiceOutBo registServiceOutBo = readFileService.execute();
+
+
             this.Cursor = Cursors.WaitCursor;   // マウスカーソルを砂時計
             Microsoft.Office.Interop.Excel.Application oExcelApp = null; // Excelオブジェクト
             Microsoft.Office.Interop.Excel.Workbook oExcelWBook = null;  // Excel Workbookオブジェクト
@@ -47,7 +68,7 @@ namespace WordConvTool.Forms
                 oExcelApp.Visible = false;       // Excel表示有無
                 // Excelファイルをオープンする(第一パラメタ以外は省略可)
                 oExcelWBook = (Microsoft.Office.Interop.Excel.Workbook)(oExcelApp.Workbooks.Open(
-                  this.textBox1.Text,      // Filename
+                  this.textBox4.Text,      // Filename
                   Type.Missing,  // UpdateLinks
                   Type.Missing,  // ReadOnly
                   Type.Missing,  // Format
@@ -67,23 +88,39 @@ namespace WordConvTool.Forms
                 Microsoft.Office.Interop.Excel._Worksheet oWSheet =
                     (Microsoft.Office.Interop.Excel._Worksheet)oExcelWBook.ActiveSheet;
 
-                int YOMI = 1;
-                int TANGO = 2;
+                int RONRI_NAME1 = 1;
+                int BUTSURI_NAME = 2;
                 int rowId = 2;
 
-                while (String.IsNullOrEmpty(oWSheet.Cells[rowId, YOMI].Value))
+                using (var context = new MyContext())
                 {
-                    string yomi = oWSheet.Cells[rowId, YOMI].Value;
-                    string tango = oWSheet.Cells[rowId, TANGO].Value;
-
-                    if (String.IsNullOrEmpty(yomi) && yomi.Length > 0)
+                    while (!String.IsNullOrEmpty(oWSheet.Cells[rowId, RONRI_NAME1].Value))
                     {
-                        string sql1 = "insert into word (yomi,tango) values('"
-                            + yomi + "', '" + tango + "')";
-                        common.executeQuery(sql1);
-                    }
+                        string ronriName = oWSheet.Cells[rowId, RONRI_NAME1].Value;
+                        string butsuriName = oWSheet.Cells[rowId, BUTSURI_NAME].Value;
 
-                    rowId++;
+                        if (!String.IsNullOrEmpty(ronriName) && !String.IsNullOrEmpty(butsuriName))
+                        {
+
+                            var upWord = context.WordDic.Where(x => x.RONRI_NAME1 == ronriName);
+                            if (upWord.Count() == 1)
+                            {
+                                rowId++;
+                                continue;
+                            }
+
+                            UserMst user = new UserMst();
+                            user.USER_NAME = "ジョウジ";
+                            WordDic word = new WordDic();
+                            word.RONRI_NAME1 = Convert.ToString(ronriName);
+                            word.BUTSURI_NAME = Convert.ToString(butsuriName).ToPascalCase();
+                            word.CRE_DATE = System.DateTime.Now.ToString();
+                            word.User = user;
+                            context.WordDic.Add(word);
+                        }
+                        rowId++;
+                    }
+                    context.SaveChanges();
                 }
             }
             catch (System.IO.FileNotFoundException)
@@ -103,6 +140,11 @@ namespace WordConvTool.Forms
             MessageBox.Show("正常に読み込みました。");
         }
 
+        /// <summary>
+        /// 「開く」アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openFile_Click(object sender, EventArgs e)
         {
             //OpenFileDialogクラスのインスタンスを作成
@@ -111,67 +153,26 @@ namespace WordConvTool.Forms
             //ダイアログを表示する
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                this.textBox1.Text = ofd.FileName;
+                this.textBox4.Text = ofd.FileName;
             }
         }
 
+        /// <summary>
+        /// 検索アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchBtn_Click(object sender, EventArgs e)
         {
             this.searchAction(this.tanitsuDataGridView);
         }
 
-        private void searchAction(DataGridView dataGridView)
-        {
-            List<HenshuWordBo> wordList = new List<HenshuWordBo>();
-            using (var context = new MyContext())
-            {
-                IQueryable<HenshuWordBo> words = from a in context.WordDic
-                                                 join b in context.UserMst on a.USER_ID equals b.USER_ID
-                                                 select new HenshuWordBo
-                                            {
-                                                WORD_ID = a.WORD_ID,
-                                                RONRI_NAME1 = a.RONRI_NAME1,
-                                                BUTSURI_NAME = a.BUTSURI_NAME,
-                                                USER_NAME = b.USER_NAME,
-                                                CRE_DATE = a.CRE_DATE,
-                                                VERSION = (int)a.VERSION
-                                            };
 
-                HenshuWordBo[] dispWords = words.Where(x => x.RONRI_NAME1.IndexOf(this.textBox1.Text) > -1).ToArray();
-
-                foreach (var word in dispWords)
-                {
-                    HenshuWordBo w = new HenshuWordBo();
-                    w.WORD_ID = word.WORD_ID;
-                    w.RONRI_NAME1 = word.RONRI_NAME1;
-                    w.BUTSURI_NAME = word.BUTSURI_NAME;
-                    w.USER_NAME = word.USER_NAME;
-                    w.CRE_DATE = word.CRE_DATE;
-                    w.VERSION = (int)word.VERSION;
-                    wordList.Add(w);
-                }
-            }
-
-            this.henshuViewDispSetthing(ref dataGridView, wordList);
-        }
-
-
-        private bool isContains(string tango, List<HenshuWordBo> wordList)
-        {
-            if (wordList.Count > 0)
-            {
-                foreach (HenshuWordBo obj in wordList)
-                {
-                    if (obj.BUTSURI_NAME == tango)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-
+        /// <summary>
+        /// クリアアクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clearBtn_Click(object sender, EventArgs e)
         {
             this.textBox1.Text = "";
@@ -180,6 +181,11 @@ namespace WordConvTool.Forms
         }
 
 
+        /// <summary>
+        /// 追加アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(this.textBox1.Text) || String.IsNullOrEmpty(this.textBox3.Text))
@@ -221,6 +227,12 @@ namespace WordConvTool.Forms
         }
 
 
+
+        /// <summary>
+        /// 単一登録・登録アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void registBtn_Click(object sender, EventArgs e)
         {
             TanitsuTorokuRegistService registService = new TanitsuTorokuRegistService();
@@ -232,6 +244,11 @@ namespace WordConvTool.Forms
         }
 
 
+        /// <summary>
+        /// 削除アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void delete_Click(object sender, EventArgs e)
         {
             TanitsuTorokuDeleteService deleteService = new TanitsuTorokuDeleteService();
@@ -242,6 +259,11 @@ namespace WordConvTool.Forms
             this.searchAction(this.tanitsuDataGridView);
         }
 
+        /// <summary>
+        /// 一括登録・登録アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ikkatsuRegistBtn_Click(object sender, EventArgs e)
         {
             IkkatsuTorokuIkkatsuRegistService ikkatsuRegistService = new IkkatsuTorokuIkkatsuRegistService();
@@ -252,6 +274,11 @@ namespace WordConvTool.Forms
             MessageBox.Show("辞書テーブルに登録・更新しました。");
         }
 
+        /// <summary>
+        /// タブコントロール初期表示処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             if (e.TabPageIndex == Constant.TANITSU_TOROKU)
@@ -273,6 +300,11 @@ namespace WordConvTool.Forms
             }
         }
 
+        /// <summary>
+        /// 編集画面データグリッドビュー表示設定処理
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="wordList"></param>
         private void henshuViewDispSetthing(ref DataGridView dataGridView, List<HenshuWordBo> wordList)
         {
             dataGridView.DataSource = wordList;
@@ -290,5 +322,64 @@ namespace WordConvTool.Forms
             common.viewWidthSetting(ref dataGridView, 20, 100);
         }
 
+        /// <summary>
+        /// 要素重複判定メソッド
+        /// </summary>
+        /// <param name="tango"></param>
+        /// <param name="wordList"></param>
+        /// <returns></returns>
+        private bool isContains(string tango, List<HenshuWordBo> wordList)
+        {
+            if (wordList.Count > 0)
+            {
+                foreach (HenshuWordBo obj in wordList)
+                {
+                    if (obj.BUTSURI_NAME == tango)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 検索アクションサービス
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        private void searchAction(DataGridView dataGridView)
+        {
+            List<HenshuWordBo> wordList = new List<HenshuWordBo>();
+            using (var context = new MyContext())
+            {
+                IQueryable<HenshuWordBo> words = from a in context.WordDic
+                                                 join b in context.UserMst on a.USER_ID equals b.USER_ID
+                                                 select new HenshuWordBo
+                                                 {
+                                                     WORD_ID = a.WORD_ID,
+                                                     RONRI_NAME1 = a.RONRI_NAME1,
+                                                     BUTSURI_NAME = a.BUTSURI_NAME,
+                                                     USER_NAME = b.USER_NAME,
+                                                     CRE_DATE = a.CRE_DATE,
+                                                     VERSION = (int)a.VERSION
+                                                 };
+
+                HenshuWordBo[] dispWords = words.Where(x => x.RONRI_NAME1.IndexOf(this.textBox1.Text) > -1).ToArray();
+
+                foreach (var word in dispWords)
+                {
+                    HenshuWordBo w = new HenshuWordBo();
+                    w.WORD_ID = word.WORD_ID;
+                    w.RONRI_NAME1 = word.RONRI_NAME1;
+                    w.BUTSURI_NAME = word.BUTSURI_NAME;
+                    w.USER_NAME = word.USER_NAME;
+                    w.CRE_DATE = word.CRE_DATE;
+                    w.VERSION = (int)word.VERSION;
+                    wordList.Add(w);
+                }
+            }
+
+            this.henshuViewDispSetthing(ref dataGridView, wordList);
+        }
     }
 }

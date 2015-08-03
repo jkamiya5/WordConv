@@ -76,7 +76,7 @@ namespace WordConvertTool
                         {
                             while (reader.Read())
                             {
-                                if (reader["RONRI_NAME1"].ToString().IndexOf(key) > -1 &&
+                                if (reader["RONRI_NAME1"].ToString().IndexOf(key) == 0 &&
                                     !isContains(reader["BUTSURI_NAME"].ToString(), wordList))
                                 {
                                     word = new IchiranWordBo();

@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WordConvertTool;
+using WordConvTool;
 using WordConvTool.Model;
 
 namespace SQLite.Form
 {
-    public static class StringExtensions
-    {
-        public static string ToTitleCase(this string self)
-        {
-            return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(self);
-        }
-    }
 
     class IkkatsuTorokuIkkatsuRegistService
     {
+        private static CommonFunction common = new CommonFunction();
         private IkkatsuTorokuIkkatsuRegistServiceInBo inBo = new IkkatsuTorokuIkkatsuRegistServiceInBo();
 
         internal void setInBo(IkkatsuTorokuIkkatsuRegistServiceInBo InBo)
@@ -42,17 +37,9 @@ namespace SQLite.Form
                         var upWord = context.WordDic
                             .Where(x => x.WORD_ID == condtion);
 
-                        String butsuriName = "";
-                        String inParams = Convert.ToString(this.inBo.ikkatsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
-                        string UNDER_SCORE = "_";
-                        String[] names = inParams.Split(new string[] { UNDER_SCORE }, StringSplitOptions.None);
-                        foreach (String s in names)
-                        {
-                            String str = "";
-                            str = s.ToLower();
-                            str = str.ToTitleCase();
-                            butsuriName += str;
-                        }
+
+                        String butsuriName = Convert.ToString(this.inBo.ikkatsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
+                        butsuriName = butsuriName.ToPascalCase();
 
                         if (upWord.Count() == 1)
                         {
