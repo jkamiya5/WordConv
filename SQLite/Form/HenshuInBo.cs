@@ -6,8 +6,8 @@ using WordConvTool.Service;
 
 namespace SQLite.Form
 {
-    class TanitsuTorokuInitServiceInBo : IBo
+    public class HenshuInBo : IBo
     {
-        public string clipboardText { get; set; }
+        public String clipBoardText { get; set; }
     }
 }

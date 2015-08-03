@@ -23,6 +23,8 @@ namespace WordConvTool.Forms
         /// 共通関数インクルード
         /// </summary>
         private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
+        private int p;
+        private HenshuInBo henshuInBo = new HenshuInBo();
 
         /// <summary>
         /// コンストラクタ
@@ -38,8 +40,17 @@ namespace WordConvTool.Forms
         /// コンストラクタ
         /// </summary>
         /// <param name="selectedTanIndex"></param>
-        public Henshu(int selectedTanIndex)
+        //public Henshu(int selectedTanIndex)
+        //{
+        //    InitializeComponent();
+        //    this.Show();
+        //    this.Activate();
+        //    this.tabControl1.SelectedIndex = selectedTanIndex;
+        //}
+
+        public Henshu(int selectedTanIndex, HenshuInBo henshuInBo)
         {
+            this.henshuInBo = henshuInBo;
             InitializeComponent();
             this.Show();
             this.Activate();
@@ -156,12 +167,31 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void registBtn_Click(object sender, EventArgs e)
         {
-            TanitsuTorokuRegistService registService = new TanitsuTorokuRegistService();
-            TanitsuTorokuRegistServiceInBo registServiceInBo = new TanitsuTorokuRegistServiceInBo();
-            registServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
-            registService.setInBo(registServiceInBo);
-            TanitsuTorokuRegistServiceOutBo registServiceOutBo = registService.execute();
+            TanitsuTorokuRegistService tanitsuRegistService = new TanitsuTorokuRegistService();
+            TanitsuTorokuRegistServiceInBo tanitsuRegistServiceInBo = new TanitsuTorokuRegistServiceInBo();
+            tanitsuRegistServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
+            tanitsuRegistService.setInBo(tanitsuRegistServiceInBo);
+
+            TanitsuTorokuRegistServiceOutBo tanitsuRegistServiceOutBo = tanitsuRegistService.execute();
             this.searchAction(this.tanitsuDataGridView);
+            MessageBox.Show("辞書テーブルに登録・更新しました。");
+        }
+
+
+        /// <summary>
+        /// 一括登録・登録アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ikkatsuRegistBtn_Click(object sender, EventArgs e)
+        {
+            IkkatsuTorokuIkkatsuRegistService ikkatsuRegistService = new IkkatsuTorokuIkkatsuRegistService();
+            IkkatsuTorokuIkkatsuRegistServiceInBo ikkatsuRegistServiceInBo = new IkkatsuTorokuIkkatsuRegistServiceInBo();
+            ikkatsuRegistServiceInBo.ikkatsuDataGridView = this.ikkatsuDataGridView;
+            ikkatsuRegistService.setInBo(ikkatsuRegistServiceInBo);
+
+            IkkatsuTorokuIkkatsuRegistServiceOutBo outBo = ikkatsuRegistService.execute();
+            MessageBox.Show("辞書テーブルに登録・更新しました。");
         }
 
 
@@ -181,21 +211,6 @@ namespace WordConvTool.Forms
         }
 
         /// <summary>
-        /// 一括登録・登録アクション
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ikkatsuRegistBtn_Click(object sender, EventArgs e)
-        {
-            IkkatsuTorokuIkkatsuRegistService ikkatsuRegistService = new IkkatsuTorokuIkkatsuRegistService();
-            IkkatsuTorokuIkkatsuRegistServiceInBo inBo = new IkkatsuTorokuIkkatsuRegistServiceInBo();
-            inBo.ikkatsuDataGridView = this.ikkatsuDataGridView;
-            ikkatsuRegistService.setInBo(inBo);
-            IkkatsuTorokuIkkatsuRegistServiceOutBo outBo = ikkatsuRegistService.execute();
-            MessageBox.Show("辞書テーブルに登録・更新しました。");
-        }
-
-        /// <summary>
         /// タブコントロール初期表示処理
         /// </summary>
         /// <param name="sender"></param>
@@ -206,16 +221,19 @@ namespace WordConvTool.Forms
             {
                 TanitsuTorokuInitService tanitsuService = new TanitsuTorokuInitService();
                 TanitsuTorokuInitServiceInBo inBo = new TanitsuTorokuInitServiceInBo();
+                inBo.clipboardText = this.henshuInBo.clipBoardText;
                 tanitsuService.setInBo(inBo);
                 TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
+
             }
             else if (e.TabPageIndex == Constant.IKKATSU_TOROKU)
             {
                 IkkatsuTorokuInitService ikkatsuService = new IkkatsuTorokuInitService();
                 IkkatsuTorokuInitServiceInBo inBo = new IkkatsuTorokuInitServiceInBo();
-                inBo.clipboardText = Clipboard.GetText();
+                inBo.clipboardText = this.henshuInBo.clipBoardText;
                 ikkatsuService.setInBo(inBo);
+
                 IkkatsuTorokuInitServiceOutBo outBo = ikkatsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
             }
@@ -273,8 +291,10 @@ namespace WordConvTool.Forms
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             using (var context = new MyContext())
             {
+                String condition = this.textBox1.Text.Trim();
                 IQueryable<HenshuWordBo> words = from a in context.WordDic
                                                  join b in context.UserMst on a.USER_ID equals b.USER_ID
+                                                 where a.RONRI_NAME1.StartsWith(condition)
                                                  select new HenshuWordBo
                                                  {
                                                      WORD_ID = a.WORD_ID,
@@ -284,8 +304,7 @@ namespace WordConvTool.Forms
                                                      CRE_DATE = a.CRE_DATE,
                                                      VERSION = (int)a.VERSION
                                                  };
-
-                HenshuWordBo[] dispWords = words.Where(x => x.RONRI_NAME1.IndexOf(this.textBox1.Text) > -1).ToArray();
+                HenshuWordBo[] dispWords = words.ToArray();
 
                 foreach (var word in dispWords)
                 {
@@ -301,6 +320,31 @@ namespace WordConvTool.Forms
             }
 
             this.henshuViewDispSetthing(ref dataGridView, wordList);
+        }
+
+        private void Henshu_Load(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == Constant.TANITSU_TOROKU)
+            {
+                TanitsuTorokuInitService tanitsuService = new TanitsuTorokuInitService();
+                TanitsuTorokuInitServiceInBo inBo = new TanitsuTorokuInitServiceInBo();
+                inBo.clipboardText = this.henshuInBo.clipBoardText;
+                tanitsuService.setInBo(inBo);
+
+                TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
+                this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
+                this.textBox1.Text = inBo.clipboardText;
+            }
+            else if (tabControl1.SelectedIndex == Constant.IKKATSU_TOROKU)
+            {
+                IkkatsuTorokuInitService ikkatsuService = new IkkatsuTorokuInitService();
+                IkkatsuTorokuInitServiceInBo inBo = new IkkatsuTorokuInitServiceInBo();
+                inBo.clipboardText = this.henshuInBo.clipBoardText;
+                ikkatsuService.setInBo(inBo);
+
+                IkkatsuTorokuInitServiceOutBo outBo = ikkatsuService.execute();
+                this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
+            }
         }
     }
 }

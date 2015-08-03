@@ -146,7 +146,9 @@ namespace WordConvertTool
         private void 単一登録ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            Henshu henshu = new Henshu(Constant.TANITSU_TOROKU);
+            HenshuInBo henshuInBo = new HenshuInBo();
+            henshuInBo.clipBoardText = Clipboard.GetText();
+            Henshu henshu = new Henshu(Constant.TANITSU_TOROKU, henshuInBo);
         }
 
         /// <summary>
@@ -178,7 +180,9 @@ namespace WordConvertTool
         private void 一括登録ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            Henshu henshu = new Henshu(Constant.IKKATSU_TOROKU);
+            HenshuInBo henshuInBo = new HenshuInBo();
+            henshuInBo.clipBoardText = Clipboard.GetText();
+            Henshu henshu = new Henshu(Constant.IKKATSU_TOROKU, henshuInBo);
         }
 
         /// <summary>

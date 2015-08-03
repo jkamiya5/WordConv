@@ -94,25 +94,25 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(21, 72);
+            this.label3.Location = new System.Drawing.Point(20, 72);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 15);
+            this.label3.Size = new System.Drawing.Size(49, 15);
             this.label3.TabIndex = 23;
             this.label3.Text = "物理名";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(21, 46);
+            this.label2.Location = new System.Drawing.Point(20, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 15);
+            this.label2.Size = new System.Drawing.Size(49, 15);
             this.label2.TabIndex = 22;
             this.label2.Text = "ひらがな";
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(21, 18);
+            this.label1.Location = new System.Drawing.Point(20, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 15);
+            this.label1.Size = new System.Drawing.Size(49, 15);
             this.label1.TabIndex = 21;
             this.label1.Text = "論理名";
             // 
@@ -150,7 +150,7 @@
             // 
             this.searchBtn.Location = new System.Drawing.Point(87, 99);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(68, 23);
+            this.searchBtn.Size = new System.Drawing.Size(71, 23);
             this.searchBtn.TabIndex = 15;
             this.searchBtn.Text = "検索";
             this.searchBtn.UseVisualStyleBackColor = true;
@@ -158,9 +158,9 @@
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(161, 99);
+            this.clearBtn.Location = new System.Drawing.Point(168, 99);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(68, 23);
+            this.clearBtn.Size = new System.Drawing.Size(71, 23);
             this.clearBtn.TabIndex = 16;
             this.clearBtn.Text = "クリア";
             this.clearBtn.UseVisualStyleBackColor = true;
@@ -168,16 +168,16 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(75, 68);
+            this.textBox3.Location = new System.Drawing.Point(78, 68);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(328, 19);
+            this.textBox3.Size = new System.Drawing.Size(367, 19);
             this.textBox3.TabIndex = 14;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(75, 42);
+            this.textBox2.Location = new System.Drawing.Point(78, 42);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(328, 19);
+            this.textBox2.Size = new System.Drawing.Size(367, 19);
             this.textBox2.TabIndex = 13;
             // 
             // tanitsuDataGridView
@@ -194,9 +194,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(75, 14);
+            this.textBox1.Location = new System.Drawing.Point(78, 14);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(328, 19);
+            this.textBox1.Size = new System.Drawing.Size(367, 19);
             this.textBox1.TabIndex = 12;
             // 
             // tabPage2
@@ -256,10 +256,10 @@
             this.openFile.UseVisualStyleBackColor = true;
             this.openFile.Click += new System.EventHandler(this.openFile_Click);
             // 
-            // textBox4
+            // filePath
             // 
             this.filePath.Location = new System.Drawing.Point(28, 31);
-            this.filePath.Name = "textBox4";
+            this.filePath.Name = "filePath";
             this.filePath.Size = new System.Drawing.Size(287, 19);
             this.filePath.TabIndex = 9;
             // 
@@ -272,6 +272,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Henshu";
             this.Text = "Henshu";
+            this.Load += new System.EventHandler(this.Henshu_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

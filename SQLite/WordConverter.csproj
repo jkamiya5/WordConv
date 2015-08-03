@@ -80,6 +80,7 @@
     <Compile Include="Form\Henshu.Designer.cs">
       <DependentUpon>Henshu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\HenshuInBo.cs" />
     <Compile Include="Form\Ichiran.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,5 +9,7 @@ namespace SQLite.Form
     class IkkatsuTorokuIkkatsuRegistServiceInBo
     {
         public DataGridView ikkatsuDataGridView { get; set; }
+
+        public string clipBoardText { get; set; }
     }
 }

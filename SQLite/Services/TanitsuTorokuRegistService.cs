@@ -59,7 +59,6 @@ namespace SQLite.Form
                     }
                 }
             }
-            MessageBox.Show("辞書テーブルに登録・更新しました。");
 
             return outBo;
         }
