@@ -86,6 +86,9 @@
     <Compile Include="Form\Ichiran.Designer.cs">
       <DependentUpon>Ichiran.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\IchiranInitService.cs" />
+    <Compile Include="Form\IchiranInitServiceInBo.cs" />
+    <Compile Include="Form\IchiranInitServiceOutBo.cs" />
     <Compile Include="Services\IkkatsuTorokuReadFileService.cs" />
     <Compile Include="Models\InBo\IkkatsuTorokuReadFileServiceInBo.cs" />
     <Compile Include="Models\OutBo\IkkatsuTorokuReadFileServiceOutBo.cs" />

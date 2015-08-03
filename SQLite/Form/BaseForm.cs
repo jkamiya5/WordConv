@@ -54,7 +54,8 @@ namespace WordConvertTool
                 if ((int)m.WParam == HOTKEY_ID)
                 {
                     Ichiran ichiran = new Ichiran();
-                    ichiran.IchiranAction();
+                    ichiran.Show();
+                    //ichiran.IchiranAction();
                 }
             }
         }

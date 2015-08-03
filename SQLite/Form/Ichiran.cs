@@ -49,123 +49,6 @@ namespace WordConvertTool
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void IchiranAction()
-        {
-            List<IchiranWordBo> wordList = new List<IchiranWordBo>();
-            IchiranWordBo word = new IchiranWordBo();
-
-            if (!String.IsNullOrEmpty(Clipboard.GetText()))
-            {
-                string dbConnectionString = ConfigurationManager.AppSettings.Get("DataSource");
-                string key = Clipboard.GetText();
-                string nl = Environment.NewLine;
-                String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);
-
-                if (keys.Count() == 1)
-                {
-                    using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
-                    {
-                        cn.Open();
-                        SQLiteCommand cmd = cn.CreateCommand();
-                        cmd.CommandText = "SELECT * FROM WORD_DIC";
-
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                if (reader["RONRI_NAME1"].ToString().IndexOf(key) == 0 &&
-                                    !isContains(reader["BUTSURI_NAME"].ToString(), wordList))
-                                {
-                                    word = new IchiranWordBo();
-                                    word.RONRI_NAME1 = reader["RONRI_NAME1"].ToString();
-                                    word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString();
-                                    wordList.Add(word);
-                                }
-                            }
-                        }
-                        cn.Close();
-                    }
-                }
-                else
-                {
-                    using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
-                    {
-                        cn.Open();
-                        SQLiteCommand cmd = cn.CreateCommand();
-
-                        string condition = "";
-                        foreach (object obj in keys)
-                        {
-                            if (!String.IsNullOrEmpty((string)obj))
-                            {
-                                condition += "\'" + obj + "\'" + ",";
-                            }
-                        }
-                        char[] trimChars = { ',' };
-                        condition = condition.Remove(condition.Length - 1);
-
-                        cmd.CommandText = "SELECT * FROM WORD_DIC where RONRI_NAME1 in (" + condition + ")";
-
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                word = new IchiranWordBo();
-                                word.RONRI_NAME1 = reader["RONRI_NAME1"].ToString();
-                                word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString();
-                                wordList.Add(word);
-                            }
-                        }
-                        cn.Close();
-                    }
-                }
-            }
-
-            if (wordList.Count == 0 || String.IsNullOrEmpty(Clipboard.GetText()))
-            {
-                word.RONRI_NAME1 = "-";
-                word.BUTSURI_NAME = Constant.NONE_WORD;
-                wordList.Add(word);
-            }
-
-            ichiranDataGridView.DataSource = wordList;
-            ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
-            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 160;
-            ichiranDataGridView.ReadOnly = true;
-
-            //隠していたフォームを表示する
-            this.Show();
-            this.Activate();
-
-            //透過性
-            this.Opacity = 0.94;
-
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tango"></param>
-        /// <param name="wordList"></param>
-        /// <returns></returns>
-        private bool isContains(string tango, List<IchiranWordBo> wordList)
-        {
-            if (wordList.Count > 0)
-            {
-                foreach (IchiranWordBo obj in wordList)
-                {
-                    if (obj.BUTSURI_NAME == tango)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
 
         /// <summary>
         /// 変換候補一覧のダブルクリックイベント
@@ -248,6 +131,11 @@ namespace WordConvertTool
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //右クリックのときのみ
@@ -286,24 +174,43 @@ namespace WordConvertTool
             Henshu henshu = new Henshu(Constant.TANITSU_TOROKU);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             this.ichiranDataGridView.RowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
             this.ichiranDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void label2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 一括登録ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
             Henshu henshu = new Henshu(Constant.IKKATSU_TOROKU);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bo作成ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IchiranBoCreateService boCreateService = new IchiranBoCreateService();
@@ -312,6 +219,32 @@ namespace WordConvertTool
             boCreateService.setInBo(boCreateServiceInBo);
             IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
             Clipboard.SetText(registServiceOutBo.boText);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ichiran_Load(object sender, EventArgs e)
+        {
+            IchiranInitService initService = new IchiranInitService();
+            IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
+            initServiceInBo.clipboardText = Clipboard.GetText();
+            initService.setInBo(initServiceInBo);
+            IchiranInitServiceOutBo initServiceOutBo = initService.execute();
+
+            ichiranDataGridView.DataSource = initServiceOutBo.wordList;
+            ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
+            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 160;
+            ichiranDataGridView.ReadOnly = true;
+
+            //隠していたフォームを表示する
+            this.Show();
+            this.Activate();
+
+            //透過性
+            this.Opacity = 0.94;
         }
     }
 }

@@ -148,6 +148,7 @@ namespace WordConvertTool
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Ichiran";
             this.Text = "Ichiran";
+            this.Load += new System.EventHandler(this.Ichiran_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ichiranDataGridView)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
