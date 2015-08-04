@@ -10,18 +10,17 @@ using WordConvTool.Model;
 
 namespace SQLite.Form
 {
-    class IkkatsuTorokuReadFileService : IService<IkkatsuTorokuReadFileServiceOutBo>
+    class IkkatsuTorokuReadFileService : IService<IkkatsuTorokuReadFileServiceInBo, IkkatsuTorokuReadFileServiceOutBo>
     {
         /// <summary>
         /// 共通関数インクルード
         /// </summary>
         private static CommonFunction common = new CommonFunction();
-
         private IkkatsuTorokuReadFileServiceInBo inBo = new IkkatsuTorokuReadFileServiceInBo();
 
-        public void setInBo(WordConvTool.Service.IBo inBo)
+        public void setInBo(IkkatsuTorokuReadFileServiceInBo inBo)
         {
-            this.inBo = (IkkatsuTorokuReadFileServiceInBo)inBo;
+            this.inBo = inBo;
         }
 
         public IkkatsuTorokuReadFileServiceOutBo execute()

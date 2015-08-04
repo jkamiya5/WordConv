@@ -13,7 +13,7 @@ namespace SQLite.Form
     /// <summary>
     /// 
     /// </summary>
-    class IchiranInitService : IService<IchiranInitServiceOutBo>
+    class IchiranInitService : IService<IchiranInitServiceInBo, IchiranInitServiceOutBo>
     {
         /// <summary>
         /// 
@@ -24,9 +24,9 @@ namespace SQLite.Form
         /// 
         /// </summary>
         /// <param name="inBo"></param>
-        public void setInBo(WordConvTool.Service.IBo inBo)
+        public void setInBo(IchiranInitServiceInBo inBo)
         {
-            this.inBo = (IchiranInitServiceInBo)inBo;
+            this.inBo = inBo;
         }
 
         /// <summary>

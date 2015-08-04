@@ -38,7 +38,7 @@ namespace WordConvertTool
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.一括登録ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.プロパティ作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
+            this.formHeanderLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ichiranDataGridView)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -122,19 +122,19 @@ namespace WordConvertTool
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(330, 27);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "WordConverter";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDoubleClick);
-            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Ichiran_MouseDown);
-            this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Ichiran_MouseMove);
+            this.formHeanderLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.formHeanderLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.formHeanderLabel.Font = new System.Drawing.Font("Meiryo UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.formHeanderLabel.Location = new System.Drawing.Point(0, 0);
+            this.formHeanderLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.formHeanderLabel.Name = "label2";
+            this.formHeanderLabel.Size = new System.Drawing.Size(330, 27);
+            this.formHeanderLabel.TabIndex = 3;
+            this.formHeanderLabel.Text = "WordConverter";
+            this.formHeanderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.formHeanderLabel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.formHeanderLabel_MouseDoubleClick);
+            this.formHeanderLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Ichiran_MouseDown);
+            this.formHeanderLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Ichiran_MouseMove);
             // 
             // Ichiran
             // 
@@ -142,7 +142,7 @@ namespace WordConvertTool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(330, 500);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.formHeanderLabel);
             this.Controls.Add(this.ichiranDataGridView);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -163,7 +163,7 @@ namespace WordConvertTool
         private ToolStripMenuItem 単一登録ToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip1;
         private Label label1;
-        private Label label2;
+        private Label formHeanderLabel;
         private ToolStripMenuItem 一括登録ToolStripMenuItem;
         private ToolStripMenuItem プロパティ作成ToolStripMenuItem;
     }

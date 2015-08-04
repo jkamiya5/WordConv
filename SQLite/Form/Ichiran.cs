@@ -27,27 +27,55 @@ namespace WordConvertTool
         [DllImport("user32.dll")]
         extern static int UnregisterHotKey(IntPtr HWnd, int ID);
 
+        //マウスのクリック位置を記憶
+        private Point mousePoint;
+
         /// <summary>
-        /// 
+        /// コンストラクタ
         /// </summary>
         public Ichiran()
         {
-            //初期表示処理
+            //初期設定処理
             InitializeComponent();
 
         }
 
         /// <summary>
-        /// 
+        /// 一覧画面フォームクローズイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void Ichiran_FormClosed(object sender, FormClosedEventArgs e)
         {
             // ホットキーの登録抹消
             //UnregisterHotKey(this.Handle, HOTKEY_ID);
         }
 
+        /// <summary>
+        /// 一覧画面初期表示イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ichiran_Load(object sender, EventArgs e)
+        {
+            IchiranInitService initService = new IchiranInitService();
+            IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
+            initServiceInBo.clipboardText = Clipboard.GetText();
+            initService.setInBo(initServiceInBo);
+            IchiranInitServiceOutBo initServiceOutBo = initService.execute();
+
+            ichiranDataGridView.DataSource = initServiceOutBo.wordList;
+            ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
+            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 185;
+            ichiranDataGridView.ReadOnly = true;
+
+            //隠していたフォームを表示する
+            this.Show();
+            this.Activate();
+
+            //透過性
+            this.Opacity = 0.94;
+        }
 
 
         /// <summary>
@@ -75,11 +103,9 @@ namespace WordConvertTool
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        //マウスのクリック位置を記憶
-        private Point mousePoint;
 
         /// <summary>
-        /// 
+        /// マウス移動イベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,7 +119,7 @@ namespace WordConvertTool
         }
 
         /// <summary>
-        /// 
+        /// マウス移動イベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -107,7 +133,7 @@ namespace WordConvertTool
         }
 
         /// <summary>
-        /// 
+        /// データグリッドマウスクリックイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -128,7 +154,7 @@ namespace WordConvertTool
         }
 
         /// <summary>
-        /// 
+        /// コンテキストメニュー（申請）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -139,7 +165,7 @@ namespace WordConvertTool
         }
 
         /// <summary>
-        /// 
+        /// コンテキストメニュー（単一登録）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -151,29 +177,9 @@ namespace WordConvertTool
             Henshu henshu = new Henshu(Constant.TANITSU_TOROKU, henshuInBo);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            this.ichiranDataGridView.RowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
-            this.ichiranDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-        }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void label2_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            this.Close();
-        }
-
-        /// <summary>
-        /// 
+        /// コンテキストメニュー（一括登録）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -186,7 +192,7 @@ namespace WordConvertTool
         }
 
         /// <summary>
-        /// 
+        /// コンテキストメニュー（Bo作成）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -201,29 +207,24 @@ namespace WordConvertTool
         }
 
         /// <summary>
-        /// 
+        /// データグリッドビューバインド完了イベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Ichiran_Load(object sender, EventArgs e)
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            IchiranInitService initService = new IchiranInitService();
-            IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
-            initServiceInBo.clipboardText = Clipboard.GetText();
-            initService.setInBo(initServiceInBo);
-            IchiranInitServiceOutBo initServiceOutBo = initService.execute();
+            this.ichiranDataGridView.RowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
+            this.ichiranDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+        }
 
-            ichiranDataGridView.DataSource = initServiceOutBo.wordList;
-            ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
-            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 185;
-            ichiranDataGridView.ReadOnly = true;
-
-            //隠していたフォームを表示する
-            this.Show();
-            this.Activate();
-
-            //透過性
-            this.Opacity = 0.94;
+        /// <summary>
+        /// フォームヘッダーラベルマウスクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void formHeanderLabel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
         }
 
         /// <summary>

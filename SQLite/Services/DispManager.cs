@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WordConvTool.Service;
 
 namespace WordConvertTool
 {
@@ -11,25 +12,25 @@ namespace WordConvertTool
         /// <summary>
         /// 
         /// </summary>
-        private IStrategyDisp dispStrategy;
+        private IStrategyDisp<IBo> inBo;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="strategy"></param>
-        public DispManager(IStrategyDisp strategy)
+        /// <param name="inBo"></param>
+        public DispManager(IStrategyDisp<IBo> inBo)
         {
-            this.dispStrategy = strategy;
+            this.inBo = inBo;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        internal DataGridView Execute()
+        internal IBo Execute()
         {
-            DataGridView dgv = this.dispStrategy.Execute();
-            return dgv;
+            IBo outBo = this.inBo.Execute();
+            return outBo;
         }
     }
 }

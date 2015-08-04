@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConvTool.Model;
+using SQLite.Form;
 
 namespace WordConvertTool
 {
@@ -99,9 +100,12 @@ namespace WordConvertTool
         /// <param name="e"></param>
         public void Shinsei_Load(object sender, EventArgs e)
         {
-            DispManager dispMode;
-            dispMode = new DispManager(new StrategyShinki(this.shinseiDataGridView1));
-            dispMode.Execute();
+            ShinseiInitServiceInBo initServiceInBo = new ShinseiInitServiceInBo();
+            ShinseiInitService initService = new ShinseiInitService();
+            initServiceInBo.clipboardText = Clipboard.GetText();
+            //initServiceInBo.shoriMode = 
+            initService.setInBo(initServiceInBo);
+            ShinseiInitServiceOutBo initServiceOutBo = initService.execute();
 
         }
 
@@ -118,13 +122,32 @@ namespace WordConvertTool
                 {
                     continue;
                 }
-                string[] data = { shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value.ToString(), shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value.ToString() };
-                if (shinseiDataGridView1.Rows[i].Cells[0].Value.Equals(true))
+
+                using (var context = new MyContext())
                 {
-                    string sql1 = "insert into WORD_DIC (RONRI_NAME1,BUTSURI_NAME) values ('" + data[0] + "', '" + data[1] + "')";
-                    string sql2 = "delete from WORD_SHINSEI where RONRI_NAME1 = '" + data[0] + "'";
-                    common.executeQuery(sql1);
-                    common.executeQuery(sql2);
+                    long condtion = Convert.ToInt64(this.shinseiDataGridView1.Rows[i].Cells["WORD_ID"].Value.ToString());
+                    var upWord = context.WordShinsei
+                        .Where(x => x.WORD_ID == condtion);
+
+                    if (upWord.Count() == 1)
+                    {
+                        var w = context.WordShinsei.Single(x => x.WORD_ID == condtion);
+                        w.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
+                        w.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+                        w.CRE_DATE = System.DateTime.Now.ToString();
+                        context.SaveChanges();
+                        continue;
+                    }
+
+                    UserMst user = new UserMst();
+                    user.USER_NAME = "ジョウジ";
+                    WordShinsei shinsei = new WordShinsei();
+                    shinsei.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
+                    shinsei.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+                    shinsei.CRE_DATE = System.DateTime.Now.ToString();
+                    shinsei.User = user;
+                    context.WordShinsei.Add(shinsei);
+                    context.SaveChanges();
                 }
             }
             MessageBox.Show("辞書テーブルに登録されました。");
@@ -161,29 +184,20 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void viewRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.koushinRadioButton.Checked)
-            {
-                DispManager dispMode;
-                dispMode = new DispManager(new StrategyKoushin(this.shinseiDataGridView1));
-                this.shinseiDataGridView1 = dispMode.Execute();
-            }
-            if (this.shinkiRadioButton.Checked)
-            {
-                DispManager dispMode;
-                dispMode = new DispManager(new StrategyShinki(this.shinseiDataGridView1));
-                this.shinseiDataGridView1 = dispMode.Execute();
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tojiru_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            //if (this.koushinRadioButton.Checked)
+            //{
+            //    DispManager dispMode;
+            //    ShinseiInitInBo shinseiInitInBo = new ShinseiInitInBo();
+            //    dispMode = new DispManager(new StrategyKoushin(shinseiInitInBo));
+            //    ShinseiInitOutBo outBo = (ShinseiInitOutBo)dispMode.Execute();
+            //}
+            //if (this.shinkiRadioButton.Checked)
+            //{
+            //    DispManager dispMode;
+            //    ShinseiInitInBo shinseiInitInBo = new ShinseiInitInBo();
+            //    dispMode = new DispManager(new StrategyShinki(shinseiInitInBo));
+            //    ShinseiInitOutBo outBo = (ShinseiInitOutBo)dispMode.Execute();
+            //}
         }
 
         /// <summary>

@@ -23,7 +23,6 @@ namespace WordConvTool.Forms
         /// 共通関数インクルード
         /// </summary>
         private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
-        private int p;
         private HenshuInBo henshuInBo = new HenshuInBo();
 
         /// <summary>
@@ -37,17 +36,10 @@ namespace WordConvTool.Forms
         }
 
         /// <summary>
-        /// コンストラクタ
+        /// コンストラクタ（引数あり）
         /// </summary>
         /// <param name="selectedTanIndex"></param>
-        //public Henshu(int selectedTanIndex)
-        //{
-        //    InitializeComponent();
-        //    this.Show();
-        //    this.Activate();
-        //    this.tabControl1.SelectedIndex = selectedTanIndex;
-        //}
-
+        /// <param name="henshuInBo"></param>
         public Henshu(int selectedTanIndex, HenshuInBo henshuInBo)
         {
             this.henshuInBo = henshuInBo;
@@ -171,7 +163,6 @@ namespace WordConvTool.Forms
             TanitsuTorokuRegistServiceInBo tanitsuRegistServiceInBo = new TanitsuTorokuRegistServiceInBo();
             tanitsuRegistServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
             tanitsuRegistService.setInBo(tanitsuRegistServiceInBo);
-
             TanitsuTorokuRegistServiceOutBo tanitsuRegistServiceOutBo = tanitsuRegistService.execute();
             this.searchAction(this.tanitsuDataGridView);
             MessageBox.Show("辞書テーブルに登録・更新しました。");
@@ -189,7 +180,6 @@ namespace WordConvTool.Forms
             IkkatsuTorokuIkkatsuRegistServiceInBo ikkatsuRegistServiceInBo = new IkkatsuTorokuIkkatsuRegistServiceInBo();
             ikkatsuRegistServiceInBo.ikkatsuDataGridView = this.ikkatsuDataGridView;
             ikkatsuRegistService.setInBo(ikkatsuRegistServiceInBo);
-
             IkkatsuTorokuIkkatsuRegistServiceOutBo outBo = ikkatsuRegistService.execute();
             MessageBox.Show("辞書テーブルに登録・更新しました。");
         }
@@ -322,6 +312,11 @@ namespace WordConvTool.Forms
             this.henshuViewDispSetthing(ref dataGridView, wordList);
         }
 
+        /// <summary>
+        /// 編集画面初期処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Henshu_Load(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == Constant.TANITSU_TOROKU)

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using SQLite.Form;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WordConvTool.Service;
 
 
 namespace WordConvertTool
@@ -14,44 +16,45 @@ namespace WordConvertTool
         /// <summary>
         /// 
         /// </summary>
-        protected System.Windows.Forms.DataGridView dataGridView = new DataGridView();
+        protected IBo inBo;
         private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sql"></param>
+        /// <param name="status"></param>
         /// <returns></returns>
-        protected DataGridView executeSql(string sql)
+        protected IBo executeQuery(int status)
         {
+            ShinseiInitServiceOutBo shinseiInitOutBo = new ShinseiInitServiceOutBo();
+
             List<ShinseiBo> shinsei = new List<ShinseiBo>();
-            using (SQLiteConnection cn = new SQLiteConnection(ConfigurationManager.AppSettings.Get("DataSource")))
+            List<ShinseiBo> dispShinseiList = null;
+
+            using (var context = new MyContext())
             {
-                cn.Open();
-                SQLiteCommand cmd = cn.CreateCommand();
-                cmd.CommandText = sql;
+                IQueryable<ShinseiBo> shinseiWords = from a in context.WordShinsei
+                                                     join b in context.UserMst on a.USER_ID equals b.USER_ID into tmpUser
+                                                     from u in tmpUser.DefaultIfEmpty()
+                                                     where a.STATUS == status
+                                                     select new ShinseiBo
+                                                        {
+                                                            SHINSEI_ID = a.WORD_ID,
+                                                            RONRI_NAME1 = a.RONRI_NAME1,
+                                                            BUTSURI_NAME = a.BUTSURI_NAME,
+                                                            USER_NAME = null != u ? u.USER_NAME : "",
+                                                            CRE_DATE = a.CRE_DATE,
+                                                            VERSION = (int)a.VERSION
+                                                        };
 
-                using (SQLiteDataReader reader = cmd.ExecuteReader())
-                {
-                    int i = 0;
-                    while (reader.Read())
-                    {
-                        if (!String.IsNullOrWhiteSpace(Convert.ToString(reader["RONRI_NAME1"])))
-                        {
-                            shinsei.Add(new ShinseiBo(reader["RONRI_NAME1"], reader["RONRI_NAME2"], reader["BUTSURI_NAME"], reader["STATUS"]));
-                            i++;
-                        }
-                    }
-                }
-                cn.Close();
+                dispShinseiList = shinseiWords.ToList();
             }
-
-            this.dataGridView.DataSource = shinsei;
-
-            common.addCheckBox(ref this.dataGridView);
-            common.viewWidthSetting(ref this.dataGridView, 20, 65);
-
-            return this.dataGridView;
+            shinseiInitOutBo.dispShinseiList = dispShinseiList;
+            return shinseiInitOutBo;
+            //this.inBo.DataSource = dispShinseiList;
+            //common.addCheckBox(ref this.inBo);
+            //common.viewWidthSetting(ref this.inBo, 20, 65);
+            //return this.inBo;
         }
     }
 }

@@ -8,13 +8,13 @@ using WordConvTool.Service;
 
 namespace SQLite.Form
 {
-    class TanitsuTorokuInitService : IService<TanitsuTorokuInitServiceOutBo>
+    class TanitsuTorokuInitService : IService<TanitsuTorokuInitServiceInBo, TanitsuTorokuInitServiceOutBo>
     {
         private TanitsuTorokuInitServiceInBo inBo;
 
-        public void setInBo(WordConvTool.Service.IBo inBo)
+        public void setInBo(TanitsuTorokuInitServiceInBo inBo)
         {
-            this.inBo = (TanitsuTorokuInitServiceInBo)inBo;
+            this.inBo = inBo;
         }
 
         public TanitsuTorokuInitServiceOutBo execute()

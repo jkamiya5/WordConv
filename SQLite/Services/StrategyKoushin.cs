@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WordConvTool.Service;
 
 namespace WordConvertTool
 {
     /// <summary>
     /// 
     /// </summary>
-    class StrategyKoushin : StrategyDispBase, IStrategyDisp
+    class StrategyKoushin : StrategyDispBase, IStrategyDisp<IBo>
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dgv"></param>
-        public StrategyKoushin(System.Windows.Forms.DataGridView dgv)
+        /// <param name="inBo"></param>
+        public StrategyKoushin(IBo inBo)
         {
-            base.dataGridView = dgv;
+            base.inBo = inBo;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public DataGridView Execute()
+        public IBo Execute()
         {
-            string sql = "SELECT * FROM WORD_SHINSEI where status = 2 order by STATUS desc";
-            DataGridView dgv = executeSql(sql);
-            return dgv;
+            IBo outBo = executeQuery(2);
+            return outBo;
 
         }
     }

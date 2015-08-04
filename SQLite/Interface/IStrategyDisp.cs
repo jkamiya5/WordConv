@@ -9,8 +9,8 @@ namespace WordConvertTool
     /// <summary>
     /// 
     /// </summary>
-    interface IStrategyDisp
+    interface IStrategyDisp<T>
     {
-        DataGridView Execute();
+        T Execute();
     }
 }

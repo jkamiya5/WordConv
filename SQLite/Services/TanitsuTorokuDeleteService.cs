@@ -11,11 +11,10 @@ using WordConvTool.Service;
 
 namespace SQLite.Form
 {
-    class TanitsuTorokuDeleteService : IService<TanitsuTorokuDeleteServiceOutBo>
+    class TanitsuTorokuDeleteService : IService<TanitsuTorokuDeleteServiceInBo, TanitsuTorokuDeleteServiceOutBo>
     {
         private TanitsuTorokuDeleteServiceInBo inBo;
-
-        public void setInBo(WordConvTool.Service.IBo inBo)
+        public void setInBo(TanitsuTorokuDeleteServiceInBo inBo)
         {
             this.inBo = (TanitsuTorokuDeleteServiceInBo)inBo;
         }

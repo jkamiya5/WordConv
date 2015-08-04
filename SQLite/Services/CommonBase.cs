@@ -105,5 +105,18 @@ namespace WordConvTool
             }
             return butsuriName;
         }
+
+        public static int EnumValue(this Enum self)
+        {
+            ////Fruits列挙体のメンバの値を列挙する
+            //foreach (Fruits val in typeof(self).GetEnumValues())
+            //{
+            //    //メンバ名を取得する
+            //    string eName = Enum.GetName(typeof(self), val);
+            //    //メンバの値と名前を表示する
+            //    Console.WriteLine("{0} = {1}", eName, (int)val);
+            //}
+            return 1;
+        }
     }
 }

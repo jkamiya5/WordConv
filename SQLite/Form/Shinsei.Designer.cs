@@ -41,7 +41,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.shounin = new System.Windows.Forms.Button();
             this.kyakka = new System.Windows.Forms.Button();
-            this.tojiru = new System.Windows.Forms.Button();
             this.viewChangeRadioGroupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.shinseiDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -158,9 +157,9 @@
             // 
             // shounin
             // 
-            this.shounin.Location = new System.Drawing.Point(18, 326);
+            this.shounin.Location = new System.Drawing.Point(65, 326);
             this.shounin.Name = "shounin";
-            this.shounin.Size = new System.Drawing.Size(83, 23);
+            this.shounin.Size = new System.Drawing.Size(75, 23);
             this.shounin.TabIndex = 11;
             this.shounin.Text = "承認";
             this.shounin.UseVisualStyleBackColor = true;
@@ -168,23 +167,13 @@
             // 
             // kyakka
             // 
-            this.kyakka.Location = new System.Drawing.Point(113, 326);
+            this.kyakka.Location = new System.Drawing.Point(160, 326);
             this.kyakka.Name = "kyakka";
-            this.kyakka.Size = new System.Drawing.Size(83, 23);
+            this.kyakka.Size = new System.Drawing.Size(75, 23);
             this.kyakka.TabIndex = 12;
             this.kyakka.Text = "却下";
             this.kyakka.UseVisualStyleBackColor = true;
             this.kyakka.Click += new System.EventHandler(this.kyakka_Click);
-            // 
-            // tojiru
-            // 
-            this.tojiru.Location = new System.Drawing.Point(208, 326);
-            this.tojiru.Name = "tojiru";
-            this.tojiru.Size = new System.Drawing.Size(83, 23);
-            this.tojiru.TabIndex = 13;
-            this.tojiru.Text = "閉じる";
-            this.tojiru.UseVisualStyleBackColor = true;
-            this.tojiru.Click += new System.EventHandler(this.tojiru_Click);
             // 
             // viewChangeRadioGroupBox
             // 
@@ -200,7 +189,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 382);
-            this.Controls.Add(this.tojiru);
             this.Controls.Add(this.kyakka);
             this.Controls.Add(this.shounin);
             this.Controls.Add(this.label3);
@@ -241,7 +229,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button shounin;
         private System.Windows.Forms.Button kyakka;
-        private System.Windows.Forms.Button tojiru;
         private System.Windows.Forms.GroupBox viewChangeRadioGroupBox;
     }
 }

@@ -10,13 +10,13 @@ using WordConvTool.Service;
 
 namespace SQLite.Form
 {
-    public class TanitsuTorokuRegistService : IService<TanitsuTorokuRegistServiceOutBo>
+    public class TanitsuTorokuRegistService : IService<TanitsuTorokuRegistServiceInBo, TanitsuTorokuRegistServiceOutBo>
     {
         public TanitsuTorokuRegistServiceInBo inBo;
 
-        public void setInBo(WordConvTool.Service.IBo inBo)
+        public void setInBo(TanitsuTorokuRegistServiceInBo inBo)
         {
-            this.inBo = (TanitsuTorokuRegistServiceInBo)inBo;
+            this.inBo = inBo;
         }
 
         public TanitsuTorokuRegistServiceOutBo execute()

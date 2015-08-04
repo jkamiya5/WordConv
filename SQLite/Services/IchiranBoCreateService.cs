@@ -6,13 +6,13 @@ using System.Text;
 
 namespace SQLite.Form
 {
-    class IchiranBoCreateService : IService<IchiranBoCreateServiceOutBo>
+    class IchiranBoCreateService : IService<IchiranBoCreateServiceInBo, IchiranBoCreateServiceOutBo>
     {
         private IchiranBoCreateServiceInBo inBo;
 
-        public void setInBo(WordConvTool.Service.IBo inBo)
+        public void setInBo(IchiranBoCreateServiceInBo inBo)
         {
-            this.inBo = (IchiranBoCreateServiceInBo)inBo;
+            this.inBo = inBo;
         }
 
         public IchiranBoCreateServiceOutBo execute()

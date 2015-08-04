@@ -12,4 +12,11 @@ namespace WordConvTool.Model
         public static int TANITSU_TOROKU = 0;
         public static int IKKATSU_TOROKU = 1;
     }
+
+    public enum ShoriMode : int
+    {
+        SHINKI = 1, 
+        KOUSHIN = 2
+
+    }
 }

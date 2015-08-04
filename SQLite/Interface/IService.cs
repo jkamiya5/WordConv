@@ -7,9 +7,9 @@ using WordConvTool.Service;
 
 namespace SQLite.Services
 {
-    interface IService<T>
+    interface IService<K, T>
     {
-        void setInBo(IBo inBo);
+        void setInBo(K inBo);
         T execute();
     }
 }
