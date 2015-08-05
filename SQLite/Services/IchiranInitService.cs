@@ -6,6 +6,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using WordConvertTool;
+using WordConvTool;
 using WordConvTool.Model;
 
 namespace SQLite.Form
@@ -19,6 +20,7 @@ namespace SQLite.Form
         /// 
         /// </summary>
         private IchiranInitServiceInBo inBo = new IchiranInitServiceInBo();
+        private static CommonFunction common = new CommonFunction();
 
         /// <summary>
         /// 
@@ -52,14 +54,20 @@ namespace SQLite.Form
                     {
                         cn.Open();
                         SQLiteCommand cmd = cn.CreateCommand();
-                        cmd.CommandText = "SELECT * FROM WORD_DIC";
+
+                        string[] sp = { " ", "　" };
+                        String[] keyStrs = keys[0].Split(sp, StringSplitOptions.None);
+                        String condition = keyStrs.CommaSeparatedValue();
+                        condition = condition.Replace("\'", "");
+                        condition = "\'" + condition.Replace(",", "%") + "%\'";
+
+                        cmd.CommandText = "SELECT * FROM WORD_DIC where RONRI_NAME1 like (" + condition + ")";
 
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                if (reader["RONRI_NAME1"].ToString().IndexOf(key) == 0 &&
-                                    !isContains(reader["BUTSURI_NAME"].ToString(), wordList))
+                                if (!isContains(reader["BUTSURI_NAME"].ToString(), wordList))
                                 {
                                     word = new IchiranWordBo();
                                     word.RONRI_NAME1 = reader["RONRI_NAME1"].ToString();
@@ -77,18 +85,7 @@ namespace SQLite.Form
                     {
                         cn.Open();
                         SQLiteCommand cmd = cn.CreateCommand();
-
-                        string condition = "";
-                        foreach (object obj in keys)
-                        {
-                            if (!String.IsNullOrEmpty((string)obj))
-                            {
-                                condition += "\'" + obj + "\'" + ",";
-                            }
-                        }
-                        char[] trimChars = { ',' };
-                        condition = condition.Remove(condition.Length - 1);
-
+                        string condition = keys.CommaSeparatedValue();
                         cmd.CommandText = "SELECT * FROM WORD_DIC where RONRI_NAME1 in (" + condition + ")";
 
                         using (SQLiteDataReader reader = cmd.ExecuteReader())

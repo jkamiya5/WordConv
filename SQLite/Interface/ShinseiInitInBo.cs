@@ -9,7 +9,7 @@ namespace SQLite.Form
     public class ShinseiInitServiceInBo
     {
         public string clipboardText { get; set; }
-        public ShoriMode shoriMode { get; set; }
+        //public ShoriMode shoriMode { get; set; }
 
     }
 

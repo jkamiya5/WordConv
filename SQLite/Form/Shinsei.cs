@@ -51,6 +51,15 @@ namespace WordConvertTool
             message += "論理名　：" + this.yomi1TextBox.Text + System.Environment.NewLine;
             message += "よみがな：" + this.yomi2TextBox.Text + System.Environment.NewLine;
             message += "物理名　：" + this.tangoTextBox.Text + System.Environment.NewLine + System.Environment.NewLine;
+
+            if (String.IsNullOrEmpty(this.yomi1TextBox.Text) 
+                || String.IsNullOrEmpty(this.yomi2TextBox.Text) 
+                || String.IsNullOrEmpty(this.tangoTextBox.Text))
+            {
+                MessageBox.Show("論理名、よみがな、物理名は必須項目です。");
+                return;
+            }
+
             string[] data = { this.yomi1TextBox.Text, this.yomi2TextBox.Text, this.tangoTextBox.Text };
             DialogResult result = MessageBox.Show(message + "申請してもよろしいですか？", "申請確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == System.Windows.Forms.DialogResult.OK)
@@ -74,7 +83,7 @@ namespace WordConvertTool
                 shinsei.RONRI_NAME1 = data[0];
                 shinsei.RONRI_NAME2 = data[1];
                 shinsei.BUTSURI_NAME = data[2];
-                shinsei.STATUS = 1;
+                shinsei.STATUS = 0;
                 shinsei.User = user;
                 context.WordShinsei.Add(shinsei);
                 context.SaveChanges();
@@ -103,9 +112,25 @@ namespace WordConvertTool
             ShinseiInitServiceInBo initServiceInBo = new ShinseiInitServiceInBo();
             ShinseiInitService initService = new ShinseiInitService();
             initServiceInBo.clipboardText = Clipboard.GetText();
-            //initServiceInBo.shoriMode = 
             initService.setInBo(initServiceInBo);
             ShinseiInitServiceOutBo initServiceOutBo = initService.execute();
+            this.shinseiDataGridView1.DataSource = initServiceOutBo.dispShinseiList;
+
+            shinseiDataGridView1.Columns["RONRI_NAME1"].HeaderText = "論理名1";
+            shinseiDataGridView1.Columns["RONRI_NAME2"].HeaderText = "論理名2";
+            shinseiDataGridView1.Columns["BUTSURI_NAME"].HeaderText = "物理名";
+            shinseiDataGridView1.Columns["STATUS"].HeaderText = "ステータス";
+            shinseiDataGridView1.Columns["USER_NAME"].HeaderText = "登録ユーザー名";
+            shinseiDataGridView1.Columns["CRE_DATE"].HeaderText = "登録日付";
+            shinseiDataGridView1.Columns["SHINSEI_ID"].Visible = false;
+            shinseiDataGridView1.Columns["VERSION"].Visible = false;
+            shinseiDataGridView1.Columns["RONRI_NAME1"].ReadOnly = true;
+            shinseiDataGridView1.Columns["RONRI_NAME2"].ReadOnly = true;
+            shinseiDataGridView1.Columns["USER_NAME"].ReadOnly = true;
+            shinseiDataGridView1.Columns["CRE_DATE"].ReadOnly = true;
+
+            common.addCheckBox(ref shinseiDataGridView1);
+            common.viewWidthSetting(ref shinseiDataGridView1, 20, 100);
 
         }
 
@@ -125,7 +150,7 @@ namespace WordConvertTool
 
                 using (var context = new MyContext())
                 {
-                    long condtion = Convert.ToInt64(this.shinseiDataGridView1.Rows[i].Cells["WORD_ID"].Value.ToString());
+                    long condtion = Convert.ToInt64(this.shinseiDataGridView1.Rows[i].Cells["SHINSEI_ID"].Value.ToString());
                     var upWord = context.WordShinsei
                         .Where(x => x.WORD_ID == condtion);
 
@@ -135,6 +160,7 @@ namespace WordConvertTool
                         w.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
                         w.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
                         w.CRE_DATE = System.DateTime.Now.ToString();
+                        w.STATUS = 1;
                         context.SaveChanges();
                         continue;
                     }
@@ -145,6 +171,7 @@ namespace WordConvertTool
                     shinsei.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
                     shinsei.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
                     shinsei.CRE_DATE = System.DateTime.Now.ToString();
+                    shinsei.STATUS = 1;
                     shinsei.User = user;
                     context.WordShinsei.Add(shinsei);
                     context.SaveChanges();

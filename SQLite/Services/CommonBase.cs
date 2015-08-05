@@ -106,6 +106,21 @@ namespace WordConvTool
             return butsuriName;
         }
 
+        public static string CommaSeparatedValue(this String[] self)
+        {
+            string condition = "";
+            foreach (object obj in self)
+            {
+                if (!String.IsNullOrEmpty((string)obj))
+                {
+                    condition += "\'" + obj + "\'" + ",";
+                }
+            }
+            char[] trimChars = { ',' };
+            condition = condition.Remove(condition.Length - 1);
+            return condition;
+        }
+
         public static int EnumValue(this Enum self)
         {
             ////Fruits列挙体のメンバの値を列挙する
