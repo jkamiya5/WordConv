@@ -80,6 +80,15 @@
     <Compile Include="Form\Henshu.Designer.cs">
       <DependentUpon>Henshu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ShinseiShinseiService.cs" />
+    <Compile Include="Models\InBo\ShinseiShinseiServiceInBo.cs" />
+    <Compile Include="Models\OutBo\ShinseiShinseiServiceOutBo.cs" />
     <Compile Include="Interface\ShinseiInitInBo.cs" />
     <Compile Include="Models\OutBo\ShinseiInitOutBo.cs" />
     <Compile Include="Services\ShinseiInitService.cs" />
@@ -167,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Ichiran.resx">
       <DependentUpon>Ichiran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Shinsei.resx">
       <DependentUpon>Shinsei.cs</DependentUpon>

@@ -35,6 +35,9 @@ namespace WordConvertTool
             ShowInTaskbar = false;
             WindowState = FormWindowState.Minimized;
 
+            Login form = new Login();
+            form.Show();
+
             RegisterHotKey(this.Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.E);
             RegisterHotKey(this.Handle, HOTKEY2_ID, MOD_CONTROL, (int)Keys.W);
 
@@ -55,7 +58,6 @@ namespace WordConvertTool
                 {
                     Ichiran ichiran = new Ichiran();
                     ichiran.Show();
-                    //ichiran.IchiranAction();
                 }
             }
         }

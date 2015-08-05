@@ -16,7 +16,7 @@ namespace WordConvTool.Model
         public string RONRI_NAME1 { get; set; }
         public string RONRI_NAME2 { get; set; }
         public string BUTSURI_NAME { get; set; }
-        public long WORD_ID { get; set; }
+        public int WORD_ID { get; set; }
         public int STATUS { get; set; }
         public long USER_ID { get; set; }
         public int VERSION { get; set; }

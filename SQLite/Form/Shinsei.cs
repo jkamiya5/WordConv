@@ -37,7 +37,7 @@ namespace WordConvertTool
             InitializeComponent();
             this.Show();
             this.Activate();
-            this.yomi1TextBox.Text = text.Trim();
+            this.ronrimei1TextBox.Text = text.Trim();
         }
 
         /// <summary>
@@ -47,48 +47,23 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void shinseiButton_Click(object sender, EventArgs e)
         {
-            string message = "";
-            message += "論理名　：" + this.yomi1TextBox.Text + System.Environment.NewLine;
-            message += "よみがな：" + this.yomi2TextBox.Text + System.Environment.NewLine;
-            message += "物理名　：" + this.tangoTextBox.Text + System.Environment.NewLine + System.Environment.NewLine;
+            ShinseiShinseiServiceInBo shinseiServiseInBo = new ShinseiShinseiServiceInBo();
+            ShinseiShinseiService shinseiService = new ShinseiShinseiService();
+            shinseiServiseInBo.clipboardText = Clipboard.GetText();
+            shinseiServiseInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
+            shinseiServiseInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
+            shinseiServiseInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
+            shinseiService.setInBo(shinseiServiseInBo);
+            ShinseiShinseiServiceOutBo shinseiServiseOutBo = shinseiService.execute();
 
-            if (String.IsNullOrEmpty(this.yomi1TextBox.Text) 
-                || String.IsNullOrEmpty(this.yomi2TextBox.Text) 
-                || String.IsNullOrEmpty(this.tangoTextBox.Text))
+            if (!String.IsNullOrEmpty(shinseiServiseOutBo.errorMessage))
             {
-                MessageBox.Show("論理名、よみがな、物理名は必須項目です。");
-                return;
+                MessageBox.Show(shinseiServiseOutBo.errorMessage, "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            string[] data = { this.yomi1TextBox.Text, this.yomi2TextBox.Text, this.tangoTextBox.Text };
-            DialogResult result = MessageBox.Show(message + "申請してもよろしいですか？", "申請確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (result == System.Windows.Forms.DialogResult.OK)
-            {
-                this.Insert(data);
-            }
             this.Shinsei_Load(sender, e);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="data"></param>
-        private void Insert(string[] data)
-        {
-            using (var context = new MyContext())
-            {
-                UserMst user = new UserMst();
-                user.USER_NAME = "ジョウジ";
-                WordShinsei shinsei = new WordShinsei();
-                shinsei.RONRI_NAME1 = data[0];
-                shinsei.RONRI_NAME2 = data[1];
-                shinsei.BUTSURI_NAME = data[2];
-                shinsei.STATUS = 0;
-                shinsei.User = user;
-                context.WordShinsei.Add(shinsei);
-                context.SaveChanges();
-            }
-        }
 
         /// <summary>
         /// 
@@ -97,9 +72,9 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void clearButton_Click(object sender, EventArgs e)
         {
-            this.yomi1TextBox.Clear();
-            this.yomi2TextBox.Clear();
-            this.tangoTextBox.Clear();
+            this.ronrimei1TextBox.Clear();
+            this.ronrimei2TextBox.Clear();
+            this.butsurimeiTextBox.Clear();
         }
 
         /// <summary>
@@ -151,33 +126,24 @@ namespace WordConvertTool
                 using (var context = new MyContext())
                 {
                     long condtion = Convert.ToInt64(this.shinseiDataGridView1.Rows[i].Cells["SHINSEI_ID"].Value.ToString());
-                    var upWord = context.WordShinsei
-                        .Where(x => x.WORD_ID == condtion);
 
-                    if (upWord.Count() == 1)
-                    {
-                        var w = context.WordShinsei.Single(x => x.WORD_ID == condtion);
-                        w.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
-                        w.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
-                        w.CRE_DATE = System.DateTime.Now.ToString();
-                        w.STATUS = 1;
-                        context.SaveChanges();
-                        continue;
-                    }
+                    var w = context.WordShinsei.Single(x => x.SHINSEI_ID == condtion);
+                    w.CRE_DATE = System.DateTime.Now.ToString();
+                    w.STATUS = 1;
 
                     UserMst user = new UserMst();
                     user.USER_NAME = "ジョウジ";
-                    WordShinsei shinsei = new WordShinsei();
-                    shinsei.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
-                    shinsei.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
-                    shinsei.CRE_DATE = System.DateTime.Now.ToString();
-                    shinsei.STATUS = 1;
-                    shinsei.User = user;
-                    context.WordShinsei.Add(shinsei);
+                    WordDic word = new WordDic();
+                    word.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
+                    word.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+                    word.CRE_DATE = System.DateTime.Now.ToString();
+                    word.User = user;
+                    context.WordDic.Add(word);
+
                     context.SaveChanges();
                 }
             }
-            MessageBox.Show("辞書テーブルに登録されました。");
+            MessageBox.Show("承認された単語が、辞書テーブルに登録されました。");
             this.Shinsei_Load(sender, e);
         }
 

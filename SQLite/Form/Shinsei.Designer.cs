@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.yomi1TextBox = new System.Windows.Forms.TextBox();
-            this.yomi2TextBox = new System.Windows.Forms.TextBox();
-            this.tangoTextBox = new System.Windows.Forms.TextBox();
+            this.ronrimei1TextBox = new System.Windows.Forms.TextBox();
+            this.ronrimei2TextBox = new System.Windows.Forms.TextBox();
+            this.butsurimeiTextBox = new System.Windows.Forms.TextBox();
             this.shinseiButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.shinseiDataGridView1 = new System.Windows.Forms.DataGridView();
@@ -47,24 +47,24 @@
             // 
             // yomi1TextBox
             // 
-            this.yomi1TextBox.Location = new System.Drawing.Point(55, 19);
-            this.yomi1TextBox.Name = "yomi1TextBox";
-            this.yomi1TextBox.Size = new System.Drawing.Size(219, 19);
-            this.yomi1TextBox.TabIndex = 0;
+            this.ronrimei1TextBox.Location = new System.Drawing.Point(55, 19);
+            this.ronrimei1TextBox.Name = "yomi1TextBox";
+            this.ronrimei1TextBox.Size = new System.Drawing.Size(219, 19);
+            this.ronrimei1TextBox.TabIndex = 0;
             // 
             // yomi2TextBox
             // 
-            this.yomi2TextBox.Location = new System.Drawing.Point(55, 43);
-            this.yomi2TextBox.Name = "yomi2TextBox";
-            this.yomi2TextBox.Size = new System.Drawing.Size(219, 19);
-            this.yomi2TextBox.TabIndex = 1;
+            this.ronrimei2TextBox.Location = new System.Drawing.Point(55, 43);
+            this.ronrimei2TextBox.Name = "yomi2TextBox";
+            this.ronrimei2TextBox.Size = new System.Drawing.Size(219, 19);
+            this.ronrimei2TextBox.TabIndex = 1;
             // 
             // tangoTextBox
             // 
-            this.tangoTextBox.Location = new System.Drawing.Point(55, 69);
-            this.tangoTextBox.Name = "tangoTextBox";
-            this.tangoTextBox.Size = new System.Drawing.Size(219, 19);
-            this.tangoTextBox.TabIndex = 2;
+            this.butsurimeiTextBox.Location = new System.Drawing.Point(55, 69);
+            this.butsurimeiTextBox.Name = "tangoTextBox";
+            this.butsurimeiTextBox.Size = new System.Drawing.Size(219, 19);
+            this.butsurimeiTextBox.TabIndex = 2;
             // 
             // shinseiButton
             // 
@@ -199,9 +199,9 @@
             this.Controls.Add(this.shinseiDataGridView1);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.shinseiButton);
-            this.Controls.Add(this.tangoTextBox);
-            this.Controls.Add(this.yomi2TextBox);
-            this.Controls.Add(this.yomi1TextBox);
+            this.Controls.Add(this.butsurimeiTextBox);
+            this.Controls.Add(this.ronrimei2TextBox);
+            this.Controls.Add(this.ronrimei1TextBox);
             this.Controls.Add(this.viewChangeRadioGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -216,9 +216,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox yomi1TextBox;
-        private System.Windows.Forms.TextBox yomi2TextBox;
-        private System.Windows.Forms.TextBox tangoTextBox;
+        private System.Windows.Forms.TextBox ronrimei1TextBox;
+        private System.Windows.Forms.TextBox ronrimei2TextBox;
+        private System.Windows.Forms.TextBox butsurimeiTextBox;
         private System.Windows.Forms.Button shinseiButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.DataGridView shinseiDataGridView1;

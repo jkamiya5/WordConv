@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Configuration;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace WordConvertTool
 
         static void ExecuteDDL()
         {
-            var path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "WordConverter.db");
+            //var path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "WordConverter.db");
+            var path = ConfigurationManager.AppSettings.Get("DataSource").Replace("Data Source=", "");
 
             if (File.Exists(path))
             {
