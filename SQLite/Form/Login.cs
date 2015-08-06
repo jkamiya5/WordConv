@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordConvTool.Model;
 
 namespace WordConvertTool
 {
@@ -21,7 +22,27 @@ namespace WordConvertTool
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
+            using (var context = new MyContext())
+            {
+                long condtion = Convert.ToInt64(this.UserId.Text);
+                var w = context.UserMst.Where(x => x.USER_ID == condtion).ToArray();
 
+                if (w.Count() == 0)
+                {
+                    MessageBox.Show(
+                        "ユーザーIDが存在しません。\n",
+                        System.Windows.Forms.Application.ProductName,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    
+                    return;
+                }
+                if (w.Count() == 1)
+                {
+                    this.Close();
+                    return;
+                }
+            }
         }
 
         private void Login_Load(object sender, EventArgs e)

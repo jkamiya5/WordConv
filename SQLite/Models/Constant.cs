@@ -19,4 +19,10 @@ namespace WordConvTool.Model
         承認 = 1,
         却下 = 2
     }
+
+    public enum KengenKbn
+    {
+        KANRI = 0,
+        IPPAN = 1
+    }
 }
