@@ -13,12 +13,6 @@ namespace WordConvTool.Model
         public static int IKKATSU_TOROKU = 1;
     }
 
-    //public static　enum ShoriMode : int
-    //{
-    //    SHINKI = 1, 
-    //    KOUSHIN = 2
-    //}
-
     public enum ShinseiKbn
     {
         申請中 = 0,

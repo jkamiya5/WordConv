@@ -46,11 +46,6 @@ namespace SQLite.Form
             }
             shinseiInitOutBo.dispShinseiList = dispShinseiList;
             return shinseiInitOutBo;
-            //this.inBo.DataSource = dispShinseiList;
-            //common.addCheckBox(ref this.inBo);
-            //common.viewWidthSetting(ref this.inBo, 20, 65);
-            //return this.inBo;
-
         }
     }
 }

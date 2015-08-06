@@ -18,16 +18,22 @@ namespace SQLite.Form
         private static CommonFunction common = new CommonFunction();
         private IkkatsuTorokuReadFileServiceInBo inBo = new IkkatsuTorokuReadFileServiceInBo();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(IkkatsuTorokuReadFileServiceInBo inBo)
         {
             this.inBo = inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IkkatsuTorokuReadFileServiceOutBo execute()
         {
             IkkatsuTorokuReadFileServiceOutBo outBo = new IkkatsuTorokuReadFileServiceOutBo();
-
-            //this.Cursor = Cursors.WaitCursor;   // マウスカーソルを砂時計
             Microsoft.Office.Interop.Excel.Application oExcelApp = null; // Excelオブジェクト
             Microsoft.Office.Interop.Excel.Workbook oExcelWBook = null;  // Excel Workbookオブジェクト
             try
@@ -106,9 +112,8 @@ namespace SQLite.Form
                 oExcelApp.Quit();
                 File.SetAttributes(this.inBo.Filename, FileAttributes.Normal);
             }
-            //this.Cursor = Cursors.Default;  // マウスカーソルを戻す
-            MessageBox.Show("正常に読み込みました。");
 
+            MessageBox.Show("正常に読み込みました。");
             return outBo;
         }
     }

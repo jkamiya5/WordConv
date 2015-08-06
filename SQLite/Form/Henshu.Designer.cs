@@ -248,7 +248,7 @@
             // 
             // openFile
             // 
-            this.openFile.Location = new System.Drawing.Point(340, 28);
+            this.openFile.Location = new System.Drawing.Point(359, 28);
             this.openFile.Name = "openFile";
             this.openFile.Size = new System.Drawing.Size(88, 25);
             this.openFile.TabIndex = 10;
@@ -260,7 +260,7 @@
             // 
             this.filePath.Location = new System.Drawing.Point(28, 31);
             this.filePath.Name = "filePath";
-            this.filePath.Size = new System.Drawing.Size(287, 19);
+            this.filePath.Size = new System.Drawing.Size(307, 19);
             this.filePath.TabIndex = 9;
             // 
             // Henshu

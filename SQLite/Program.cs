@@ -28,8 +28,8 @@ namespace WordConvertTool
 
         static void ExecuteDDL()
         {
-            //var path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "WordConverter.db");
-            var path = ConfigurationManager.AppSettings.Get("DataSource").Replace("Data Source=", "");
+            var path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "WordConverter.db");
+            //var path = ConfigurationManager.AppSettings.Get("DataSource").Replace("Data Source=", "");
 
             if (File.Exists(path))
             {
