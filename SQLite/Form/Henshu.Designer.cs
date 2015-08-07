@@ -48,6 +48,7 @@
             this.readFile = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
@@ -201,6 +202,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.ikkatsuRegistBtn);
             this.tabPage2.Controls.Add(this.ikkatsuDataGridView);
             this.tabPage2.Controls.Add(this.readFile);
@@ -229,18 +231,18 @@
             this.ikkatsuDataGridView.AllowUserToResizeColumns = false;
             this.ikkatsuDataGridView.AllowUserToResizeRows = false;
             this.ikkatsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ikkatsuDataGridView.Location = new System.Drawing.Point(15, 104);
+            this.ikkatsuDataGridView.Location = new System.Drawing.Point(24, 139);
             this.ikkatsuDataGridView.Name = "ikkatsuDataGridView";
             this.ikkatsuDataGridView.RowHeadersVisible = false;
             this.ikkatsuDataGridView.RowTemplate.Height = 21;
-            this.ikkatsuDataGridView.Size = new System.Drawing.Size(473, 275);
+            this.ikkatsuDataGridView.Size = new System.Drawing.Size(459, 239);
             this.ikkatsuDataGridView.TabIndex = 12;
             // 
             // readFile
             // 
-            this.readFile.Location = new System.Drawing.Point(38, 60);
+            this.readFile.Location = new System.Drawing.Point(50, 78);
             this.readFile.Name = "readFile";
-            this.readFile.Size = new System.Drawing.Size(111, 27);
+            this.readFile.Size = new System.Drawing.Size(101, 27);
             this.readFile.TabIndex = 11;
             this.readFile.Text = "読み込み";
             this.readFile.UseVisualStyleBackColor = true;
@@ -248,9 +250,9 @@
             // 
             // openFile
             // 
-            this.openFile.Location = new System.Drawing.Point(359, 28);
+            this.openFile.Location = new System.Drawing.Point(361, 44);
             this.openFile.Name = "openFile";
-            this.openFile.Size = new System.Drawing.Size(88, 25);
+            this.openFile.Size = new System.Drawing.Size(104, 25);
             this.openFile.TabIndex = 10;
             this.openFile.Text = "開く";
             this.openFile.UseVisualStyleBackColor = true;
@@ -258,10 +260,18 @@
             // 
             // filePath
             // 
-            this.filePath.Location = new System.Drawing.Point(28, 31);
+            this.filePath.Location = new System.Drawing.Point(36, 47);
             this.filePath.Name = "filePath";
             this.filePath.Size = new System.Drawing.Size(307, 19);
             this.filePath.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(36, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 15);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "ファイルパス";
             // 
             // Henshu
             // 
@@ -271,7 +281,7 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Henshu";
-            this.Text = "Henshu";
+            this.Text = "編集";
             this.Load += new System.EventHandler(this.Henshu_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -306,5 +316,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }

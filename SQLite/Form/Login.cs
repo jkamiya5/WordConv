@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,11 @@ namespace WordConvertTool
             InitializeComponent();
         }
 
+        /// <summary>
+        /// ログインボタンクリックアクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void loginBtn_Click(object sender, EventArgs e)
         {
             using (var context = new MyContext())
@@ -34,17 +40,24 @@ namespace WordConvertTool
                         System.Windows.Forms.Application.ProductName,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
-                    
+
                     return;
                 }
                 if (w.Count() == 1)
                 {
                     this.Close();
+                    BaseForm form = new BaseForm(w[0].ROLE);
+
                     return;
                 }
             }
         }
 
+        /// <summary>
+        /// 初期表示アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Login_Load(object sender, EventArgs e)
         {
             string dataSourcePath = ConfigurationManager.AppSettings.Get("DataSource");
@@ -55,6 +68,11 @@ namespace WordConvertTool
             this.UserId.Text = ConfigurationManager.AppSettings.Get("UserId");
         }
 
+        /// <summary>
+        /// 参照アクション
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openFile_Click(object sender, EventArgs e)
         {
             //OpenFileDialogクラスのインスタンスを作成

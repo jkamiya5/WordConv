@@ -35,10 +35,23 @@ namespace SQLite.Form
                 return outBo;
             }
 
-            string[] data = { this.inBo.ronrimei1TextBox, this.inBo.ronrimei2TextBox, this.inBo.butsurimeiTextBox };
+            using (var context = new MyContext())
+            {
+                string condtion = this.inBo.ronrimei1TextBox;
+                var upWord = context.WordDic
+                    .Where(x => x.RONRI_NAME1 == condtion);
+
+                if (upWord.Count() > 0)
+                {
+                    outBo.errorMessage = "論理名は、辞書テーブルに既に存在します。";
+                    return outBo;
+                }
+            }
+            
             DialogResult result = MessageBox.Show(message + "申請してもよろしいですか？", "申請確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == System.Windows.Forms.DialogResult.OK)
             {
+                string[] data = { this.inBo.ronrimei1TextBox, this.inBo.ronrimei2TextBox, this.inBo.butsurimeiTextBox };
                 this.Insert(data);
             }
             return outBo;

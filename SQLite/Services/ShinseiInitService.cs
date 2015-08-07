@@ -21,8 +21,6 @@ namespace SQLite.Form
         {
 
             ShinseiInitServiceOutBo shinseiInitOutBo = new ShinseiInitServiceOutBo();
-
-            List<ShinseiBo> shinsei = new List<ShinseiBo>();
             List<ShinseiBo> dispShinseiList = null;
 
             using (var context = new MyContext())

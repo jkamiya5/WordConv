@@ -38,21 +38,21 @@
             // 
             // dataSourcePath
             // 
-            this.dataSourcePath.Location = new System.Drawing.Point(82, 47);
+            this.dataSourcePath.Location = new System.Drawing.Point(82, 51);
             this.dataSourcePath.Name = "dataSourcePath";
             this.dataSourcePath.Size = new System.Drawing.Size(223, 19);
             this.dataSourcePath.TabIndex = 0;
             // 
             // UserId
             // 
-            this.UserId.Location = new System.Drawing.Point(82, 10);
+            this.UserId.Location = new System.Drawing.Point(82, 14);
             this.UserId.Name = "UserId";
             this.UserId.Size = new System.Drawing.Size(223, 19);
             this.UserId.TabIndex = 1;
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(106, 87);
+            this.loginBtn.Location = new System.Drawing.Point(106, 90);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(161, 25);
             this.loginBtn.TabIndex = 2;
@@ -62,7 +62,7 @@
             // 
             // openFile
             // 
-            this.openFile.Location = new System.Drawing.Point(315, 45);
+            this.openFile.Location = new System.Drawing.Point(315, 49);
             this.openFile.Name = "openFile";
             this.openFile.Size = new System.Drawing.Size(67, 25);
             this.openFile.TabIndex = 11;
@@ -73,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(13, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 12);
             this.label1.TabIndex = 12;
@@ -82,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 50);
+            this.label2.Location = new System.Drawing.Point(13, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 12);
             this.label2.TabIndex = 13;
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 135);
+            this.ClientSize = new System.Drawing.Size(401, 130);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.openFile);
@@ -100,7 +100,7 @@
             this.Controls.Add(this.UserId);
             this.Controls.Add(this.dataSourcePath);
             this.Name = "Login";
-            this.Text = "Login";
+            this.Text = "ログイン";
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

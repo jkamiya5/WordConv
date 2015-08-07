@@ -167,31 +167,10 @@ namespace WordConvertTool
                     common.executeQuery(sql);
                 }
             }
+            MessageBox.Show("選択された単語が却下されました。");
             this.Shinsei_Load(sender, e);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void viewRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (this.koushinRadioButton.Checked)
-            //{
-            //    DispManager dispMode;
-            //    ShinseiInitInBo shinseiInitInBo = new ShinseiInitInBo();
-            //    dispMode = new DispManager(new StrategyKoushin(shinseiInitInBo));
-            //    ShinseiInitOutBo outBo = (ShinseiInitOutBo)dispMode.Execute();
-            //}
-            //if (this.shinkiRadioButton.Checked)
-            //{
-            //    DispManager dispMode;
-            //    ShinseiInitInBo shinseiInitInBo = new ShinseiInitInBo();
-            //    dispMode = new DispManager(new StrategyShinki(shinseiInitInBo));
-            //    ShinseiInitOutBo outBo = (ShinseiInitOutBo)dispMode.Execute();
-            //}
-        }
 
         /// <summary>
         /// 

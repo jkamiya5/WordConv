@@ -66,7 +66,7 @@ namespace WordConvertTool
 
             ichiranDataGridView.DataSource = initServiceOutBo.wordList;
             ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
-            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 185;
+            ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 195;
             ichiranDataGridView.ReadOnly = true;
 
             //隠していたフォームを表示する
@@ -144,12 +144,24 @@ namespace WordConvertTool
             {
                 int idx = ichiranDataGridView.CurrentCell.RowIndex;
                 int rowindex = e.RowIndex;
-                //コンテキストメニューを表示する
-                this.contextMenuStrip1.Show();
                 //マウスカーソルの位置を画面座標で取得
                 Point p = Control.MousePosition;
-                this.contextMenuStrip1.Top = p.Y;
-                this.contextMenuStrip1.Left = p.X;
+
+                if (BaseForm.Role == Constant.KANRI)
+                {
+                    //コンテキストメニューを表示する
+                    this.kanriUserContextMenuStrip.Show();
+                    this.kanriUserContextMenuStrip.Top = p.Y;
+                    this.kanriUserContextMenuStrip.Left = p.X;
+                }
+                if (BaseForm.Role == Constant.IPPAN)
+                {
+                    //コンテキストメニューを表示する
+                    this.ippanUserContextMenuStrip.Show();
+                    this.ippanUserContextMenuStrip.Top = p.Y;
+                    this.ippanUserContextMenuStrip.Left = p.X;
+                }
+
             }
         }
 
@@ -251,5 +263,35 @@ namespace WordConvertTool
                 Shinsei shinsei = new Shinsei(Clipboard.GetText());
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void formHeanderLabel_MouseClick(object sender, MouseEventArgs e)
+        {
+            //右クリックのときのみ
+            if (e.Button == MouseButtons.Right)
+            {
+                //コンテキストメニューを表示する
+                this.closeContextMenuStrip.Show();
+                //マウスカーソルの位置を画面座標で取得
+                Point p = Control.MousePosition;
+                this.closeContextMenuStrip.Top = p.Y;
+                this.closeContextMenuStrip.Left = p.X;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void アプリ閉じるToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }

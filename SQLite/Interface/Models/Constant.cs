@@ -11,6 +11,8 @@ namespace WordConvTool.Model
         public static string NONE_WORD = "変換候補がありません。";
         public static int TANITSU_TOROKU = 0;
         public static int IKKATSU_TOROKU = 1;
+        public static int KANRI = 0;
+        public static int IPPAN = 1;
     }
 
     public enum ShinseiKbn

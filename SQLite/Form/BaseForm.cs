@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordConvTool.Forms;
 
 namespace WordConvertTool
 {
@@ -20,6 +21,16 @@ namespace WordConvertTool
         protected const int HOTKEY_ID = 0x0001;  // 0x0000～0xbfff 内の適当な値でよい
         protected const int HOTKEY2_ID = 0x0002;
         protected static IntPtr Handles;
+        private static int role;
+
+
+        public static int Role
+        {
+            get {
+
+                return role;
+            }
+        }
 
         [DllImport("user32.dll")]
         extern static int RegisterHotKey(IntPtr HWnd, int ID, int MOD_KEY, int KEY);
@@ -38,10 +49,15 @@ namespace WordConvertTool
             Login form = new Login();
             form.Show();
 
+        }
+
+        public BaseForm(int Role)
+        {
             RegisterHotKey(this.Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.E);
             RegisterHotKey(this.Handle, HOTKEY2_ID, MOD_CONTROL, (int)Keys.W);
-
+            role = Role;
         }
+
 
         /// <summary>
         /// キーイベント検出処理
@@ -81,6 +97,27 @@ namespace WordConvertTool
         private void BaseForm_Load(object sender, EventArgs e)
         {
             Hide();
+        }
+
+        private void 申請ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 個人設定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Kojin form = new Kojin();
+            form.Show();
+        }
+
+        private void ユーザー管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
