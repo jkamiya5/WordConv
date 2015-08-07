@@ -10,16 +10,26 @@ namespace SQLite.Form
 {
     class ShinseiInitService : IService<ShinseiInitServiceInBo, ShinseiInitServiceOutBo>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private ShinseiInitServiceInBo inBo;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(ShinseiInitServiceInBo inBo)
         {
             this.inBo = inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ShinseiInitServiceOutBo execute()
         {
-
             ShinseiInitServiceOutBo shinseiInitOutBo = new ShinseiInitServiceOutBo();
             List<ShinseiBo> dispShinseiList = null;
 

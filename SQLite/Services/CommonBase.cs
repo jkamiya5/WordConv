@@ -83,13 +83,26 @@ namespace WordConvTool
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static string ToTitleCase(this string self)
         {
             return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(self);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static string ToPascalCase(this string self)
         {
             String butsuriName = "";
@@ -106,6 +119,11 @@ namespace WordConvTool
             return butsuriName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static string CommaSeparatedValue(this String[] self)
         {
             string condition = "";
