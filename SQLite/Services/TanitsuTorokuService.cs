@@ -10,13 +10,24 @@ namespace SQLite.Form
 {
     class TanitsuTorokuInitService : IService<TanitsuTorokuInitServiceInBo, TanitsuTorokuInitServiceOutBo>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private TanitsuTorokuInitServiceInBo inBo;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(TanitsuTorokuInitServiceInBo inBo)
         {
             this.inBo = inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public TanitsuTorokuInitServiceOutBo execute()
         {
             TanitsuTorokuInitServiceOutBo outBo = new TanitsuTorokuInitServiceOutBo();
@@ -25,7 +36,6 @@ namespace SQLite.Form
             if (!String.IsNullOrEmpty(this.inBo.clipboardText))
             {
                 string ronriName = this.inBo.clipboardText;
-
                 using (var context = new MyContext())
                 {
                     IQueryable<HenshuWordBo> words = from a in context.WordDic

@@ -13,12 +13,24 @@ namespace SQLite.Form
 {
     class TanitsuTorokuDeleteService : IService<TanitsuTorokuDeleteServiceInBo, TanitsuTorokuDeleteServiceOutBo>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private TanitsuTorokuDeleteServiceInBo inBo;
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(TanitsuTorokuDeleteServiceInBo inBo)
         {
             this.inBo = (TanitsuTorokuDeleteServiceInBo)inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public TanitsuTorokuDeleteServiceOutBo execute()
         {
             TanitsuTorokuDeleteServiceOutBo outBo = new TanitsuTorokuDeleteServiceOutBo();

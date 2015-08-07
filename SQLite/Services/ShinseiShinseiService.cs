@@ -11,13 +11,24 @@ namespace SQLite.Form
 {
     class ShinseiShinseiService : IService<ShinseiShinseiServiceInBo, ShinseiShinseiServiceOutBo>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private ShinseiShinseiServiceInBo inBo;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(ShinseiShinseiServiceInBo inBo)
         {
             this.inBo = inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ShinseiShinseiServiceOutBo execute()
         {
             ShinseiShinseiServiceOutBo outBo = new ShinseiShinseiServiceOutBo();

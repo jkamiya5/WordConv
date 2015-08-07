@@ -9,13 +9,24 @@ namespace SQLite.Form
 {
     class IkkatsuTorokuInitService
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private IkkatsuTorokuInitServiceInBo inBo = new IkkatsuTorokuInitServiceInBo();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="InBo"></param>
         internal void setInBo(IkkatsuTorokuInitServiceInBo InBo)
         {
             this.inBo = InBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         internal IkkatsuTorokuInitServiceOutBo execute()
         {
             IkkatsuTorokuInitServiceOutBo outBo = new IkkatsuTorokuInitServiceOutBo();

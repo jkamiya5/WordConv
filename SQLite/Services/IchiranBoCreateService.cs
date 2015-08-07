@@ -8,13 +8,24 @@ namespace SQLite.Form
 {
     class IchiranBoCreateService : IService<IchiranBoCreateServiceInBo, IchiranBoCreateServiceOutBo>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private IchiranBoCreateServiceInBo inBo;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(IchiranBoCreateServiceInBo inBo)
         {
             this.inBo = inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IchiranBoCreateServiceOutBo execute()
         {
             IchiranBoCreateServiceOutBo outBo = new IchiranBoCreateServiceOutBo();

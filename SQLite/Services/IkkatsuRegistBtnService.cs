@@ -11,14 +11,29 @@ namespace SQLite.Form
 
     class IkkatsuTorokuIkkatsuRegistService
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private static CommonFunction common = new CommonFunction();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         private IkkatsuTorokuIkkatsuRegistServiceInBo inBo = new IkkatsuTorokuIkkatsuRegistServiceInBo();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="InBo"></param>
         internal void setInBo(IkkatsuTorokuIkkatsuRegistServiceInBo InBo)
         {
             this.inBo = InBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         internal IkkatsuTorokuIkkatsuRegistServiceOutBo execute()
         {
             IkkatsuTorokuIkkatsuRegistServiceOutBo outBo = new IkkatsuTorokuIkkatsuRegistServiceOutBo();

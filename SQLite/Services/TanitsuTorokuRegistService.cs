@@ -12,13 +12,24 @@ namespace SQLite.Form
 {
     public class TanitsuTorokuRegistService : IService<TanitsuTorokuRegistServiceInBo, TanitsuTorokuRegistServiceOutBo>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public TanitsuTorokuRegistServiceInBo inBo;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inBo"></param>
         public void setInBo(TanitsuTorokuRegistServiceInBo inBo)
         {
             this.inBo = inBo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public TanitsuTorokuRegistServiceOutBo execute()
         {
             TanitsuTorokuRegistServiceOutBo outBo = new TanitsuTorokuRegistServiceOutBo();
@@ -59,7 +70,6 @@ namespace SQLite.Form
                     }
                 }
             }
-
             return outBo;
         }
     }
