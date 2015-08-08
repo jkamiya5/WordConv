@@ -65,7 +65,7 @@
             // 
             // shinseiButton
             // 
-            this.shinseiButton.Location = new System.Drawing.Point(83, 101);
+            this.shinseiButton.Location = new System.Drawing.Point(78, 101);
             this.shinseiButton.Name = "shinseiButton";
             this.shinseiButton.Size = new System.Drawing.Size(100, 25);
             this.shinseiButton.TabIndex = 3;
@@ -75,7 +75,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(207, 101);
+            this.clearButton.Location = new System.Drawing.Point(208, 101);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(100, 25);
             this.clearButton.TabIndex = 4;
@@ -131,7 +131,7 @@
             // 
             // shounin
             // 
-            this.shounin.Location = new System.Drawing.Point(84, 326);
+            this.shounin.Location = new System.Drawing.Point(79, 326);
             this.shounin.Name = "shounin";
             this.shounin.Size = new System.Drawing.Size(100, 25);
             this.shounin.TabIndex = 11;
@@ -141,7 +141,7 @@
             // 
             // kyakka
             // 
-            this.kyakka.Location = new System.Drawing.Point(208, 326);
+            this.kyakka.Location = new System.Drawing.Point(209, 326);
             this.kyakka.Name = "kyakka";
             this.kyakka.Size = new System.Drawing.Size(100, 25);
             this.kyakka.TabIndex = 12;

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConvTool.Forms;
+using WordConverter.Form;
 
 namespace WordConvertTool
 {
@@ -21,14 +22,14 @@ namespace WordConvertTool
         protected const int HOTKEY_ID = 0x0001;  // 0x0000～0xbfff 内の適当な値でよい
         protected const int HOTKEY2_ID = 0x0002;
         protected static IntPtr Handles;
-        private static int role;
+        private static UserInfo userInfo;
 
 
-        public static int Role
+        public static UserInfo UserInfo
         {
             get {
 
-                return role;
+                return userInfo;
             }
         }
 
@@ -51,11 +52,11 @@ namespace WordConvertTool
 
         }
 
-        public BaseForm(int Role)
+        public BaseForm(UserInfo uInfo)
         {
             RegisterHotKey(this.Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.E);
             RegisterHotKey(this.Handle, HOTKEY2_ID, MOD_CONTROL, (int)Keys.W);
-            role = Role;
+            userInfo = uInfo;
         }
 
 

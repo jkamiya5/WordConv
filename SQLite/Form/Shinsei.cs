@@ -26,6 +26,7 @@ namespace WordConvertTool
         /// </summary>
         private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
         public string kensakuWord { get; set; }
+        public bool allCheckBoxValue { get; set; }
 
 
         /// <summary>
@@ -37,7 +38,20 @@ namespace WordConvertTool
             InitializeComponent();
             this.Show();
             this.Activate();
+
+            this.shinseiDataGridView1.ReadOnly = true;
             this.ronrimei1TextBox.Text = text.Trim();
+            
+            if (BaseForm.UserInfo.role == Constant.IPPAN)
+            {
+                this.shounin.Enabled = false;
+                this.kyakka.Enabled = false;
+            }
+            if (BaseForm.UserInfo.role == Constant.KANRI)
+            {
+                this.shinseiButton.Enabled = false;
+                this.clearButton.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -143,7 +157,7 @@ namespace WordConvertTool
                     context.SaveChanges();
                 }
             }
-            MessageBox.Show("承認された単語が、辞書テーブルに登録されました。");
+            MessageBox.Show("選択された単語を承認しました。承認した単語が、辞書テーブルに登録されました。");
             this.Shinsei_Load(sender, e);
         }
 
@@ -180,13 +194,28 @@ namespace WordConvertTool
         private void shinseiDataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn clickedColumn = this.shinseiDataGridView1.Columns[e.ColumnIndex];
+            if (this.shinseiDataGridView1[0, 0].Value == null)
+            {
+                this.allCheckBoxValue = false;
+            }
+
             if (clickedColumn.Index == 0)
             {
                 for (int i = 0; i < this.shinseiDataGridView1.RowCount; i++)
                 {
+                    if (i == 0)
+                    {
+                        DataGridViewCell tmp = shinseiDataGridView1.CurrentCell;
+                        shinseiDataGridView1.CurrentCell = shinseiDataGridView1.Rows[0].Cells[0];
+                        shinseiDataGridView1.EndEdit();
+                        shinseiDataGridView1[0, 0].Value = !this.allCheckBoxValue;
+                        shinseiDataGridView1.CurrentCell = tmp;
+                        continue;
+                    }
                     if (this.shinseiDataGridView1[0, i].Value != null)
                     {
-                        this.shinseiDataGridView1[0, i].Value = !(bool)this.shinseiDataGridView1[0, i].Value;
+                        this.shinseiDataGridView1[0, i].Value = !this.allCheckBoxValue;
+                        this.allCheckBoxValue = !this.allCheckBoxValue;
                     }
                     else
                     {

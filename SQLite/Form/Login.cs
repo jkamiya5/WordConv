@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordConverter.Form;
 using WordConvTool.Model;
 
 namespace WordConvertTool
@@ -45,8 +46,17 @@ namespace WordConvertTool
                 }
                 if (w.Count() == 1)
                 {
+                    WordConverter.Settings1.Default.UserId = this.UserId.Text;
+                    WordConverter.Settings1.Default.DataSource = this.dataSourcePath.Text;
+                    WordConverter.Settings1.Default.Save();
+
                     this.Close();
-                    BaseForm form = new BaseForm(w[0].ROLE);
+
+                    UserInfo userInfo = new UserInfo();
+                    userInfo.role = w[0].ROLE;
+                    userInfo.userId = w[0].USER_ID;
+
+                    BaseForm form = new BaseForm(userInfo);
 
                     return;
                 }
@@ -60,12 +70,9 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void Login_Load(object sender, EventArgs e)
         {
-            string dataSourcePath = ConfigurationManager.AppSettings.Get("DataSource");
-            string applicationBase = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            dataSourcePath = dataSourcePath.Replace("|DataDirectory|", applicationBase);
-            dataSourcePath = dataSourcePath.Replace("Data Source=", "");
-            this.dataSourcePath.Text = dataSourcePath;
-            this.UserId.Text = ConfigurationManager.AppSettings.Get("UserId");
+            this.dataSourcePath.Text = WordConverter.Settings1.Default.DataSource;
+            this.UserId.Text = WordConverter.Settings1.Default.UserId;
+
         }
 
         /// <summary>
