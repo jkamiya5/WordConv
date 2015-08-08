@@ -24,7 +24,14 @@ namespace WordConvTool.Model
 
     public enum KengenKbn
     {
-        KANRI = 0,
-        IPPAN = 1
+        管理 = 0,
+        一般 = 1
     }
+
+    public enum SankaKahi
+    {
+        参加 = 0,
+        不参加 = 1
+    }
+
 }

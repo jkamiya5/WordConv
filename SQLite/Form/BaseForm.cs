@@ -118,7 +118,8 @@ namespace WordConvertTool
 
         private void ユーザー管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UserKanri form = new UserKanri();
+            form.Show();
         }
 
     }

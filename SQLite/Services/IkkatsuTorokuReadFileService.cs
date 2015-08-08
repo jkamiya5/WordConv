@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WordConvertTool;
 using WordConvTool;
 using WordConvTool.Model;
 
@@ -84,13 +85,11 @@ namespace SQLite.Form
                                 continue;
                             }
 
-                            UserMst user = new UserMst();
-                            user.USER_NAME = "ジョウジ";
                             WordDic word = new WordDic();
                             word.RONRI_NAME1 = Convert.ToString(ronriName);
                             word.BUTSURI_NAME = Convert.ToString(butsuriName).ToPascalCase();
                             word.CRE_DATE = System.DateTime.Now.ToString();
-                            word.User = user;
+                            word.USER_ID = BaseForm.UserInfo.userId;
                             context.WordDic.Add(word);
                             context.SaveChanges();
                         }
