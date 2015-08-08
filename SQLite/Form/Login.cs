@@ -52,7 +52,7 @@ namespace WordConvertTool
 
                     this.Close();
 
-                    UserInfo userInfo = new UserInfo();
+                    UserInfoBo userInfo = new UserInfoBo();
                     userInfo.role = w[0].ROLE;
                     userInfo.userId = w[0].USER_ID;
 

@@ -41,7 +41,7 @@ namespace WordConvertTool
 
             this.shinseiDataGridView1.ReadOnly = true;
             this.ronrimei1TextBox.Text = text.Trim();
-            
+
             if (BaseForm.UserInfo.role == Constant.IPPAN)
             {
                 this.shounin.Enabled = false;

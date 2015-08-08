@@ -22,10 +22,10 @@ namespace WordConvertTool
         protected const int HOTKEY_ID = 0x0001;  // 0x0000～0xbfff 内の適当な値でよい
         protected const int HOTKEY2_ID = 0x0002;
         protected static IntPtr Handles;
-        private static UserInfo userInfo;
+        private static UserInfoBo userInfo;
 
 
-        public static UserInfo UserInfo
+        public static UserInfoBo UserInfo
         {
             get {
 
@@ -52,7 +52,7 @@ namespace WordConvertTool
 
         }
 
-        public BaseForm(UserInfo uInfo)
+        public BaseForm(UserInfoBo uInfo)
         {
             RegisterHotKey(this.Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.E);
             RegisterHotKey(this.Handle, HOTKEY2_ID, MOD_CONTROL, (int)Keys.W);
