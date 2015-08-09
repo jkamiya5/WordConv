@@ -27,12 +27,17 @@ namespace WordConvTool.Forms
 
         private void search_Click(object sender, EventArgs e)
         {
+            this.searchAction(ref dataGridView1);
+
+        }
+
+        private void searchAction(ref DataGridView dataGridView1)
+        {
             UserKanriSearchServiceInBo userSearchServiceInBo = new UserKanriSearchServiceInBo();
             UserKanriSearchService userSearchService = new UserKanriSearchService();
             userSearchServiceInBo.userId = this.userId.Text;
             userSearchServiceInBo.userName = this.userName.Text;
             userSearchServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
-
             userSearchService.setInBo(userSearchServiceInBo);
             UserKanriSearchServiceOutBo shinseiServiseOutBo = userSearchService.execute();
             dataGridView1.DataSource = shinseiServiseOutBo.usersList;
@@ -56,7 +61,7 @@ namespace WordConvTool.Forms
 
             dataGridView1.Columns["USER_ID"].HeaderText = "ユーザーID";
             dataGridView1.Columns["USER_NAME"].HeaderText = "ユーザー名";
-            dataGridView1.Columns["Kengen"].HeaderText = "権限";
+            dataGridView1.Columns["KENGEN"].HeaderText = "権限";
             dataGridView1.Columns["MAIL_ID"].HeaderText = "メールID";
             dataGridView1.Columns["MAIL_ADDRESS"].HeaderText = "メールアドレス";
             dataGridView1.Columns["PASSWORD"].HeaderText = "パスワード";
@@ -162,16 +167,58 @@ namespace WordConvTool.Forms
             userList.Add(user);
             this.dataGridView1.DataSource = userList;
 
+            common.addCheckBox(ref dataGridView1, 0);
+            common.viewWidthSetting(ref dataGridView1, 20, 100);
+
         }
 
         private void regist_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[0].Value == null)
+                {
+                    continue;
+                }
 
+                using (var context = new MyContext())
+                {
+
+                    UserMst user = new UserMst();
+                    user.USER_ID = this.dataGridView1.Rows[i].Cells["USER_ID"].Value.ToString().ToKeyType();
+                    user.USER_NAME = this.dataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
+                    user.ROLE = Convert.ToInt32(this.dataGridView1.Rows[i].Cells["KENGEN"].Value);
+                    context.UserMst.Add(user);
+
+                    context.SaveChanges();
+                }
+            }
+            this.searchAction(ref dataGridView1);
         }
 
         private void delete_Click(object sender, EventArgs e)
         {
 
+            for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
+            {
+                if (this.dataGridView1.Rows[i].Cells[0].Value == null)
+                {
+                    continue;
+                }
+                if (this.dataGridView1.Rows[i].Cells[0].Value.Equals(true))
+                {
+                    using (var context = new MyContext())
+                    {
+                        long condtion = Convert.ToInt64(this.dataGridView1.Rows[i].Cells["USER_ID"].Value.ToString());
+                        var toRemoveWord = new UserMst { USER_ID = condtion };
+                        context.UserMst.Attach(toRemoveWord);
+                        context.UserMst.Remove(toRemoveWord);
+                        context.SaveChanges();
+                    }
+                }
+            }
+            MessageBox.Show("ユーザーマスタから削除されました。");
+            this.searchAction(ref dataGridView1);
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)

@@ -68,7 +68,7 @@ namespace WordConvertTool
                 sql += "  , FOREIGN KEY (USER_ID) REFERENCES USER_MST(USER_ID)";
                 sql += "); ";
                 sql += "CREATE TABLE USER_MST( ";
-                sql += "  USER_ID INTEGER PRIMARY KEY AUTOINCREMENT";
+                sql += "  USER_ID INTEGER PRIMARY";
                 sql += "  , USER_NAME TEXT";
                 sql += "  , ROLE INTEGER";
                 sql += "  , MAIL_ID TEXT";

@@ -65,6 +65,7 @@ namespace SQLite.Form
                         word.BUTSURI_NAME = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
                         word.CRE_DATE = System.DateTime.Now.ToString();
                         //word.User = user;
+                        word.USER_ID = BaseForm.UserInfo.userId;
                         context.WordDic.Add(word);
                         context.SaveChanges();
                     }

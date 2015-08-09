@@ -39,7 +39,8 @@ namespace WordConverter.Form
                 IQueryable<UserBo> users = from a in context.UserMst
                                            where (a.USER_NAME.StartsWith(condition)
                                                     || a.USER_ID == userId
-                                                    || a.ROLE == this.inBo.kengenSelectedIndex)
+                                                    //|| a.ROLE == this.inBo.kengenSelectedIndex)
+                                                    )
                                            select new UserBo
                                            {
                                                USER_ID = a.USER_ID,
