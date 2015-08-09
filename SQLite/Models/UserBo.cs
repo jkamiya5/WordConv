@@ -11,7 +11,7 @@ namespace WordConverter.Form
         public long USER_ID { get; set; }
         public string USER_NAME { get; set; }
         public int KENGEN { get; set; }
-        public string SANKA_KAHI { get; set; }
+        public bool SANKA_KAHI { get; set; }
         public string MAIL_ID { get; set; }
         public string MAIL_ADDRESS { get; set; }
         public string PASSWORD { get; set; }

@@ -247,7 +247,7 @@ namespace WordConvTool.Forms
             dataGridView.Columns["USER_NAME"].ReadOnly = true;
             dataGridView.Columns["CRE_DATE"].ReadOnly = true;
 
-            common.addCheckBox(ref dataGridView);
+            common.addCheckBox(ref dataGridView, 0);
             common.viewWidthSetting(ref dataGridView, 20, 100);
         }
 

@@ -16,8 +16,9 @@ namespace WordConvTool.Forms
 {
     public partial class UserKanri : Form
     {
-        private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
+        private static CommonFunction common = new CommonFunction();
         List<int> comboValList = new List<int>();
+        List<bool> sankaValList = new List<bool>();
 
         public UserKanri()
         {
@@ -46,6 +47,13 @@ namespace WordConvTool.Forms
         {
             this.setKengenComboBox(ref dataGridView1);
 
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                sankaValList = new List<bool>();
+                sankaValList.Add((bool)dataGridView1.Rows[i].Cells["SANKA_KAHI"].Value);
+            }
+            common.addCheckBox(ref dataGridView1, dataGridView1.Columns["SANKA_KAHI"].Index);
+
             dataGridView1.Columns["USER_ID"].HeaderText = "ユーザーID";
             dataGridView1.Columns["USER_NAME"].HeaderText = "ユーザー名";
             dataGridView1.Columns["Kengen"].HeaderText = "権限";
@@ -66,7 +74,7 @@ namespace WordConvTool.Forms
             dataGridView1.Columns["MAIL_ID"].ReadOnly = true;
             dataGridView1.Columns["VERSION"].ReadOnly = true;
 
-            common.addCheckBox(ref dataGridView1);
+            common.addCheckBox(ref dataGridView1, 0);
             common.viewWidthSetting(ref dataGridView1, 20, 100);
         }
 
@@ -117,8 +125,7 @@ namespace WordConvTool.Forms
         private void add_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(this.userName.Text)
-                || String.IsNullOrEmpty(this.userId.Text)
-                || this.kengen.SelectedIndex == 0)
+                || String.IsNullOrEmpty(this.userId.Text))
             {
                 MessageBox.Show(
                     "ユーザーID、ユーザー名、権限は必須項目です。\n",
@@ -149,7 +156,9 @@ namespace WordConvTool.Forms
 
             List<UserBo> userList = new List<UserBo>();
             UserBo user = new UserBo();
+            user.USER_ID = this.userId.Text.ToKeyType();
             user.USER_NAME = this.userName.Text;
+            user.KENGEN = this.kengen.SelectedIndex;
             userList.Add(user);
             this.dataGridView1.DataSource = userList;
 
@@ -204,6 +213,14 @@ namespace WordConvTool.Forms
                 if (e.RowIndex < comboValList.Count - 1)
                 {
                     string val = ((KengenKbn)comboValList[e.RowIndex]).ToString();
+                    e.Value = val;
+                }
+            }
+            if (e.ColumnIndex == 4)
+            {
+                if (e.RowIndex < sankaValList.Count - 1)
+                {
+                    bool val = (bool)sankaValList[e.RowIndex];
                     e.Value = val;
                 }
             }

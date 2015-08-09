@@ -8,8 +8,8 @@ namespace WordConverter.Form
 {
     public class UserKanriSearchServiceInBo : IBo
     {
-        public string userName { get; set; }
-        public string userId { get; set; }
+        public String userName { get; set; }
+        public String userId { get; set; }
         public int kengenSelectedIndex { get; set; }
     }
 }

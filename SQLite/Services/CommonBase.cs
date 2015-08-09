@@ -41,20 +41,22 @@ namespace WordConvTool
         /// 
         /// </summary>
         /// <param name="dataGridView"></param>
-        public void addCheckBox(ref DataGridView dataGridView)
+        public void addCheckBox(ref DataGridView dataGridView, int index)
         {
             Boolean isExistChecBox = false;
+            int id = 0;
             foreach (Object obj in dataGridView.Columns)
             {
-                if (obj is DataGridViewCheckBoxColumn)
+                if (obj is DataGridViewCheckBoxColumn && id == index)
                 {
                     isExistChecBox = true;
                 }
+                id++;
             }
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
             if (!isExistChecBox)
             {
-                dataGridView.Columns.Insert(0, chk);
+                dataGridView.Columns.Insert(index, chk);
             }
         }
 

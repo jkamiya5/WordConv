@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using WordConverter.Services;
 using WordConvertTool;
+using WordConvTool;
 using WordConvTool.Model;
 
 namespace WordConverter.Form
@@ -13,6 +14,8 @@ namespace WordConverter.Form
     class UserKanriSearchService : IService<UserKanriSearchServiceInBo, UserKanriSearchServiceOutBo>
     {
         private UserKanriSearchServiceInBo inBo;
+        private static CommonFunction common = new CommonFunction();
+
         public void setInBo(UserKanriSearchServiceInBo inBo)
         {
             this.inBo = inBo;
@@ -30,15 +33,13 @@ namespace WordConverter.Form
 
                 if (!String.IsNullOrEmpty(this.inBo.userId))
                 {
-                    userId = (long)Convert.ToInt64(this.inBo.userId);
-                    //f = p => new { p.USER_ID };
+                    userId = this.inBo.userId.ToKeyType();
                 }
 
                 IQueryable<UserBo> users = from a in context.UserMst
                                            where (a.USER_NAME.StartsWith(condition)
-                                                    && a.USER_ID == userId
-                                                    && a.ROLE == this.inBo.kengenSelectedIndex)
-                                           //where (f.)
+                                                    || a.USER_ID == userId
+                                                    || a.ROLE == this.inBo.kengenSelectedIndex)
                                            select new UserBo
                                            {
                                                USER_ID = a.USER_ID,
@@ -46,7 +47,7 @@ namespace WordConverter.Form
                                                KENGEN = a.ROLE,
                                                MAIL_ADDRESS = a.MAIL_ADDRESS,
                                                PASSWORD = a.PASSWORD,
-                                               SANKA_KAHI = ((SankaKahi)a.SANKA_KAHI).ToString(),
+                                               SANKA_KAHI = (a.SANKA_KAHI == 0 ? true : false),
                                                VERSION = a.VERSION
                                            };
                 outBo.usersList = users.ToList();
