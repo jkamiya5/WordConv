@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using WordConvTool.Service;
 
-namespace SQLite.Form
+namespace WordConverter.Services
 {
-    public class ShinseiShinseiServiceOutBo : IBo
+    class UserKanriSearchServiceOutBo : IBo
     {
-        public string errorMessage { get; set; }
+        public List<Form.UserBo> usersList { get; set; }
     }
 }

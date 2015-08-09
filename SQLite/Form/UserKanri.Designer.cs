@@ -38,26 +38,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.userId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 121);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 151);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(542, 261);
+            this.dataGridView1.Size = new System.Drawing.Size(438, 226);
             this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             // 
             // regist
             // 
-            this.regist.Location = new System.Drawing.Point(105, 401);
+            this.regist.Location = new System.Drawing.Point(94, 396);
             this.regist.Name = "regist";
-            this.regist.Size = new System.Drawing.Size(158, 23);
+            this.regist.Size = new System.Drawing.Size(126, 23);
             this.regist.TabIndex = 7;
             this.regist.Text = "登録";
             this.regist.UseVisualStyleBackColor = true;
@@ -65,9 +66,9 @@
             // 
             // delete
             // 
-            this.delete.Location = new System.Drawing.Point(286, 401);
+            this.delete.Location = new System.Drawing.Point(249, 396);
             this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(158, 23);
+            this.delete.Size = new System.Drawing.Size(126, 23);
             this.delete.TabIndex = 8;
             this.delete.Text = "削除";
             this.delete.UseVisualStyleBackColor = true;
@@ -75,16 +76,16 @@
             // 
             // userName
             // 
-            this.userName.Location = new System.Drawing.Point(102, 52);
+            this.userName.Location = new System.Drawing.Point(84, 47);
             this.userName.Name = "userName";
-            this.userName.Size = new System.Drawing.Size(207, 19);
+            this.userName.Size = new System.Drawing.Size(315, 19);
             this.userName.TabIndex = 2;
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(357, 33);
+            this.search.Location = new System.Drawing.Point(94, 114);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(134, 23);
+            this.search.Size = new System.Drawing.Size(126, 23);
             this.search.TabIndex = 4;
             this.search.Text = "検索";
             this.search.UseVisualStyleBackColor = true;
@@ -92,9 +93,9 @@
             // 
             // add
             // 
-            this.add.Location = new System.Drawing.Point(357, 75);
+            this.add.Location = new System.Drawing.Point(249, 114);
             this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(134, 23);
+            this.add.Size = new System.Drawing.Size(126, 23);
             this.add.TabIndex = 5;
             this.add.Text = "追加";
             this.add.UseVisualStyleBackColor = true;
@@ -106,15 +107,15 @@
             this.kengen.Items.AddRange(new object[] {
             "管理",
             "一般"});
-            this.kengen.Location = new System.Drawing.Point(102, 84);
+            this.kengen.Location = new System.Drawing.Point(84, 79);
             this.kengen.Name = "kengen";
-            this.kengen.Size = new System.Drawing.Size(119, 20);
+            this.kengen.Size = new System.Drawing.Size(315, 20);
             this.kengen.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 56);
+            this.label1.Location = new System.Drawing.Point(17, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 12);
             this.label1.TabIndex = 8;
@@ -123,7 +124,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 88);
+            this.label2.Location = new System.Drawing.Point(17, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 9;
@@ -132,25 +133,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 26);
+            this.label3.Location = new System.Drawing.Point(17, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 12);
             this.label3.TabIndex = 10;
             this.label3.Text = "ユーザーID";
             // 
-            // textBox1
+            // userId
             // 
-            this.textBox1.Location = new System.Drawing.Point(102, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 19);
-            this.textBox1.TabIndex = 1;
+            this.userId.Location = new System.Drawing.Point(84, 18);
+            this.userId.Name = "userId";
+            this.userId.Size = new System.Drawing.Size(315, 19);
+            this.userId.TabIndex = 1;
             // 
             // UserKanri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 445);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(500, 430);
+            this.Controls.Add(this.userId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -181,6 +182,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox userId;
     }
 }

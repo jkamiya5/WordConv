@@ -46,5 +46,53 @@ namespace WordConverter {
                 this["DataSource"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Pascal {
+            get {
+                return ((bool)(this["Pascal"]));
+            }
+            set {
+                this["Pascal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Camel {
+            get {
+                return ((bool)(this["Camel"]));
+            }
+            set {
+                this["Camel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Snake {
+            get {
+                return ((bool)(this["Snake"]));
+            }
+            set {
+                this["Snake"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int DispCount {
+            get {
+                return ((int)(this["DispCount"]));
+            }
+            set {
+                this["DispCount"] = value;
+            }
+        }
     }
 }

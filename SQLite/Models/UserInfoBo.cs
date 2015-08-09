@@ -9,5 +9,9 @@ namespace WordConverter.Form
     {
         public int role { get; set; }
         public long userId { get; set; }
+        public Boolean pascal { get; set; }
+        public Boolean camel { get; set; }
+        public Boolean snake { get; set; }
+        public int dispCount { get; set; }
     }
 }

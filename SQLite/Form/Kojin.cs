@@ -19,7 +19,11 @@ namespace WordConvTool.Forms
 
         private void regist_Click(object sender, EventArgs e)
         {
-
+            WordConverter.Settings1.Default.Pascal = this.pascalCaseCheckBox.Checked;
+            WordConverter.Settings1.Default.Camel = this.camelCaseCheckBox.Checked;
+            WordConverter.Settings1.Default.Snake = this.snakeCaseCheckBox.Checked;
+            WordConverter.Settings1.Default.Save();
+            MessageBox.Show("設定を登録しました。");
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -64,6 +68,13 @@ namespace WordConvTool.Forms
             {
                 this.textBox1.Text = str;
             }
+        }
+
+        private void Kojin_Load(object sender, EventArgs e)
+        {
+            this.pascalCaseCheckBox.Checked = WordConverter.Settings1.Default.Pascal;
+            this.camelCaseCheckBox.Checked = WordConverter.Settings1.Default.Camel;
+            this.snakeCaseCheckBox.Checked = WordConverter.Settings1.Default.Snake;
         }
     }
 }

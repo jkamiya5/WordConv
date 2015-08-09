@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace WordConverter.Form
 {
@@ -9,7 +10,7 @@ namespace WordConverter.Form
     {
         public long USER_ID { get; set; }
         public string USER_NAME { get; set; }
-        public string KENGEN { get; set; }
+        public int KENGEN { get; set; }
         public string SANKA_KAHI { get; set; }
         public string MAIL_ID { get; set; }
         public string MAIL_ADDRESS { get; set; }

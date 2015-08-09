@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConvTool.Forms;
 using WordConverter.Form;
+using WordConvTool.Model;
 
 namespace WordConvertTool
 {
@@ -27,7 +28,8 @@ namespace WordConvertTool
 
         public static UserInfoBo UserInfo
         {
-            get {
+            get
+            {
 
                 return userInfo;
             }
@@ -57,6 +59,20 @@ namespace WordConvertTool
             RegisterHotKey(this.Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.E);
             RegisterHotKey(this.Handle, HOTKEY2_ID, MOD_CONTROL, (int)Keys.W);
             userInfo = uInfo;
+
+            this.InitializeComponent();
+            this.notifyIcon1.Visible = true;
+
+            if (BaseForm.userInfo.role == Constant.KANRI)
+            {
+                this.notifyIcon1.ContextMenuStrip = this.管理ユーザーcontextMenuStrip1;
+            }
+            else if (BaseForm.userInfo.role == Constant.IPPAN)
+            {
+                this.notifyIcon1.ContextMenuStrip = this.一般ユーザーcontextMenuStrip2;
+            }
+
+            
         }
 
 
@@ -73,21 +89,15 @@ namespace WordConvertTool
                 //一覧起動のショートカットキーが押された場合
                 if ((int)m.WParam == HOTKEY_ID)
                 {
+                    userInfo.pascal = WordConverter.Settings1.Default.Pascal;
+                    userInfo.camel = WordConverter.Settings1.Default.Camel;
+                    userInfo.snake = WordConverter.Settings1.Default.Snake;
+                    userInfo.dispCount = WordConverter.Settings1.Default.DispCount;
+
                     Ichiran ichiran = new Ichiran();
                     ichiran.Show();
                 }
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            notifyIcon1.Visible = false;
-            Application.Exit();
         }
 
         /// <summary>
@@ -102,12 +112,14 @@ namespace WordConvertTool
 
         private void 申請ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Shinsei form = new Shinsei("");
+            form.Show();
         }
 
         private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Henshu form = new Henshu();
+            form.Show();
         }
 
         private void 個人設定ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -120,6 +132,12 @@ namespace WordConvertTool
         {
             UserKanri form = new UserKanri();
             form.Show();
+        }
+
+        private void 終了toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = false;
+            Application.Exit();
         }
 
     }

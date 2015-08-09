@@ -108,6 +108,8 @@
     <Compile Include="Form\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\UserKanriSearchService.cs" />
+    <Compile Include="Models\InBo\UserKanriSearchServiceInBo.cs" />
     <Compile Include="Models\UserBo.cs" />
     <Compile Include="Models\UserInfoBo.cs" />
     <Compile Include="Form\UserKanri.cs">
@@ -122,7 +124,6 @@
     <Compile Include="Models\InBo\ShinseiInitInBo.cs" />
     <Compile Include="Models\OutBo\ShinseiInitOutBo.cs" />
     <Compile Include="Services\ShinseiInitService.cs" />
-    <Compile Include="Models\OutBo\ShinseiInitServiceOutBo.cs" />
     <Compile Include="Models\InBo\HenshuInBo.cs" />
     <Compile Include="Form\Ichiran.cs">
       <SubType>Form</SubType>
@@ -179,6 +180,7 @@
     <Compile Include="Models\IchiranWordBo.cs" />
     <Compile Include="Models\Entity\WordDic.cs" />
     <Compile Include="Models\Entity\WordShinsei.cs" />
+    <Compile Include="Models\OutBo\UserKanriSearchServiceOutBo.cs" />
     <Compile Include="Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

@@ -32,9 +32,9 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.pascalCaseCheckBox = new System.Windows.Forms.CheckBox();
+            this.camelCaseCheckBox = new System.Windows.Forms.CheckBox();
+            this.snakeCaseCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(29, 36);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 19);
+            this.textBox1.Size = new System.Drawing.Size(262, 19);
             this.textBox1.TabIndex = 0;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
@@ -83,35 +83,35 @@
             this.radioButton3.Text = "30";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // pascalCaseCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(45, 145);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(84, 16);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "PascalCase";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.pascalCaseCheckBox.AutoSize = true;
+            this.pascalCaseCheckBox.Location = new System.Drawing.Point(45, 145);
+            this.pascalCaseCheckBox.Name = "pascalCaseCheckBox";
+            this.pascalCaseCheckBox.Size = new System.Drawing.Size(84, 16);
+            this.pascalCaseCheckBox.TabIndex = 4;
+            this.pascalCaseCheckBox.Text = "PascalCase";
+            this.pascalCaseCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // camelCaseCheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(45, 167);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(80, 16);
-            this.checkBox2.TabIndex = 5;
-            this.checkBox2.Text = "camelCase";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.camelCaseCheckBox.AutoSize = true;
+            this.camelCaseCheckBox.Location = new System.Drawing.Point(45, 167);
+            this.camelCaseCheckBox.Name = "camelCaseCheckBox";
+            this.camelCaseCheckBox.Size = new System.Drawing.Size(80, 16);
+            this.camelCaseCheckBox.TabIndex = 5;
+            this.camelCaseCheckBox.Text = "camelCase";
+            this.camelCaseCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // snakeCaseCheckBox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(45, 189);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(95, 16);
-            this.checkBox3.TabIndex = 6;
-            this.checkBox3.Text = "SNAKE_CASE";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.snakeCaseCheckBox.AutoSize = true;
+            this.snakeCaseCheckBox.Location = new System.Drawing.Point(45, 189);
+            this.snakeCaseCheckBox.Name = "snakeCaseCheckBox";
+            this.snakeCaseCheckBox.Size = new System.Drawing.Size(95, 16);
+            this.snakeCaseCheckBox.TabIndex = 6;
+            this.snakeCaseCheckBox.Text = "SNAKE_CASE";
+            this.snakeCaseCheckBox.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -142,7 +142,7 @@
             // 
             // regist
             // 
-            this.regist.Location = new System.Drawing.Point(44, 236);
+            this.regist.Location = new System.Drawing.Point(57, 262);
             this.regist.Name = "regist";
             this.regist.Size = new System.Drawing.Size(90, 23);
             this.regist.TabIndex = 10;
@@ -152,7 +152,7 @@
             // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(163, 236);
+            this.clear.Location = new System.Drawing.Point(176, 262);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(90, 23);
             this.clear.TabIndex = 11;
@@ -164,13 +164,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 281);
+            this.ClientSize = new System.Drawing.Size(327, 321);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.regist);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.snakeCaseCheckBox);
+            this.Controls.Add(this.camelCaseCheckBox);
+            this.Controls.Add(this.pascalCaseCheckBox);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -179,6 +179,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "Kojin";
             this.Text = "個人設定";
+            this.Load += new System.EventHandler(this.Kojin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,9 +191,9 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox pascalCaseCheckBox;
+        private System.Windows.Forms.CheckBox camelCaseCheckBox;
+        private System.Windows.Forms.CheckBox snakeCaseCheckBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;

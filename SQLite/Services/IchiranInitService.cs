@@ -69,10 +69,38 @@ namespace SQLite.Form
                             {
                                 if (!isContains(reader["BUTSURI_NAME"].ToString(), wordList))
                                 {
-                                    word = new IchiranWordBo();
-                                    word.RONRI_NAME1 = reader["RONRI_NAME1"].ToString();
-                                    word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString();
-                                    wordList.Add(word);
+                                    if (!reader["BUTSURI_NAME"].ToString().IsAlphanumeric())
+                                    {
+                                        word = new IchiranWordBo();
+                                        word.RONRI_NAME1 = reader["RONRI_NAME1"].ToString();
+                                        word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString();
+                                        wordList.Add(word);
+                                        continue;
+                                    }
+                                    bool isDoneRonriNameDisp = false;
+                                    if (BaseForm.UserInfo.pascal)
+                                    {
+                                        word = new IchiranWordBo();
+                                        word.RONRI_NAME1 = reader["RONRI_NAME1"].ToString();
+                                        word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString().ToPascalCase();
+                                        wordList.Add(word);
+                                        isDoneRonriNameDisp = true;
+                                    }
+                                    if (BaseForm.UserInfo.camel)
+                                    {
+                                        word = new IchiranWordBo();
+                                        word.RONRI_NAME1 = isDoneRonriNameDisp ? "" : reader["RONRI_NAME1"].ToString();
+                                        word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString().ToCamelCase();
+                                        wordList.Add(word);
+                                        isDoneRonriNameDisp = true;
+                                    }
+                                    if (BaseForm.UserInfo.snake)
+                                    {
+                                        word = new IchiranWordBo();
+                                        word.RONRI_NAME1 = isDoneRonriNameDisp ? "" : reader["RONRI_NAME1"].ToString();
+                                        word.BUTSURI_NAME = reader["BUTSURI_NAME"].ToString().ToSnakeCase();
+                                        wordList.Add(word);
+                                    }
                                 }
                             }
                         }
