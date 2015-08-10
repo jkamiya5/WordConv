@@ -29,21 +29,22 @@ namespace WordConverter.Form
                 String condition = this.inBo.userName.Trim();
 
                 Expression<Func<UserBo, dynamic>> f;
-                long userId = 99999;
+                long empId = 99999;
 
                 if (!String.IsNullOrEmpty(this.inBo.userId))
                 {
-                    userId = this.inBo.userId.ToKeyType();
+                    empId = this.inBo.userId.ToKeyType();
                 }
 
                 IQueryable<UserBo> users = from a in context.UserMst
                                            where (a.USER_NAME.StartsWith(condition)
-                                                    || a.USER_ID == userId
+                                                    || a.EMP_ID == empId
                                                     //|| a.ROLE == this.inBo.kengenSelectedIndex)
                                                     )
                                            select new UserBo
                                            {
                                                USER_ID = a.USER_ID,
+                                               EMP_ID = a.EMP_ID,
                                                USER_NAME = a.USER_NAME,
                                                KENGEN = a.ROLE,
                                                MAIL_ADDRESS = a.MAIL_ADDRESS,

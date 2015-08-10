@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -83,6 +84,11 @@ namespace WordConvTool
                 }
                 j++;
             }
+        }
+
+        internal System.Drawing.Color switchRowBackColor(DataGridViewRow dataGridViewRow)
+        {
+            return dataGridViewRow.DefaultCellStyle.BackColor != Color.WhiteSmoke ? Color.WhiteSmoke : Color.White;
         }
     }
 
@@ -218,6 +224,23 @@ namespace WordConvTool
                 catch
                 {
                     return 0L;
+                }
+            }
+            return condition;
+        }
+
+        public static int ToIntType(this String self)
+        {
+            int condition = 0;
+            if (!String.IsNullOrEmpty(self))
+            {
+                try
+                {
+                    return Convert.ToInt16(self);
+                }
+                catch
+                {
+                    return 0;
                 }
             }
             return condition;

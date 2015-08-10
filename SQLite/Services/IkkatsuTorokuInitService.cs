@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using WordConvertTool;
 
 namespace SQLite.Form
 {
-    class IkkatsuTorokuInitService
+    public class IkkatsuTorokuInitService : IService<IkkatsuTorokuInitServiceInBo, IkkatsuTorokuInitServiceOutBo>
     {
         /// <summary>
         /// 
@@ -82,6 +83,16 @@ namespace SQLite.Form
             }
             outBo.henshuWordBoList = wordList;
             return outBo;
+        }
+
+        void IService<IkkatsuTorokuInitServiceInBo, IkkatsuTorokuInitServiceOutBo>.setInBo(IkkatsuTorokuInitServiceInBo inBo)
+        {
+            throw new NotImplementedException();
+        }
+
+        IkkatsuTorokuInitServiceOutBo IService<IkkatsuTorokuInitServiceInBo, IkkatsuTorokuInitServiceOutBo>.execute()
+        {
+            throw new NotImplementedException();
         }
     }
 }

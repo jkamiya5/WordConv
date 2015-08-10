@@ -58,13 +58,10 @@ namespace SQLite.Form
                             continue;
                         }
 
-                        //UserMst user = new UserMst();
-                        //user.USER_NAME = "ジョウジ";
                         WordDic word = new WordDic();
                         word.RONRI_NAME1 = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
                         word.BUTSURI_NAME = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
                         word.CRE_DATE = System.DateTime.Now.ToString();
-                        //word.User = user;
                         word.USER_ID = BaseForm.UserInfo.userId;
                         context.WordDic.Add(word);
                         context.SaveChanges();

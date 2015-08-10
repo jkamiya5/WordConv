@@ -9,6 +9,7 @@ namespace WordConverter.Form
     public class UserBo
     {
         public long USER_ID { get; set; }
+        public int EMP_ID { get; set; }
         public string USER_NAME { get; set; }
         public int KENGEN { get; set; }
         public bool SANKA_KAHI { get; set; }

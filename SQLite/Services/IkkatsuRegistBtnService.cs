@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using WordConvTool.Model;
 namespace SQLite.Form
 {
 
-    class IkkatsuTorokuIkkatsuRegistService
+    public class IkkatsuTorokuIkkatsuRegistService : IService<IkkatsuTorokuIkkatsuRegistServiceInBo, IkkatsuTorokuIkkatsuRegistServiceOutBo>
     {
         /// <summary>
         /// 
@@ -66,13 +67,10 @@ namespace SQLite.Form
                             continue;
                         }
 
-                        //UserMst user = new UserMst();
-                        //user.USER_NAME = "ジョウジ";
                         WordDic word = new WordDic();
                         word.RONRI_NAME1 = Convert.ToString(this.inBo.ikkatsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
                         word.BUTSURI_NAME = butsuriName;
                         word.CRE_DATE = System.DateTime.Now.ToString();
-                        //word.User = user;
                         context.WordDic.Add(word);
                         context.SaveChanges();
                     }
@@ -80,6 +78,16 @@ namespace SQLite.Form
             }
 
             return outBo;
+        }
+
+        void IService<IkkatsuTorokuIkkatsuRegistServiceInBo, IkkatsuTorokuIkkatsuRegistServiceOutBo>.setInBo(IkkatsuTorokuIkkatsuRegistServiceInBo inBo)
+        {
+            throw new NotImplementedException();
+        }
+
+        IkkatsuTorokuIkkatsuRegistServiceOutBo IService<IkkatsuTorokuIkkatsuRegistServiceInBo, IkkatsuTorokuIkkatsuRegistServiceOutBo>.execute()
+        {
+            throw new NotImplementedException();
         }
     }
 }

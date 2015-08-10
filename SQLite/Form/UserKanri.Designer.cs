@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.userKanriDataGridView1 = new System.Windows.Forms.DataGridView();
             this.regist = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
             this.userName = new System.Windows.Forms.TextBox();
@@ -38,25 +38,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.userId = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.empId = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 151);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(438, 226);
-            this.dataGridView1.TabIndex = 6;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
-            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
+            this.userKanriDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userKanriDataGridView1.Location = new System.Drawing.Point(21, 151);
+            this.userKanriDataGridView1.Name = "dataGridView1";
+            this.userKanriDataGridView1.RowTemplate.Height = 21;
+            this.userKanriDataGridView1.Size = new System.Drawing.Size(438, 226);
+            this.userKanriDataGridView1.TabIndex = 6;
+            this.userKanriDataGridView1.AllowUserToResizeColumns = false;
+            this.userKanriDataGridView1.AllowUserToResizeRows = false;
+            this.userKanriDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userKanriDataGridView1.RowHeadersVisible = false;
+            this.userKanriDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+            this.userKanriDataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.userKanriDataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             // 
             // regist
             // 
@@ -145,17 +145,17 @@
             // 
             // userId
             // 
-            this.userId.Location = new System.Drawing.Point(84, 18);
-            this.userId.Name = "userId";
-            this.userId.Size = new System.Drawing.Size(315, 19);
-            this.userId.TabIndex = 1;
+            this.empId.Location = new System.Drawing.Point(84, 18);
+            this.empId.Name = "userId";
+            this.empId.Size = new System.Drawing.Size(315, 19);
+            this.empId.TabIndex = 1;
             // 
             // UserKanri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 430);
-            this.Controls.Add(this.userId);
+            this.Controls.Add(this.empId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -165,10 +165,10 @@
             this.Controls.Add(this.userName);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.regist);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.userKanriDataGridView1);
             this.Name = "UserKanri";
             this.Text = "ユーザー管理";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,7 +176,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView userKanriDataGridView1;
         private System.Windows.Forms.Button regist;
         private System.Windows.Forms.Button delete;
         private System.Windows.Forms.TextBox userName;
@@ -186,6 +186,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox userId;
+        private System.Windows.Forms.TextBox empId;
     }
 }

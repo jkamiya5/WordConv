@@ -32,7 +32,7 @@ namespace WordConvertTool
             using (var context = new MyContext())
             {
                 long condtion = Convert.ToInt64(this.UserId.Text);
-                var w = context.UserMst.Where(x => x.USER_ID == condtion).ToArray();
+                var w = context.UserMst.Where(x => x.EMP_ID == condtion).ToArray();
 
                 if (w.Count() == 0)
                 {

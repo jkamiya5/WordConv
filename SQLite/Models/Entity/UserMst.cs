@@ -14,6 +14,7 @@ namespace WordConvTool.Model
     {
         [Key]
         public long USER_ID { get; set; }
+        public int EMP_ID { get; set; }
         public string USER_NAME { get; set; }
         public int ROLE { get; set; }
         public string MAIL_ID { get; set; }
