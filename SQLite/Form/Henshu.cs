@@ -223,7 +223,6 @@ namespace WordConvTool.Forms
                 IkkatsuTorokuInitServiceInBo inBo = new IkkatsuTorokuInitServiceInBo();
                 inBo.clipboardText = this.henshuInBo.clipBoardText;
                 ikkatsuService.setInBo(inBo);
-
                 IkkatsuTorokuInitServiceOutBo outBo = ikkatsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
             }
@@ -239,7 +238,7 @@ namespace WordConvTool.Forms
             dataGridView.DataSource = wordList;
             dataGridView.Columns["RONRI_NAME1"].HeaderText = "論理名1";
             dataGridView.Columns["BUTSURI_NAME"].HeaderText = "物理名";
-            dataGridView.Columns["USER_NAME"].HeaderText = "登録ユーザー名";
+            dataGridView.Columns["USER_NAME"].HeaderText = "登録ユーザー";
             dataGridView.Columns["CRE_DATE"].HeaderText = "登録日付";
             dataGridView.Columns["WORD_ID"].Visible = false;
             dataGridView.Columns["VERSION"].Visible = false;
@@ -248,7 +247,10 @@ namespace WordConvTool.Forms
             dataGridView.Columns["CRE_DATE"].ReadOnly = true;
 
             common.addCheckBox(ref dataGridView, 0);
-            common.viewWidthSetting(ref dataGridView, 20, 100);
+            common.viewWidthSetting(ref dataGridView, 20, 120);
+
+            dataGridView.Columns["USER_NAME"].Width = 70;
+            dataGridView.Columns["CRE_DATE"].Width = 70;
         }
 
         /// <summary>
