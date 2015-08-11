@@ -9,7 +9,7 @@ namespace WordConverter.Form
     public class UserKanriSearchServiceInBo : IBo
     {
         public String userName { get; set; }
-        public String userId { get; set; }
+        public String empId { get; set; }
         public int kengenSelectedIndex { get; set; }
     }
 }

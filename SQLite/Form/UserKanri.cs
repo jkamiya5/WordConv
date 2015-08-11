@@ -47,7 +47,7 @@ namespace WordConvTool.Forms
         {
             UserKanriSearchServiceInBo userSearchServiceInBo = new UserKanriSearchServiceInBo();
             UserKanriSearchService userSearchService = new UserKanriSearchService();
-            userSearchServiceInBo.userId = this.empId.Text;
+            userSearchServiceInBo.empId = this.empId.Text;
             userSearchServiceInBo.userName = this.userName.Text;
             userSearchServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
             userSearchService.setInBo(userSearchServiceInBo);
@@ -90,7 +90,6 @@ namespace WordConvTool.Forms
             dataGridView1.Columns["PASSWORD"].ReadOnly = true;
             dataGridView1.Columns["SANKA_KAHI"].ReadOnly = true;
             dataGridView1.Columns["DELETE_FLG"].ReadOnly = true;
-            dataGridView1.Columns["MAIL_ID"].ReadOnly = true;
             dataGridView1.Columns["VERSION"].ReadOnly = true;
 
             common.addCheckBox(ref dataGridView1, 0);
@@ -177,9 +176,13 @@ namespace WordConvTool.Forms
                     var upUser = context.UserMst.Where(x => x.USER_ID == condtion);
                     if (upUser.Count() == 1)
                     {
-                        var w = context.UserMst.Single(x => x.USER_ID == condtion);
-                        w.USER_NAME = Convert.ToString(this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value);
-                        w.ROLE = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
+                        var u = context.UserMst.Single(x => x.USER_ID == condtion);
+                        u.USER_NAME = Convert.ToString(this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value);
+                        u.ROLE = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
+                        u.SANKA_KAHI = this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value.ToString().ToIntType();
+                        u.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
+                        u.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
+                        u.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
                         context.SaveChanges();
                         continue;
                     }
@@ -187,6 +190,10 @@ namespace WordConvTool.Forms
                     user.EMP_ID = this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
                     user.USER_NAME = this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
                     user.ROLE = Convert.ToInt32(this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value);
+                    user.SANKA_KAHI = this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value.ToString().ToIntType();
+                    user.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
+                    user.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
+                    user.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
                     context.UserMst.Add(user);
                     context.SaveChanges();
                 }
@@ -255,7 +262,6 @@ namespace WordConvTool.Forms
             dataGridView1.Rows[rowIndex].Cells["MAIL_ADDRESS"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["MAIL_ADDRESS"].ReadOnly;
             dataGridView1.Rows[rowIndex].Cells["PASSWORD"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["PASSWORD"].ReadOnly;
             dataGridView1.Rows[rowIndex].Cells["SANKA_KAHI"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["SANKA_KAHI"].ReadOnly;
-            dataGridView1.Rows[rowIndex].Cells["MAIL_ID"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["MAIL_ID"].ReadOnly;
             dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = common.switchRowBackColor(dataGridView1.Rows[rowIndex]);
         }
 
