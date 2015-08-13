@@ -107,6 +107,33 @@ namespace WordConvTool
             return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(self);
         }
 
+        public static string NullAble(this string self)
+        {
+            if (String.IsNullOrEmpty(self))
+            {
+                return "";
+            }
+            return self;
+        }
+
+        public static string AddCondtion(this string self, int i)
+        {
+            if (String.IsNullOrEmpty(self))
+            {
+                return "";
+            }
+            return self.ToString();
+        }
+
+        public static int NullAble(this int self)
+        {
+            if (null == self)
+            {
+                return 0;
+            }
+            return self;
+        }
+
         /// <summary>
         /// 
         /// </summary>

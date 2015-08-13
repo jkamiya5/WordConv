@@ -36,43 +36,31 @@ namespace WordConverter.Form
                 {
                     empId = this.inBo.empId.ToKeyType();
                 }
-                object[] keywords = null;
-                keywords[0] = this.inBo.empId;
-                keywords[1] = this.inBo.userName;
-                keywords[2] = this.inBo.kengenSelectedIndex;
-                //IEnumerable<UserMst> dataSource = context.UserMst.ToList().Where();
-                //var query = dataSource.AsQueryable().Where(GetExpressionTreeWhere(keywords)).
-                //                                OrderByDescending(item => item);
-                //                               //select new 
-                //                               //UserBo{
-                //                               //    USER_ID = a.USER_ID,
-                //                               //    EMP_ID = a.EMP_ID,
-                //                               //    USER_NAME = a.USER_NAME,
-                //                               //    KENGEN = a.ROLE,
-                //                               //    MAIL_ID = a.MAIL_ID,
-                //                               //    MAIL_ADDRESS = a.MAIL_ADDRESS,
-                //                               //    PASSWORD = a.PASSWORD,
-                //                               //    SANKA_KAHI = (a.SANKA_KAHI == 0 ? true : false),
-                //                               //    VERSION = a.VERSION
-                //                               //};
-                //                           //where (a.USER_NAME.StartsWith(condition)
-                //                           //         || a.EMP_ID == empId
-                //                           //         //|| a.ROLE == this.inBo.kengenSelectedIndex)
-                //                           //where (GetExpressionTreeWhere(keywords))
-                //                           //select 
-                //                           //new UserBo
-                //                           //{
-                //                           //    USER_ID = a.USER_ID,
-                //                           //    EMP_ID = a.EMP_ID,
-                //                           //    USER_NAME = a.USER_NAME,
-                //                           //    KENGEN = a.ROLE,
-                //                           //    MAIL_ID = a.MAIL_ID,
-                //                           //    MAIL_ADDRESS = a.MAIL_ADDRESS,
-                //                           //    PASSWORD = a.PASSWORD,
-                //                           //    SANKA_KAHI = (a.SANKA_KAHI == 0 ? true : false),
-                //                           //    VERSION = a.VERSION
-                //                           //};
-                ////outBo.usersList = users.ToList();
+
+                object[] keywords = new object[3];
+                keywords[0] = this.inBo.empId.NullAble();
+                keywords[1] = this.inBo.userName.NullAble();
+                keywords[2] = this.inBo.kengenSelectedIndex.NullAble();
+
+                IEnumerable<UserMst> dataSource = context.UserMst.ToList();
+                IQueryable<UserBo> users = from a in dataSource.AsQueryable().
+                                               WhereLike(keywords).
+                                               OrderByDescending(item => item)
+
+                                           select new UserBo
+                                           {
+                                               USER_ID = a.USER_ID,
+                                               EMP_ID = a.EMP_ID,
+                                               USER_NAME = a.USER_NAME,
+                                               KENGEN = a.ROLE,
+                                               MAIL_ID = a.MAIL_ID,
+                                               MAIL_ADDRESS = a.MAIL_ADDRESS,
+                                               PASSWORD = a.PASSWORD,
+                                               SANKA_KAHI = (a.SANKA_KAHI == 0 ? true : false),
+                                               VERSION = a.VERSION
+                                           };
+
+                outBo.usersList = users.ToList();
             }
             return outBo;
         }
@@ -80,18 +68,57 @@ namespace WordConverter.Form
 
     public static class LinqExtension
     {
-        public static Expression<Func<UserMst, bool>> WhereLike(
-          this Expression<Func<UserMst, bool>> items, object[] keyword)
+        public static IQueryable<UserMst> WhereLike(
+            this IQueryable<UserMst> source, object[] keyword)
         {
-            Expression<Func<UserMst, bool>> predict1 = x => x.EMP_ID == keyword[0].ToString().ToIntType();
-            Expression<Func<UserMst, bool>> predict2 = x => x.USER_NAME.Contains(keyword[1].ToString());
-            Expression<Func<UserMst, bool>> predict3 = x => x.ROLE == keyword[2].ToString().ToIntType();
-            Expression<Func<UserMst, bool>> predict4 = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString());
-            Expression<Func<UserMst, bool>> predict5 = x => x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
-            Expression<Func<UserMst, bool>> predict6 = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.ROLE == keyword[2].ToString().ToIntType();
-            Expression<Func<UserMst, bool>> predict7 = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
+            Expression<Func<UserMst, bool>> predict = null;
+            int i = 0;
+            string condtion = keyword[i].ToString().AddCondtion(i);
 
-            return predict1;
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                !String.IsNullOrEmpty(keyword[1].ToString()) &&
+                !String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
+            }
+
+            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+            //    !String.IsNullOrEmpty(keyword[1].ToString()) &&
+            //    String.IsNullOrEmpty(keyword[2].ToString()))
+            //{
+            //    predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString());
+            //}
+
+            //if (!String.IsNullOrEmpty(keyword[1].ToString()) &&
+            //    !String.IsNullOrEmpty(keyword[2].ToString()) &&
+            //    String.IsNullOrEmpty(keyword[0].ToString()))
+            //{
+            //    predict = x => x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
+            //}
+
+            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+            //    !String.IsNullOrEmpty(keyword[2].ToString()) &&
+            //    String.IsNullOrEmpty(keyword[1].ToString()))
+            //{
+            //    predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.ROLE == keyword[2].ToString().ToIntType();
+            //}
+
+            //if (!String.IsNullOrEmpty(keyword[0].ToString()))
+            //{
+            //    predict = x => x.EMP_ID == keyword[0].ToString().ToIntType();
+            //}
+
+            //if (!String.IsNullOrEmpty(keyword[1].ToString()))
+            //{
+            //    predict = x => x.USER_NAME.Contains(keyword[1].ToString());
+            //}
+
+            //if (!String.IsNullOrEmpty(keyword[2].ToString()))
+            //{
+            //    predict = x => x.ROLE == keyword[2].ToString().ToIntType();
+            //}
+
+            return source.Where(predict);
         }
     }
 }
