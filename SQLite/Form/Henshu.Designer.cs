@@ -41,7 +41,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tanitsuDataGridView = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ronrimei1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ikkatsuRegistBtn = new System.Windows.Forms.Button();
             this.ikkatsuDataGridView = new System.Windows.Forms.DataGridView();
@@ -84,7 +84,7 @@
             this.tabPage1.Controls.Add(this.textBox3);
             this.tabPage1.Controls.Add(this.textBox2);
             this.tabPage1.Controls.Add(this.tanitsuDataGridView);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.ronrimei1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -195,10 +195,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(78, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(367, 19);
-            this.textBox1.TabIndex = 12;
+            this.ronrimei1.Location = new System.Drawing.Point(78, 14);
+            this.ronrimei1.Name = "textBox1";
+            this.ronrimei1.Size = new System.Drawing.Size(367, 19);
+            this.ronrimei1.TabIndex = 12;
             // 
             // tabPage2
             // 
@@ -306,7 +306,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DataGridView tanitsuDataGridView;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ronrimei1;
         private System.Windows.Forms.Button ikkatsuRegistBtn;
         private System.Windows.Forms.DataGridView ikkatsuDataGridView;
         private System.Windows.Forms.Button readFile;

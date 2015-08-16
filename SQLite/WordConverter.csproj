@@ -148,12 +148,16 @@
     <Compile Include="Form\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ProgressDialog.cs">
+    <Compile Include="Dialog\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ProgressDialog.Designer.cs">
+    <Compile Include="Dialog\ProgressDialog.Designer.cs">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\LinqExtension.cs" />
+    <Compile Include="Services\TanitsuTorokuSearchService.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuSearchServiceInBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuSearchServiceOutBo.cs" />
     <Compile Include="Services\UserKanriAddService.cs" />
     <Compile Include="Models\InBo\UserKanriAddServiceInBo.cs" />
     <Compile Include="Models\OutBo\UserKanriAddServiceOutBo.cs" />
@@ -268,7 +272,7 @@
     <EmbeddedResource Include="Form\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\ProgressDialog.resx">
+    <EmbeddedResource Include="Dialog\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Shinsei.resx">

@@ -10,7 +10,6 @@ namespace SQLite.Form
     public class TanitsuTorokuRegistServiceInBo : IBo
     {
         public DataGridView tanitsuDataGridView { get; set; }
-
         public string clipboardText { get; set; }
     }
 }

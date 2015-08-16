@@ -14,6 +14,7 @@ using WordConvTool.Model;
 using SQLite.Form;
 using SQLite.Models;
 using System.IO;
+using WordConverter.Form;
 
 namespace WordConvTool.Forms
 {
@@ -121,7 +122,12 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            this.searchAction(this.tanitsuDataGridView);
+            TanitsuTorokuSearchServiceInBo henshuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
+            TanitsuTorokuSearchService henshuSearchService = new TanitsuTorokuSearchService();
+            henshuSearchServiceInBo.ronrimei1 = this.ronrimei1.Text;
+            henshuSearchService.setInBo(henshuSearchServiceInBo);
+            TanitsuTorokuSearchServiceOutBo shinseiServiseOutBo = henshuSearchService.execute();
+            this.henshuViewDispSetthing(ref tanitsuDataGridView, shinseiServiseOutBo.wordList);
         }
 
 
@@ -132,7 +138,7 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void clearBtn_Click(object sender, EventArgs e)
         {
-            this.textBox1.Text = "";
+            this.ronrimei1.Text = "";
             this.textBox2.Text = "";
             this.textBox3.Text = "";
         }
@@ -145,7 +151,7 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.textBox1.Text) || String.IsNullOrEmpty(this.textBox3.Text))
+            if (String.IsNullOrEmpty(this.ronrimei1.Text) || String.IsNullOrEmpty(this.textBox3.Text))
             {
                 MessageBox.Show(
                     "論理名1と物理名は必須項目です。\n",
@@ -159,7 +165,7 @@ namespace WordConvTool.Forms
             using (var context = new MyContext())
             {
                 var products = context.WordDic
-                    .Where(x => x.RONRI_NAME1 == this.textBox1.Text)
+                    .Where(x => x.RONRI_NAME1 == this.ronrimei1.Text)
                     .ToArray();
 
                 if (products.Count() > 0)
@@ -176,7 +182,7 @@ namespace WordConvTool.Forms
 
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             HenshuWordBo word = new HenshuWordBo();
-            word.RONRI_NAME1 = this.textBox1.Text;
+            word.RONRI_NAME1 = this.ronrimei1.Text;
             word.BUTSURI_NAME = this.textBox3.Text;
             wordList.Add(word);
 
@@ -316,7 +322,7 @@ namespace WordConvTool.Forms
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             using (var context = new MyContext())
             {
-                String condition = this.textBox1.Text.Trim();
+                String condition = this.ronrimei1.Text.Trim();
                 IQueryable<HenshuWordBo> words = from a in context.WordDic
                                                  join b in context.UserMst on a.USER_ID equals b.USER_ID
                                                  where a.RONRI_NAME1.StartsWith(condition)
@@ -363,7 +369,7 @@ namespace WordConvTool.Forms
 
                 TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
-                this.textBox1.Text = inBo.clipboardText;
+                this.ronrimei1.Text = inBo.clipboardText;
             }
             else if (tabControl1.SelectedIndex == Constant.IKKATSU_TOROKU)
             {

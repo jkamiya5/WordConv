@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.hotKey = new System.Windows.Forms.TextBox();
             this.displayNumberRadioBtn1 = new System.Windows.Forms.RadioButton();
             this.displayNumberRadioBtn2 = new System.Windows.Forms.RadioButton();
             this.displayNumberRadioBtn3 = new System.Windows.Forms.RadioButton();
@@ -45,10 +45,13 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(29, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(262, 19);
-            this.textBox1.TabIndex = 0;
+            this.hotKey.BackColor = System.Drawing.Color.White;
+            this.hotKey.Location = new System.Drawing.Point(29, 36);
+            this.hotKey.Name = "textBox1";
+            this.hotKey.ReadOnly = true;
+            this.hotKey.Size = new System.Drawing.Size(262, 19);
+            this.hotKey.TabIndex = 0;
+            this.hotKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown_1);
             // 
             // displayNumberRadioBtn1
             // 
@@ -186,7 +189,7 @@
             this.Controls.Add(this.displayNumberRadioBtn3);
             this.Controls.Add(this.displayNumberRadioBtn2);
             this.Controls.Add(this.displayNumberRadioBtn1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.hotKey);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "Kojin";
@@ -199,7 +202,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox hotKey;
         private System.Windows.Forms.RadioButton displayNumberRadioBtn1;
         private System.Windows.Forms.RadioButton displayNumberRadioBtn2;
         private System.Windows.Forms.RadioButton displayNumberRadioBtn3;

@@ -23,6 +23,7 @@ namespace WordConvTool.Forms
             WordConverter.Settings1.Default.Camel = this.camelCaseCheckBox.Checked;
             WordConverter.Settings1.Default.Snake = this.snakeCaseCheckBox.Checked;
             WordConverter.Settings1.Default.DispNumber = this.getDisplayNumber(this);
+            WordConverter.Settings1.Default.HotKey = this.hotKey.Text;
             WordConverter.Settings1.Default.Save();
             MessageBox.Show("設定を登録しました。");
         }
@@ -56,9 +57,18 @@ namespace WordConvTool.Forms
 
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+
+        private void Kojin_Load(object sender, EventArgs e)
         {
-            this.textBox1.Text = "";
+            this.hotKey.Text = WordConverter.Settings1.Default.HotKey;
+            this.pascalCaseCheckBox.Checked = WordConverter.Settings1.Default.Pascal;
+            this.camelCaseCheckBox.Checked = WordConverter.Settings1.Default.Camel;
+            this.snakeCaseCheckBox.Checked = WordConverter.Settings1.Default.Snake;
+        }
+
+        private void textBox1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            this.hotKey.Text = "";
             string str = "";
 
             if ((e.KeyData & Keys.Modifiers) == Keys.Shift)
@@ -67,7 +77,7 @@ namespace WordConvTool.Forms
             }
             if ((e.KeyData & Keys.Modifiers) == Keys.Control)
             {
-                str = "Control";
+                str = "Ctrl";
             }
             if ((e.KeyData & Keys.Modifiers) == Keys.Alt)
             {
@@ -75,7 +85,7 @@ namespace WordConvTool.Forms
             }
             if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Control))
             {
-                str = "Shift + Control";
+                str = "Shift + Ctrl";
             }
             if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Alt))
             {
@@ -83,67 +93,33 @@ namespace WordConvTool.Forms
             }
             if ((e.KeyData & Keys.Modifiers) == (Keys.Control | Keys.Alt))
             {
-                str = "Control + Alt";
+                str = "Ctrl + Alt";
             }
             if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Control | Keys.Alt))
             {
-                str = "Shift + Control + Alt";
+                str = "Shift + Ctrl + Alt";
             }
 
-            str += e.KeyCode;
+            string s = e.KeyCode.ToString();
+            s = s.Replace("ControlKey", "");
+            s = s.Replace("ShiftKey", "");
+            s = s.Replace("AltKey", "");
 
-            if (!String.IsNullOrEmpty(str))
+            if (System.Text.RegularExpressions.Regex.IsMatch(
+                s.ToUpper(), @"[A-Z]{1}"))
             {
-                this.textBox1.Text = str;
+                if (String.IsNullOrEmpty(str))
+                {
+                    str += s.ToUpper();
+                }
+                else
+                {
+                    str += " + " + s.ToUpper();
+                }
             }
+
+            this.hotKey.Text = str;
+
         }
-
-        private void Kojin_Load(object sender, EventArgs e)
-        {
-            this.pascalCaseCheckBox.Checked = WordConverter.Settings1.Default.Pascal;
-            this.camelCaseCheckBox.Checked = WordConverter.Settings1.Default.Camel;
-            this.snakeCaseCheckBox.Checked = WordConverter.Settings1.Default.Snake;
-        }
-
-        //private void textBox1_TextChanged(object sender, EventArgs e)
-        //{
-        //    string str = this.textBox1.Text; 
-
-        //    //if ((ev.KeyData & Keys.Modifiers) == Keys.Shift)
-        //    //{
-        //    //    str = "Shift";
-        //    //}
-        //    //if ((e.KeyData & Keys.Modifiers) == Keys.Control)
-        //    //{
-        //    //    str = "Control";
-        //    //}
-        //    //if ((e.KeyData & Keys.Modifiers) == Keys.Alt)
-        //    //{
-        //    //    str = "Alt";
-        //    //}
-        //    //if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Control))
-        //    //{
-        //    //    str = "Shift + Control";
-        //    //}
-        //    //if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Alt))
-        //    //{
-        //    //    str = "Shift + Alt";
-        //    //}
-        //    //if ((e.KeyData & Keys.Modifiers) == (Keys.Control | Keys.Alt))
-        //    //{
-        //    //    str = "Control + Alt";
-        //    //}
-        //    //if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Control | Keys.Alt))
-        //    //{
-        //    //    str = "Shift + Control + Alt";
-        //    //}
-
-        //    //str += e.KeyCode;
-
-        //    if (!String.IsNullOrEmpty(str))
-        //    {
-        //        this.textBox1.Text = str;
-        //    }
-        //}
     }
 }

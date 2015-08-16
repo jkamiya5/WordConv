@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using WordConvTool.Service;
 
-namespace SQLite.Form
+namespace WordConverter.Form
 {
-    class IkkatsuTorokuInitServiceInBo : IBo
+    class TanitsuTorokuSearchServiceInBo : IBo
     {
-        public String clipboardText { get; set; }
+        public string ronrimei1 { get; set; }
     }
 }

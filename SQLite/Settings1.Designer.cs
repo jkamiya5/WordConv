@@ -94,5 +94,17 @@ namespace WordConverter {
                 this["DispNumber"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HotKey {
+            get {
+                return ((string)(this["HotKey"]));
+            }
+            set {
+                this["HotKey"] = value;
+            }
+        }
     }
 }
