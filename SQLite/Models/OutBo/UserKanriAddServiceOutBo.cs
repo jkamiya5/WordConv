@@ -9,5 +9,6 @@ namespace WordConverter.Form
     class UserKanriAddServiceOutBo : IBo
     {
         public object userList { get; set; }
+        public string errorMessage { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace WordConverter.Form
         public Boolean pascal { get; set; }
         public Boolean camel { get; set; }
         public Boolean snake { get; set; }
-        public int dispCount { get; set; }
+        public int dispNumber { get; set; }
     }
 }

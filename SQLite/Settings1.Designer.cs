@@ -86,12 +86,12 @@ namespace WordConverter {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int DispCount {
+        public int DispNumber {
             get {
-                return ((int)(this["DispCount"]));
+                return ((int)(this["DispNumber"]));
             }
             set {
-                this["DispCount"] = value;
+                this["DispNumber"] = value;
             }
         }
     }

@@ -22,16 +22,14 @@ namespace WordConverter.Form
         public UserKanriAddServiceOutBo execute()
         {
             UserKanriAddServiceOutBo outBo = new UserKanriAddServiceOutBo();
-            if (String.IsNullOrEmpty(this.inBo.userName)|| String.IsNullOrEmpty(this.inBo.empId))
+            if (String.IsNullOrEmpty(this.inBo.userName)
+                || String.IsNullOrEmpty(this.inBo.empId)
+                || this.inBo.kengenSelectedIndex.ToString().ToIntType() == -1)
             {
-                MessageBox.Show(
-                    "ユーザーID、ユーザー名、権限は必須項目です。\n",
-                    "入力エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
+                outBo.errorMessage = "ユーザーID、ユーザー名、権限は必須項目です。\n";
                 return outBo;
             }
+
             using (var context = new MyContext())
             {
                 int condition = this.inBo.empId.ToIntType();
@@ -41,12 +39,7 @@ namespace WordConverter.Form
 
                 if (products.Count() > 0)
                 {
-                    MessageBox.Show(
-                        "既に登録されています\n",
-                        "入力エラー",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
+                    outBo.errorMessage = "既に登録されています\n";
                     return outBo;
                 }
             }
@@ -56,12 +49,7 @@ namespace WordConverter.Form
                 if (this.inBo.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType()
                     == this.inBo.empId.ToIntType())
                 {
-                    MessageBox.Show(
-                        "既に追加されています\n",
-                        "入力エラー",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
+                    outBo.errorMessage = "既に追加されています\n";
                     return outBo;
                 }
             }

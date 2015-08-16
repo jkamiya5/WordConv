@@ -92,7 +92,7 @@ namespace WordConvertTool
                     userInfo.pascal = WordConverter.Settings1.Default.Pascal;
                     userInfo.camel = WordConverter.Settings1.Default.Camel;
                     userInfo.snake = WordConverter.Settings1.Default.Snake;
-                    userInfo.dispCount = WordConverter.Settings1.Default.DispCount;
+                    userInfo.dispNumber = WordConverter.Settings1.Default.DispNumber;
 
                     Ichiran ichiran = new Ichiran();
                     ichiran.Show();

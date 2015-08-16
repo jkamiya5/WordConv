@@ -24,6 +24,7 @@ namespace WordConvTool.Forms
         /// </summary>
         private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
         private HenshuInBo henshuInBo = new HenshuInBo();
+        private int lastRows;
 
         /// <summary>
         /// コンストラクタ
@@ -56,6 +57,7 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void readFile_Click(object sender, EventArgs e)
         {
+
             IkkatsuTorokuReadFileService readFileService = new IkkatsuTorokuReadFileService();
             IkkatsuTorokuReadFileServiceInBo readFileServiceInBo = new IkkatsuTorokuReadFileServiceInBo();
             readFileServiceInBo.Filename = this.filePath.Text;
@@ -63,6 +65,37 @@ namespace WordConvTool.Forms
             IkkatsuTorokuReadFileServiceOutBo registServiceOutBo = readFileService.execute();
 
         }
+
+        private void ProgressDialog_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker bw = (BackgroundWorker)sender;
+
+            //パラメータを取得する
+            int stopTime = (int)e.Argument;
+
+            //時間のかかる処理を開始する
+            for (int i = 1; i <= lastRows; i++)
+            {
+                //キャンセルされたか調べる
+                if (bw.CancellationPending)
+                {
+                    //キャンセルされたとき
+                    e.Cancel = true;
+                    return;
+                }
+
+                //指定された時間待機する
+                System.Threading.Thread.Sleep(stopTime);
+
+                //ProgressChangedイベントハンドラを呼び出し、
+                //コントロールの表示を変更する
+                bw.ReportProgress(i, i.ToString() + "% 終了しました");
+            }
+
+            //結果を設定する
+            e.Result = stopTime * lastRows;
+        }
+
 
         /// <summary>
         /// 「開く」アクション

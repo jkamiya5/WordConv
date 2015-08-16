@@ -144,13 +144,27 @@ namespace WordConvTool.Forms
         private void add_Click(object sender, EventArgs e)
         {
             UserKanriAddServiceInBo userAddServiceInBo = new UserKanriAddServiceInBo();
+            userAddServiceInBo.empId = this.empId.Text.ToString();
+            userAddServiceInBo.userName = this.userName.ToString();
+            userAddServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
+
             userAddServiceInBo.userKanriDataGridView1 = this.userKanriDataGridView1;
             UserKanriAddService userAddService = new UserKanriAddService();
             userAddService.setInBo(userAddServiceInBo);
 
             UserKanriAddServiceOutBo shinseiServiseOutBo = userAddService.execute();
-            this.userKanriDataGridView1.DataSource = shinseiServiseOutBo.userList;
 
+            if (!String.IsNullOrEmpty(shinseiServiseOutBo.errorMessage))
+            {
+                MessageBox.Show(
+                    shinseiServiseOutBo.errorMessage,
+                    "入力エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+            this.userKanriDataGridView1.DataSource = shinseiServiseOutBo.userList;
             common.addCheckBox(ref userKanriDataGridView1, 0);
             common.viewWidthSetting(ref userKanriDataGridView1, 20, 100);
 
@@ -244,7 +258,7 @@ namespace WordConvTool.Forms
                 //列のインデックスを確認する
                 if (e.ColumnIndex == 0 && e.RowIndex > -1)
                 {
-                    this.ColumnsReadOnlyValueChange(ref this.userKanriDataGridView1, e.RowIndex);
+                    this.columnsReadOnlyValueChange(ref this.userKanriDataGridView1, e.RowIndex);
                 }
             }
         }
@@ -254,7 +268,7 @@ namespace WordConvTool.Forms
         /// </summary>
         /// <param name="dataGridView1"></param>
         /// <param name="rowIndex"></param>
-        private void ColumnsReadOnlyValueChange(ref DataGridView dataGridView1, int rowIndex)
+        private void columnsReadOnlyValueChange(ref DataGridView dataGridView1, int rowIndex)
         {
             dataGridView1.Rows[rowIndex].Cells["USER_NAME"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["USER_NAME"].ReadOnly;
             dataGridView1.Rows[rowIndex].Cells["KENGEN"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["KENGEN"].ReadOnly;

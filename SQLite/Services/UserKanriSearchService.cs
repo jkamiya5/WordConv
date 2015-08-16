@@ -29,18 +29,10 @@ namespace WordConverter.Form
             {
                 String condition = this.inBo.userName.Trim();
 
-                Expression<Func<UserBo, dynamic>> f;
-                long empId = 99999;
-
-                if (!String.IsNullOrEmpty(this.inBo.empId))
-                {
-                    empId = this.inBo.empId.ToKeyType();
-                }
-
                 object[] keywords = new object[3];
-                keywords[0] = this.inBo.empId.NullAble();
-                keywords[1] = this.inBo.userName.NullAble();
-                keywords[2] = this.inBo.kengenSelectedIndex.NullAble();
+                keywords[0] = this.inBo.empId;
+                keywords[1] = this.inBo.userName;
+                keywords[2] = this.inBo.kengenSelectedIndex;
 
                 IEnumerable<UserMst> dataSource = context.UserMst.ToList();
                 IQueryable<UserBo> users = from a in dataSource.AsQueryable().
@@ -60,7 +52,12 @@ namespace WordConverter.Form
                                                VERSION = a.VERSION
                                            };
 
-                outBo.usersList = users.ToList();
+                List<UserBo> usersList = new List<UserBo>();
+                if (users.Count() > 0)
+                {
+                   usersList  = users.ToList();
+                }
+                outBo.usersList = usersList;
             }
             return outBo;
         }
@@ -71,52 +68,59 @@ namespace WordConverter.Form
         public static IQueryable<UserMst> WhereLike(
             this IQueryable<UserMst> source, object[] keyword)
         {
-            Expression<Func<UserMst, bool>> predict = null;
+            Expression<Func<UserMst, bool>> predict = x => x.USER_NAME == "";
             int i = 0;
             string condtion = keyword[i].ToString().AddCondtion(i);
 
             if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
                 !String.IsNullOrEmpty(keyword[1].ToString()) &&
-                !String.IsNullOrEmpty(keyword[2].ToString()))
+                keyword[2].ToString().ToIntType() != -1)
             {
                 predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
+                return source.Where(predict);
             }
 
-            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString());
-            //}
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                !String.IsNullOrEmpty(keyword[1].ToString()) &&
+                keyword[2].ToString().ToIntType() != -1)
+            {
+                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString());
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[2].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[0].ToString()))
-            //{
-            //    predict = x => x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
-            //}
+            if (!String.IsNullOrEmpty(keyword[1].ToString()) &&
+                keyword[2].ToString().ToIntType() != -1 &&
+                String.IsNullOrEmpty(keyword[0].ToString()))
+            {
+                predict = x => x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[2].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[1].ToString()))
-            //{
-            //    predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.ROLE == keyword[2].ToString().ToIntType();
-            //}
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                keyword[2].ToString().ToIntType() != -1 &&
+                String.IsNullOrEmpty(keyword[1].ToString()))
+            {
+                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.ROLE == keyword[2].ToString().ToIntType();
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[0].ToString()))
-            //{
-            //    predict = x => x.EMP_ID == keyword[0].ToString().ToIntType();
-            //}
+            if (!String.IsNullOrEmpty(keyword[0].ToString()))
+            {
+                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType();
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[1].ToString()))
-            //{
-            //    predict = x => x.USER_NAME.Contains(keyword[1].ToString());
-            //}
+            if (!String.IsNullOrEmpty(keyword[1].ToString()))
+            {
+                predict = x => x.USER_NAME.Contains(keyword[1].ToString());
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.ROLE == keyword[2].ToString().ToIntType();
-            //}
+            if (keyword[2].ToString().ToIntType() != -1)
+            {
+                predict = x => x.ROLE == keyword[2].ToString().ToIntType();
+                return source.Where(predict);
+            }
 
             return source.Where(predict);
         }

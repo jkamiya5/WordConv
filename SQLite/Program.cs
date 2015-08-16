@@ -29,7 +29,6 @@ namespace WordConvertTool
         static void ExecuteDDL()
         {
             var path = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "WordConverter.db");
-            //var path = ConfigurationManager.AppSettings.Get("DataSource").Replace("Data Source=", "");
 
             if (File.Exists(path))
             {
@@ -80,7 +79,6 @@ namespace WordConvertTool
                 sql += "  , VERSION INTEGER";
                 sql += "); ";
                 sql += "insert into USER_MST(USER_ID,EMP_ID,USER_NAME,ROLE,MAIL_ID,PASSWORD,MAIL_ADDRESS,SANKA_KAHI,DELETE_FLG,VERSION) values (1,999, 'Admin',0,null,null,null,0,0,0);";
-
 
                 var cmd = new System.Data.SQLite.SQLiteCommand(sql, cn);
                 cmd.ExecuteNonQuery();

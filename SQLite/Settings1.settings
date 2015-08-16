@@ -17,7 +17,7 @@
     <Setting Name="Snake" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="DispCount" Type="System.Int32" Scope="User">
+    <Setting Name="DispNumber" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

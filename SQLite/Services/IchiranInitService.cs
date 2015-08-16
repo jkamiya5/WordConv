@@ -138,7 +138,7 @@ namespace SQLite.Form
                 wordList.Add(word);
             }
 
-            outBo.wordList = wordList;
+            outBo.wordList = wordList.ToIchiranListCount();
             return outBo;
         }
 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.displayNumberRadioBtn1 = new System.Windows.Forms.RadioButton();
+            this.displayNumberRadioBtn2 = new System.Windows.Forms.RadioButton();
+            this.displayNumberRadioBtn3 = new System.Windows.Forms.RadioButton();
             this.pascalCaseCheckBox = new System.Windows.Forms.CheckBox();
             this.camelCaseCheckBox = new System.Windows.Forms.CheckBox();
             this.snakeCaseCheckBox = new System.Windows.Forms.CheckBox();
@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.regist = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
+            this.displayNumberRadioBtn4 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // textBox1
@@ -48,40 +49,39 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(262, 19);
             this.textBox1.TabIndex = 0;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
-            // radioButton1
+            // displayNumberRadioBtn1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(44, 88);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(35, 16);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "10";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.displayNumberRadioBtn1.AutoSize = true;
+            this.displayNumberRadioBtn1.Location = new System.Drawing.Point(44, 88);
+            this.displayNumberRadioBtn1.Name = "displayNumberRadioBtn1";
+            this.displayNumberRadioBtn1.Size = new System.Drawing.Size(35, 16);
+            this.displayNumberRadioBtn1.TabIndex = 1;
+            this.displayNumberRadioBtn1.TabStop = true;
+            this.displayNumberRadioBtn1.Text = "10";
+            this.displayNumberRadioBtn1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // displayNumberRadioBtn2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(85, 88);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(35, 16);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "20";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.displayNumberRadioBtn2.AutoSize = true;
+            this.displayNumberRadioBtn2.Location = new System.Drawing.Point(85, 88);
+            this.displayNumberRadioBtn2.Name = "displayNumberRadioBtn2";
+            this.displayNumberRadioBtn2.Size = new System.Drawing.Size(35, 16);
+            this.displayNumberRadioBtn2.TabIndex = 2;
+            this.displayNumberRadioBtn2.TabStop = true;
+            this.displayNumberRadioBtn2.Text = "20";
+            this.displayNumberRadioBtn2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // displayNumberRadioBtn3
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(126, 88);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(35, 16);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "30";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.displayNumberRadioBtn3.AutoSize = true;
+            this.displayNumberRadioBtn3.Location = new System.Drawing.Point(126, 88);
+            this.displayNumberRadioBtn3.Name = "displayNumberRadioBtn3";
+            this.displayNumberRadioBtn3.Size = new System.Drawing.Size(35, 16);
+            this.displayNumberRadioBtn3.TabIndex = 3;
+            this.displayNumberRadioBtn3.TabStop = true;
+            this.displayNumberRadioBtn3.Text = "30";
+            this.displayNumberRadioBtn3.UseVisualStyleBackColor = true;
             // 
             // pascalCaseCheckBox
             // 
@@ -126,7 +126,7 @@
             // 
             this.groupBox2.Location = new System.Drawing.Point(27, 71);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(149, 39);
+            this.groupBox2.Size = new System.Drawing.Size(223, 39);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "表示件数";
@@ -160,20 +160,32 @@
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
+            // displayNumberRadioBtn4
+            // 
+            this.displayNumberRadioBtn4.AutoSize = true;
+            this.displayNumberRadioBtn4.Location = new System.Drawing.Point(165, 88);
+            this.displayNumberRadioBtn4.Name = "displayNumberRadioBtn4";
+            this.displayNumberRadioBtn4.Size = new System.Drawing.Size(66, 16);
+            this.displayNumberRadioBtn4.TabIndex = 12;
+            this.displayNumberRadioBtn4.TabStop = true;
+            this.displayNumberRadioBtn4.Text = "制限なし";
+            this.displayNumberRadioBtn4.UseVisualStyleBackColor = true;
+            // 
             // Kojin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 321);
+            this.ClientSize = new System.Drawing.Size(327, 316);
+            this.Controls.Add(this.displayNumberRadioBtn4);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.regist);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.snakeCaseCheckBox);
             this.Controls.Add(this.camelCaseCheckBox);
             this.Controls.Add(this.pascalCaseCheckBox);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.displayNumberRadioBtn3);
+            this.Controls.Add(this.displayNumberRadioBtn2);
+            this.Controls.Add(this.displayNumberRadioBtn1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -188,9 +200,9 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton displayNumberRadioBtn1;
+        private System.Windows.Forms.RadioButton displayNumberRadioBtn2;
+        private System.Windows.Forms.RadioButton displayNumberRadioBtn3;
         private System.Windows.Forms.CheckBox pascalCaseCheckBox;
         private System.Windows.Forms.CheckBox camelCaseCheckBox;
         private System.Windows.Forms.CheckBox snakeCaseCheckBox;
@@ -199,5 +211,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button regist;
         private System.Windows.Forms.Button clear;
+        private System.Windows.Forms.RadioButton displayNumberRadioBtn4;
     }
 }
