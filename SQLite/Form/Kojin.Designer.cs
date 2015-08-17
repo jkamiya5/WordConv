@@ -51,7 +51,7 @@
             this.hotKey.ReadOnly = true;
             this.hotKey.Size = new System.Drawing.Size(262, 19);
             this.hotKey.TabIndex = 0;
-            this.hotKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown_1);
+            this.hotKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.hotKey_KeyDown);
             // 
             // displayNumberRadioBtn1
             // 

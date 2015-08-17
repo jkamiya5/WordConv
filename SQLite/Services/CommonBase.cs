@@ -279,18 +279,5 @@ namespace WordConvTool
             return new Regex("^[0-9a-zA-Z]+$").IsMatch(self);
         }
 
-        public static List<T> ToIchiranListCount<T>(this List<T> self)
-        {
-            if (self.Count > 0)
-            {
-                if (BaseForm.UserInfo.dispNumber == 0)
-                {
-                    return self;
-                }
-                return self.Take(BaseForm.UserInfo.dispNumber).ToList();
-            }
-            return self;
-        }
-
     }
 }

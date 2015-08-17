@@ -9,5 +9,6 @@ namespace SQLite.Form
     public class IchiranInitServiceInBo : IBo
     {
         public String clipboardText { get; set; }
+        public int dispNumber { get; set; }
     }
 }

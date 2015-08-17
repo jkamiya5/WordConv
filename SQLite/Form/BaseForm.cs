@@ -54,10 +54,12 @@ namespace WordConvertTool
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uInfo"></param>
         public BaseForm(UserInfoBo uInfo)
         {
-            RegisterHotKey(this.Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.E);
-            RegisterHotKey(this.Handle, HOTKEY2_ID, MOD_CONTROL, (int)Keys.W);
             userInfo = uInfo;
 
             this.InitializeComponent();
@@ -72,7 +74,42 @@ namespace WordConvertTool
                 this.notifyIcon1.ContextMenuStrip = this.一般ユーザーcontextMenuStrip2;
             }
 
-            
+            UnregisterHotKey(this.Handle, HOTKEY_ID);
+            this.updateRegisterHotKey(uInfo);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uInfo"></param>
+        private void updateRegisterHotKey(UserInfoBo uInfo)
+        {
+            String[] hotKey = uInfo.hotKey.ToString().Split('+');
+            int modKey = MOD_CONTROL;
+            int regKey = (int)Keys.E;
+            switch (hotKey[0].Trim())
+            {
+                case "Ctrl":
+                    modKey = MOD_CONTROL;
+                    break;
+                case "Shift":
+                    modKey = MOD_SHIFT;
+                    break;
+                case "Alt":
+                    modKey = MOD_ALT;
+                    break;
+                default:
+                    break;
+            }
+            foreach (int i in Enum.GetValues(typeof(Keys)))
+            {
+                if (((Keys)i).ToString() == hotKey[1].Trim())
+                {
+                    regKey = i;
+                    break;
+                }
+            }
+            RegisterHotKey(this.Handle, HOTKEY_ID, modKey, regKey);
         }
 
 

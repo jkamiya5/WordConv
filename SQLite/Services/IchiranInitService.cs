@@ -138,8 +138,27 @@ namespace SQLite.Form
                 wordList.Add(word);
             }
 
-            outBo.wordList = wordList.ToIchiranListCount();
+            outBo.wordList = this.toIchiranDispList(wordList, this.inBo.dispNumber);
             return outBo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="wordList"></param>
+        /// <param name="dispNumber"></param>
+        /// <returns></returns>
+        private List<IchiranWordBo> toIchiranDispList(List<IchiranWordBo> wordList, int dispNumber)
+        {
+            if (wordList.Count > 0)
+            {
+                if (dispNumber == 0)
+                {
+                    return wordList;
+                }
+                return wordList.Take(dispNumber).ToList();
+            }
+            return wordList;
         }
 
         /// <summary>
@@ -162,5 +181,6 @@ namespace SQLite.Form
             }
             return false;
         }
+
     }
 }

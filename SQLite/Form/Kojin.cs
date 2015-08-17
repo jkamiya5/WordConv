@@ -7,24 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordConverter.Form;
+using WordConvertTool;
 
 namespace WordConvTool.Forms
 {
     public partial class Kojin : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Kojin()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void regist_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.hotKey.Text))
+            {
+                MessageBox.Show("ホットキーは必須です。");
+                return;
+            }
+            if (this.hotKey.Text.Equals("Ctrl")
+                || this.hotKey.Text.Equals("Shift")
+                || this.hotKey.Text.Equals("Alt"))
+            {
+                MessageBox.Show("ホットキーは「修飾キー」+「一般キー」で設定してください。");
+                return;
+            }
+
             WordConverter.Settings1.Default.Pascal = this.pascalCaseCheckBox.Checked;
             WordConverter.Settings1.Default.Camel = this.camelCaseCheckBox.Checked;
             WordConverter.Settings1.Default.Snake = this.snakeCaseCheckBox.Checked;
             WordConverter.Settings1.Default.DispNumber = this.getDisplayNumber(this);
             WordConverter.Settings1.Default.HotKey = this.hotKey.Text;
             WordConverter.Settings1.Default.Save();
+
+            UserInfoBo userInfo = new UserInfoBo();
+            userInfo.hotKey = WordConverter.Settings1.Default.HotKey;
+            userInfo.dispNumber = WordConverter.Settings1.Default.DispNumber;
+            BaseForm form = new BaseForm(userInfo);
+
             MessageBox.Show("設定を登録しました。");
         }
 
@@ -35,7 +64,6 @@ namespace WordConvTool.Forms
         /// <returns></returns>
         private int getDisplayNumber(Kojin kojin)
         {
-
             if (this.displayNumberRadioBtn1.Checked)
             {
                 return 10;
@@ -48,7 +76,6 @@ namespace WordConvTool.Forms
             {
                 return 30;
             }
-
             return 0;
         }
 
@@ -57,18 +84,42 @@ namespace WordConvTool.Forms
 
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Kojin_Load(object sender, EventArgs e)
         {
             this.hotKey.Text = WordConverter.Settings1.Default.HotKey;
             this.pascalCaseCheckBox.Checked = WordConverter.Settings1.Default.Pascal;
             this.camelCaseCheckBox.Checked = WordConverter.Settings1.Default.Camel;
             this.snakeCaseCheckBox.Checked = WordConverter.Settings1.Default.Snake;
+
+            switch (WordConverter.Settings1.Default.DispNumber)
+            {
+                case 10:
+                    this.displayNumberRadioBtn1.Checked = true;
+                    break;
+                case 20:
+                    this.displayNumberRadioBtn2.Checked = true;
+                    break;
+                case 30:
+                    this.displayNumberRadioBtn3.Checked = true;
+                    break;
+                case 0:
+                    this.displayNumberRadioBtn4.Checked = true;
+                    break;
+            }
         }
 
-        private void textBox1_KeyDown_1(object sender, KeyEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void hotKey_KeyDown(object sender, KeyEventArgs e)
         {
-            this.hotKey.Text = "";
             string str = "";
 
             if ((e.KeyData & Keys.Modifiers) == Keys.Shift)
@@ -83,30 +134,14 @@ namespace WordConvTool.Forms
             {
                 str = "Alt";
             }
-            if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Control))
-            {
-                str = "Shift + Ctrl";
-            }
-            if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Alt))
-            {
-                str = "Shift + Alt";
-            }
-            if ((e.KeyData & Keys.Modifiers) == (Keys.Control | Keys.Alt))
-            {
-                str = "Ctrl + Alt";
-            }
-            if ((e.KeyData & Keys.Modifiers) == (Keys.Shift | Keys.Control | Keys.Alt))
-            {
-                str = "Shift + Ctrl + Alt";
-            }
 
             string s = e.KeyCode.ToString();
             s = s.Replace("ControlKey", "");
             s = s.Replace("ShiftKey", "");
             s = s.Replace("AltKey", "");
 
-            if (System.Text.RegularExpressions.Regex.IsMatch(
-                s.ToUpper(), @"[A-Z]{1}"))
+            if (s.Length == 1 && System.Text.RegularExpressions.Regex.IsMatch(
+                s.ToUpper(), @"[A-Z]"))
             {
                 if (String.IsNullOrEmpty(str))
                 {
@@ -119,7 +154,6 @@ namespace WordConvTool.Forms
             }
 
             this.hotKey.Text = str;
-
         }
     }
 }

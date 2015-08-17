@@ -50,14 +50,13 @@ namespace WordConvertTool
                     WordConverter.Settings1.Default.DataSource = this.dataSourcePath.Text;
                     WordConverter.Settings1.Default.Save();
 
-                    this.Close();
-
                     UserInfoBo userInfo = new UserInfoBo();
                     userInfo.role = w[0].ROLE;
                     userInfo.userId = w[0].USER_ID;
-
+                    userInfo.hotKey = WordConverter.Settings1.Default.HotKey;
                     BaseForm form = new BaseForm(userInfo);
 
+                    this.Close();
                     return;
                 }
             }

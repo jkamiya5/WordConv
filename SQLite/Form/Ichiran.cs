@@ -61,6 +61,7 @@ namespace WordConvertTool
             IchiranInitService initService = new IchiranInitService();
             IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
             initServiceInBo.clipboardText = Clipboard.GetText();
+            initServiceInBo.dispNumber = BaseForm.UserInfo.dispNumber;
             initService.setInBo(initServiceInBo);
             IchiranInitServiceOutBo initServiceOutBo = initService.execute();
 

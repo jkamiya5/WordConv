@@ -13,5 +13,6 @@ namespace WordConverter.Form
         public Boolean camel { get; set; }
         public Boolean snake { get; set; }
         public int dispNumber { get; set; }
+        public string hotKey { get; set; }
     }
 }
