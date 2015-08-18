@@ -1,4 +1,5 @@
-﻿namespace WordConvTool.Forms
+﻿using WordConverter;
+namespace WordConvTool.Forms
 {
     partial class UserKanri
     {
@@ -38,22 +39,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.empId = new System.Windows.Forms.TextBox();
+            this.empId = new NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // userKanriDataGridView1
             // 
-            this.userKanriDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userKanriDataGridView1.Location = new System.Drawing.Point(21, 151);
-            this.userKanriDataGridView1.Name = "dataGridView1";
-            this.userKanriDataGridView1.RowTemplate.Height = 21;
-            this.userKanriDataGridView1.Size = new System.Drawing.Size(438, 226);
-            this.userKanriDataGridView1.TabIndex = 6;
             this.userKanriDataGridView1.AllowUserToResizeColumns = false;
             this.userKanriDataGridView1.AllowUserToResizeRows = false;
             this.userKanriDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userKanriDataGridView1.Location = new System.Drawing.Point(21, 151);
+            this.userKanriDataGridView1.Name = "userKanriDataGridView1";
             this.userKanriDataGridView1.RowHeadersVisible = false;
+            this.userKanriDataGridView1.RowTemplate.Height = 21;
+            this.userKanriDataGridView1.Size = new System.Drawing.Size(438, 226);
+            this.userKanriDataGridView1.TabIndex = 6;
             this.userKanriDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.userKanriDataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.userKanriDataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
@@ -139,14 +139,14 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 21);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 12);
+            this.label3.Size = new System.Drawing.Size(40, 12);
             this.label3.TabIndex = 10;
-            this.label3.Text = "ユーザーID";
+            this.label3.Text = "社員ID";
             // 
-            // userId
+            // empId
             // 
             this.empId.Location = new System.Drawing.Point(84, 18);
-            this.empId.Name = "userId";
+            this.empId.Name = "empId";
             this.empId.Size = new System.Drawing.Size(315, 19);
             this.empId.TabIndex = 1;
             // 
@@ -186,6 +186,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox empId;
+        private NumericTextBox empId;
     }
 }

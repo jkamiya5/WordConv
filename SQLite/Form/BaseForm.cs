@@ -101,14 +101,19 @@ namespace WordConvertTool
                 default:
                     break;
             }
-            foreach (int i in Enum.GetValues(typeof(Keys)))
+
+            if (hotKey.Length > 1)
             {
-                if (((Keys)i).ToString() == hotKey[1].Trim())
+                foreach (int i in Enum.GetValues(typeof(Keys)))
                 {
-                    regKey = i;
-                    break;
+                    if (((Keys)i).ToString() == hotKey[1].Trim())
+                    {
+                        regKey = i;
+                        break;
+                    }
                 }
             }
+
             RegisterHotKey(this.Handle, HOTKEY_ID, modKey, regKey);
         }
 

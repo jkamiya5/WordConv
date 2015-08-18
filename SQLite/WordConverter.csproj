@@ -154,6 +154,9 @@
     <Compile Include="Dialog\ProgressDialog.Designer.cs">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Services\LinqExtension.cs" />
     <Compile Include="Services\TanitsuTorokuSearchService.cs" />
     <Compile Include="Models\InBo\TanitsuTorokuSearchServiceInBo.cs" />

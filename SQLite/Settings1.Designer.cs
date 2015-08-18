@@ -97,7 +97,7 @@ namespace WordConverter {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl + Q")]
         public string HotKey {
             get {
                 return ((string)(this["HotKey"]));
