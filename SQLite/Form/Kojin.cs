@@ -34,6 +34,15 @@ namespace WordConvTool.Forms
                 MessageBox.Show("ホットキーは必須です。");
                 return;
             }
+
+            if (!this.hotKey.Text.Contains("Ctrl")
+                && !this.hotKey.Text.Contains("Shift")
+                && !this.hotKey.Text.Contains("Alt"))
+            {
+                MessageBox.Show("ホットキーには「修飾キー」を含める必要があります。");
+                return;
+            }
+
             if (this.hotKey.Text.Equals("Ctrl")
                 || this.hotKey.Text.Equals("Shift")
                 || this.hotKey.Text.Equals("Alt"))
