@@ -71,6 +71,7 @@ namespace WordConverter.Form
             user.USER_NAME = this.inBo.userName;
             user.KENGEN = this.inBo.kengenSelectedIndex;
             userList.Add(user);
+            outBo.userList = userList;
 
             return outBo;
         }

@@ -145,7 +145,7 @@ namespace WordConvTool.Forms
         {
             UserKanriAddServiceInBo userAddServiceInBo = new UserKanriAddServiceInBo();
             userAddServiceInBo.empId = this.empId.Text.ToString();
-            userAddServiceInBo.userName = this.userName.ToString();
+            userAddServiceInBo.userName = this.userName.Text.ToString();
             userAddServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
 
             userAddServiceInBo.userKanriDataGridView1 = this.userKanriDataGridView1;
