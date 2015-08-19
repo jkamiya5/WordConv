@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConvertTool;
 
-namespace WordConverter.Form
+namespace WordConverter.Services
 {
     class TanitsuTorokuSearchService : IService<TanitsuTorokuSearchServiceInBo, TanitsuTorokuSearchServiceOutBo>
     {

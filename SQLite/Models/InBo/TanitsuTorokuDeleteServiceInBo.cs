@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConvTool.Service;
 
-namespace SQLite.Models
+namespace WordConverter.Models.InBo
 {
     class TanitsuTorokuDeleteServiceInBo : IBo
     {

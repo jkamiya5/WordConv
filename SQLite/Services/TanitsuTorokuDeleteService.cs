@@ -1,15 +1,12 @@
-﻿using SQLite.Models;
-using SQLite.Services;
+﻿using SQLite.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConvertTool;
 using WordConvTool.Model;
-using WordConvTool.Service;
 
-namespace SQLite.Form
+namespace WordConverter.Services
 {
     class TanitsuTorokuDeleteService : IService<TanitsuTorokuDeleteServiceInBo, TanitsuTorokuDeleteServiceOutBo>
     {

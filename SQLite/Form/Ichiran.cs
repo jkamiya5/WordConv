@@ -16,6 +16,9 @@ using WordConvTool.Forms;
 using WordConvTool.Model;
 using System.Configuration;
 using SQLite.Form;
+using WordConverter.Models.InBo;
+using WordConverter.Services;
+using WordConverter.Models.OutBo;
 
 namespace WordConvertTool
 {

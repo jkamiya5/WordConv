@@ -1,10 +1,9 @@
 ﻿using SQLite.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 
-namespace SQLite.Form
+namespace WordConverter.Services
 {
     class IchiranBoCreateService : IService<IchiranBoCreateServiceInBo, IchiranBoCreateServiceOutBo>
     {

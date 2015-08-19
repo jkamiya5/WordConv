@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WordConverter
+namespace WordConverter.Common
 {
     /// <summary>
     /// 数字とバックスペース以外の入力を無効にしたTextBox

@@ -12,9 +12,12 @@ using System.Windows.Forms;
 using WordConvertTool;
 using WordConvTool.Model;
 using SQLite.Form;
-using SQLite.Models;
 using System.IO;
 using WordConverter.Form;
+using WordConverter.Common;
+using WordConverter.Models.InBo;
+using WordConverter.Services;
+using WordConverter.Models.OutBo;
 
 namespace WordConvTool.Forms
 {
@@ -23,7 +26,7 @@ namespace WordConvTool.Forms
         /// <summary>
         /// 共通関数インクルード
         /// </summary>
-        private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
+        private static CommonFunction common = new CommonFunction();
         private HenshuInBo henshuInBo = new HenshuInBo();
         private int lastRows;
 

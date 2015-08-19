@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using WordConvTool.Service;
 
-namespace SQLite.Form
+namespace WordConverter.Models.InBo
 {
     class IkkatsuTorokuReadFileServiceInBo : IBo
     {

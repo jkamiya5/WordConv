@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using WordConverter.Common;
+using WordConverter.Form;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConvertTool;
-using WordConvTool;
 
-namespace WordConverter.Form
+namespace WordConverter.Services
 {
     class UserKanriAddService : IService<UserKanriAddServiceInBo, UserKanriAddServiceOutBo>
     {

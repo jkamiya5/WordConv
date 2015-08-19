@@ -2,15 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using WordConverter.Services;
+using WordConverter.Common;
+using WordConverter.Form;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConvertTool;
-using WordConvTool;
 using WordConvTool.Model;
 
-namespace WordConverter.Form
+namespace WordConverter.Services
 {
     class UserKanriSearchService : IService<UserKanriSearchServiceInBo, UserKanriSearchServiceOutBo>
     {

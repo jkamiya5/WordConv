@@ -1,4 +1,5 @@
 ﻿using WordConverter;
+using WordConverter.Common;
 namespace WordConvTool.Forms
 {
     partial class UserKanri
@@ -39,7 +40,7 @@ namespace WordConvTool.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.empId = new WordConverter.NumericTextBox();
+            this.empId = new NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 

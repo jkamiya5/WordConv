@@ -5,7 +5,7 @@ using System.Text;
 using WordConvTool.Model;
 using WordConvTool.Service;
 
-namespace SQLite.Form
+namespace WordConverter.Models.InBo
 {
     public class ShinseiInitServiceInBo : IBo
     {

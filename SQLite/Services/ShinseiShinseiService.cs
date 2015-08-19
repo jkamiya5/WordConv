@@ -1,13 +1,13 @@
 ﻿using SQLite.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConvertTool;
 using WordConvTool.Model;
 
-namespace SQLite.Form
+namespace WordConverter.Services
 {
     class ShinseiShinseiService : IService<ShinseiShinseiServiceInBo, ShinseiShinseiServiceOutBo>
     {

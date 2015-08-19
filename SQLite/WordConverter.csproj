@@ -124,12 +124,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Form\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\CommonFunction.cs" />
     <Compile Include="Form\Henshu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,10 +156,10 @@
     <Compile Include="Dialog\ProgressDialog.Designer.cs">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="NumericTextBox.cs">
+    <Compile Include="Common\NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Services\LinqExtension.cs" />
+    <Compile Include="Common\LinqExtension.cs" />
     <Compile Include="Services\TanitsuTorokuSearchService.cs" />
     <Compile Include="Models\InBo\TanitsuTorokuSearchServiceInBo.cs" />
     <Compile Include="Models\OutBo\TanitsuTorokuSearchServiceOutBo.cs" />
@@ -224,7 +226,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\CommonBase.cs" />
+    <Compile Include="Common\CommonBase.cs" />
     <Compile Include="Models\Constant.cs" />
     <Compile Include="Interface\IBo.cs" />
     <Compile Include="Models\MyContext.cs" />

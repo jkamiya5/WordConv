@@ -5,7 +5,7 @@ using System.Text;
 using WordConvertTool;
 using WordConvTool.Service;
 
-namespace SQLite.Form
+namespace WordConverter.Models.OutBo
 {
     public class IchiranInitServiceOutBo : IBo
     {

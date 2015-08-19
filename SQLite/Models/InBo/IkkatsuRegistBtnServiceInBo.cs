@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using WordConvTool.Service;
 
-namespace SQLite.Form
+namespace WordConverter.Models.InBo
 {
     public class IkkatsuTorokuIkkatsuRegistServiceInBo : IBo
     {

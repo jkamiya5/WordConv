@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using WordConvTool.Service;
 
-namespace WordConverter.Form
+namespace WordConverter.Models.OutBo
 {
     class UserKanriAddServiceOutBo : IBo
     {

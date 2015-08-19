@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
 using System.Linq;
-using System.Text;
 using WordConvertTool;
-using WordConvTool;
 using WordConvTool.Model;
+using WordConverter.Common;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 
-namespace SQLite.Form
+namespace WordConverter.Services
 {
     /// <summary>
     /// 

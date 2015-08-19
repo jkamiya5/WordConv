@@ -11,6 +11,9 @@ using WordConvertTool;
 using WordConvTool.Model;
 using WordConverter.Form;
 using WordConverter.Services;
+using WordConverter.Common;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 
 namespace WordConvTool.Forms
 {

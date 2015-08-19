@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConvertTool;
 
-namespace SQLite.Form
+namespace WordConverter.Services
 {
     public class IkkatsuTorokuInitService : IService<IkkatsuTorokuInitServiceInBo, IkkatsuTorokuInitServiceOutBo>
     {

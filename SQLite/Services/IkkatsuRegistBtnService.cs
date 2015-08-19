@@ -1,13 +1,13 @@
 ﻿using SQLite.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using WordConverter.Common;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConvertTool;
-using WordConvTool;
 using WordConvTool.Model;
 
-namespace SQLite.Form
+namespace WordConverter.Services
 {
 
     public class IkkatsuTorokuIkkatsuRegistService : IService<IkkatsuTorokuIkkatsuRegistServiceInBo, IkkatsuTorokuIkkatsuRegistServiceOutBo>

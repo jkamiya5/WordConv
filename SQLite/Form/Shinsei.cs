@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConvTool.Model;
 using SQLite.Form;
+using WordConverter.Common;
+using WordConverter.Services;
+using WordConverter.Models.OutBo;
+using WordConverter.Models.InBo;
 
 namespace WordConvertTool
 {
@@ -24,7 +28,7 @@ namespace WordConvertTool
         /// <summary>
         /// 
         /// </summary>
-        private static WordConvTool.CommonFunction common = new WordConvTool.CommonFunction();
+        private static CommonFunction common = new CommonFunction();
         public string kensakuWord { get; set; }
         public bool allCheckBoxValue { get; set; }
 

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using WordConverter.Common;
 using WordConvertTool;
 using WordConvTool;
 using WordConvTool.Model;
 
-namespace WordConverter.Services
+namespace WordConverter.Common
 {
     public static class LinqExtension
     {
