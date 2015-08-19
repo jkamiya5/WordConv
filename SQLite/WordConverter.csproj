@@ -131,7 +131,6 @@
     <Compile Include="Form\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\CommonFunction.cs" />
     <Compile Include="Form\Henshu.cs">
       <SubType>Form</SubType>
     </Compile>

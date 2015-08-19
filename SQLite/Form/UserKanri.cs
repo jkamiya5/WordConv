@@ -22,11 +22,27 @@ namespace WordConvTool.Forms
         private static CommonFunction common = new CommonFunction();
         List<int> comboValList = new List<int>();
         List<bool> sankaValList = new List<bool>();
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        private static readonly UserKanri _instance = new UserKanri();
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static UserKanri Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public UserKanri()
+        private UserKanri()
         {
             InitializeComponent();
         }
@@ -192,7 +208,7 @@ namespace WordConvTool.Forms
                     || this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value == null)
                 {
                     MessageBox.Show(
-                        "社員ID:" + this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString() 
+                        "社員ID:" + this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString()
                         + " の「メールID、メールアドレス、パスワード」は必須項目です。",
                         "入力エラー",
                         MessageBoxButtons.OK,

@@ -30,10 +30,16 @@ namespace WordConvTool.Forms
         private HenshuInBo henshuInBo = new HenshuInBo();
         private int lastRows;
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public Henshu()
+        private static readonly Henshu _instance = new Henshu();
+        public static Henshu Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private Henshu()
         {
             InitializeComponent();
             this.Show();

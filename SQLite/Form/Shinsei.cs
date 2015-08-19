@@ -33,16 +33,27 @@ namespace WordConvertTool
         public bool allCheckBoxValue { get; set; }
 
 
+        private static readonly Shinsei _instance = new Shinsei();
+        public static Shinsei Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private Shinsei()
+        {
+            InitializeComponent();
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="text"></param>
-        public Shinsei(string text)
+        public void moveShinsei(string text)
         {
-            InitializeComponent();
-            this.Show();
-            this.Activate();
-
             this.shinseiDataGridView1.ReadOnly = true;
             this.ronrimei1TextBox.Text = text.Trim();
 

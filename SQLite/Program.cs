@@ -14,12 +14,24 @@ namespace WordConvertTool
 {
     static class Program
     {
+        private static System.Threading.Mutex _mutex;
+
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>
         [STAThread]
         static void Main()
         {
+            //Mutexクラスの作成
+            _mutex = new System.Threading.Mutex(false, "WordConverter");
+            //ミューテックスの所有権を要求する
+            if (_mutex.WaitOne(0, false) == false)
+            {
+                //すでに起動していると判断して終了
+                MessageBox.Show("WordConverterの多重起動はできません。");
+                return;
+            }
+
             Program.ExecuteDDL();
             BaseForm baseForm = new BaseForm();
             Application.Run();

@@ -33,14 +33,17 @@ namespace WordConvertTool
         //マウスのクリック位置を記憶
         private Point mousePoint;
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public Ichiran()
+        private static readonly Ichiran _instance = new Ichiran();
+        public static Ichiran Instance
         {
-            //初期設定処理
+            get
+            {
+                return _instance;
+            }
+        }
+        private Ichiran()
+        {
             InitializeComponent();
-
         }
 
         /// <summary>
@@ -177,7 +180,10 @@ namespace WordConvertTool
         private void 申請ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            Shinsei shinsei = new Shinsei(Clipboard.GetText());
+            Shinsei shinsei = Shinsei.Instance;
+            shinsei.Show();
+            shinsei.Activate();
+            shinsei.moveShinsei(Clipboard.GetText());
         }
 
         /// <summary>
@@ -264,7 +270,10 @@ namespace WordConvertTool
             else
             {
                 this.Close();
-                Shinsei shinsei = new Shinsei(Clipboard.GetText());
+                Shinsei shinsei = Shinsei.Instance;
+                shinsei.Show();
+                shinsei.Activate();
+                shinsei.moveShinsei(Clipboard.GetText());
             }
         }
 
@@ -295,6 +304,12 @@ namespace WordConvertTool
         private void アプリ閉じるToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Ichiran_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
 
     }

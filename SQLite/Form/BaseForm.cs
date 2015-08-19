@@ -136,7 +136,7 @@ namespace WordConvertTool
                     userInfo.snake = WordConverter.Settings1.Default.Snake;
                     userInfo.dispNumber = WordConverter.Settings1.Default.DispNumber;
 
-                    Ichiran ichiran = new Ichiran();
+                    Ichiran ichiran = Ichiran.Instance;
                     ichiran.Show();
                 }
             }
@@ -154,25 +154,30 @@ namespace WordConvertTool
 
         private void 申請ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Shinsei form = new Shinsei("");
+            Shinsei form = Shinsei.Instance;
             form.Show();
+            form.Activate();
+            form.moveShinsei("");
         }
 
         private void 編集ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Henshu form = new Henshu();
+            Henshu form = Henshu.Instance;
+            form.Activate();
             form.Show();
         }
 
         private void 個人設定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Kojin form = new Kojin();
+            Kojin form = Kojin.Instance;
+            form.Activate();
             form.Show();
         }
 
         private void ユーザー管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserKanri form = new UserKanri();
+            UserKanri form = UserKanri.Instance;
+            form.Activate();
             form.Show();
         }
 

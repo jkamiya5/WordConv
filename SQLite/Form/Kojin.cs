@@ -14,10 +14,17 @@ namespace WordConvTool.Forms
 {
     public partial class Kojin : Form
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public Kojin()
+        private static readonly Kojin _instance = new Kojin();
+
+        public static Kojin Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private Kojin()
         {
             InitializeComponent();
         }
@@ -31,7 +38,12 @@ namespace WordConvTool.Forms
         {
             if (string.IsNullOrEmpty(this.hotKey.Text))
             {
-                MessageBox.Show("ホットキーは必須です。");
+                MessageBox.Show(
+                "ホットキーは必須です。",
+                "入力エラー",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -39,7 +51,12 @@ namespace WordConvTool.Forms
                 && !this.hotKey.Text.Contains("Shift")
                 && !this.hotKey.Text.Contains("Alt"))
             {
-                MessageBox.Show("ホットキーには「修飾キー」を含める必要があります。");
+                MessageBox.Show(
+                "ホットキーには「修飾キー」を含める必要があります。",
+                "入力エラー",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -47,7 +64,12 @@ namespace WordConvTool.Forms
                 || this.hotKey.Text.Equals("Shift")
                 || this.hotKey.Text.Equals("Alt"))
             {
-                MessageBox.Show("ホットキーは「修飾キー」+「一般キー」で設定してください。");
+                MessageBox.Show(
+                "ホットキーは「修飾キー」+「一般キー」で設定してください。",
+                "入力エラー",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+
                 return;
             }
 
