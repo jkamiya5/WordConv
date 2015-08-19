@@ -184,6 +184,20 @@ namespace WordConvTool.Forms
                     continue;
                 }
 
+                if (this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value == null
+                    || this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value == null
+                    || this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value == null)
+                {
+                    MessageBox.Show(
+                        "社員ID:" + this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString() 
+                        + " の「メールID、メールアドレス、パスワード」は必須項目です。",
+                        "入力エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
                 using (var context = new MyContext())
                 {
                     long condtion = Convert.ToInt64(this.userKanriDataGridView1.Rows[i].Cells["USER_ID"].Value.ToString());
@@ -192,7 +206,7 @@ namespace WordConvTool.Forms
                     {
                         var u = context.UserMst.Single(x => x.USER_ID == condtion);
                         u.USER_NAME = Convert.ToString(this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value);
-                        u.ROLE = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
+                        u.KENGEN = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
                         u.SANKA_KAHI = this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value.ToString().ToIntType();
                         u.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
                         u.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
@@ -203,7 +217,7 @@ namespace WordConvTool.Forms
                     UserMst user = new UserMst();
                     user.EMP_ID = this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
                     user.USER_NAME = this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
-                    user.ROLE = Convert.ToInt32(this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value);
+                    user.KENGEN = Convert.ToInt32(this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value);
                     user.SANKA_KAHI = this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value.ToString().ToIntType();
                     user.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
                     user.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();

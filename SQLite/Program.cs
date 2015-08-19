@@ -70,7 +70,7 @@ namespace WordConvertTool
                 sql += "  USER_ID INTEGER PRIMARY KEY AUTOINCREMENT";
                 sql += "  , EMP_ID INTEGER UNIQUE ";
                 sql += "  , USER_NAME TEXT";
-                sql += "  , ROLE INTEGER";
+                sql += "  , KENGEN INTEGER";
                 sql += "  , MAIL_ID TEXT";
                 sql += "  , PASSWORD TEXT";
                 sql += "  , MAIL_ADDRESS TEXT";
@@ -78,7 +78,7 @@ namespace WordConvertTool
                 sql += "  , DELETE_FLG INTEGER";
                 sql += "  , VERSION INTEGER";
                 sql += "); ";
-                sql += "insert into USER_MST(USER_ID,EMP_ID,USER_NAME,ROLE,MAIL_ID,PASSWORD,MAIL_ADDRESS,SANKA_KAHI,DELETE_FLG,VERSION) values (1,999, 'Admin',0,null,null,null,0,0,0);";
+                sql += "insert into USER_MST(USER_ID,EMP_ID,USER_NAME,KENGEN,MAIL_ID,PASSWORD,MAIL_ADDRESS,SANKA_KAHI,DELETE_FLG,VERSION) values (1,999, 'Admin',0,null,null,null,0,0,0);";
 
                 var cmd = new System.Data.SQLite.SQLiteCommand(sql, cn);
                 cmd.ExecuteNonQuery();

@@ -17,13 +17,13 @@ namespace WordConverter.Services
         public static IQueryable<UserMst> UserMstWhereLike(
             this IQueryable<UserMst> source, object[] keyword)
         {
-            Expression<Func<UserMst, bool>> predict = x => x.USER_NAME == "";
+            Expression<Func<UserMst, bool>> predict = null;
 
             if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
                 !String.IsNullOrEmpty(keyword[1].ToString()) &&
                 keyword[2].ToString().ToIntType() != -1)
             {
-                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
+                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.USER_NAME.Contains(keyword[1].ToString()) && x.KENGEN == keyword[2].ToString().ToIntType();
                 return source.Where(predict);
             }
 
@@ -39,7 +39,7 @@ namespace WordConverter.Services
                 keyword[2].ToString().ToIntType() != -1 &&
                 String.IsNullOrEmpty(keyword[0].ToString()))
             {
-                predict = x => x.USER_NAME.Contains(keyword[1].ToString()) && x.ROLE == keyword[2].ToString().ToIntType();
+                predict = x => x.USER_NAME.Contains(keyword[1].ToString()) && x.KENGEN == keyword[2].ToString().ToIntType();
                 return source.Where(predict);
             }
 
@@ -47,7 +47,7 @@ namespace WordConverter.Services
                 keyword[2].ToString().ToIntType() != -1 &&
                 String.IsNullOrEmpty(keyword[1].ToString()))
             {
-                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.ROLE == keyword[2].ToString().ToIntType();
+                predict = x => x.EMP_ID == keyword[0].ToString().ToIntType() && x.KENGEN == keyword[2].ToString().ToIntType();
                 return source.Where(predict);
             }
 
@@ -65,7 +65,7 @@ namespace WordConverter.Services
 
             if (keyword[2].ToString().ToIntType() != -1)
             {
-                predict = x => x.ROLE == keyword[2].ToString().ToIntType();
+                predict = x => x.KENGEN == keyword[2].ToString().ToIntType();
                 return source.Where(predict);
             }
 

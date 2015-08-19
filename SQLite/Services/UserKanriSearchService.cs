@@ -44,7 +44,7 @@ namespace WordConverter.Form
                                                USER_ID = a.USER_ID,
                                                EMP_ID = a.EMP_ID,
                                                USER_NAME = a.USER_NAME,
-                                               KENGEN = a.ROLE,
+                                               KENGEN = a.KENGEN,
                                                MAIL_ID = a.MAIL_ID,
                                                MAIL_ADDRESS = a.MAIL_ADDRESS,
                                                PASSWORD = a.PASSWORD,

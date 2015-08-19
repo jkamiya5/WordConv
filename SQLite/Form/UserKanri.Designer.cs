@@ -39,7 +39,7 @@ namespace WordConvTool.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.empId = new NumericTextBox();
+            this.empId = new WordConverter.NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,6 +107,7 @@ namespace WordConvTool.Forms
             // 
             // kengen
             // 
+            this.kengen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.kengen.FormattingEnabled = true;
             this.kengen.Items.AddRange(new object[] {
             "管理",
@@ -145,6 +146,7 @@ namespace WordConvTool.Forms
             // 
             // empId
             // 
+            this.empId.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.empId.Location = new System.Drawing.Point(84, 18);
             this.empId.Name = "empId";
             this.empId.Size = new System.Drawing.Size(315, 19);
