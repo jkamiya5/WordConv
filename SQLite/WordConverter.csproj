@@ -225,7 +225,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="Common\CommonBase.cs" />
+    <Compile Include="Common\CommonFunction.cs" />
     <Compile Include="Models\Constant.cs" />
     <Compile Include="Interface\IBo.cs" />
     <Compile Include="Models\MyContext.cs" />
