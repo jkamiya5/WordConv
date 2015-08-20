@@ -90,6 +90,9 @@ namespace WordConverter.Common
         internal System.Drawing.Color switchRowBackColor(DataGridViewRow dataGridViewRow)
         {
             return dataGridViewRow.DefaultCellStyle.BackColor != Color.WhiteSmoke ? Color.WhiteSmoke : Color.White;
+
+
+
         }
     }
 }
