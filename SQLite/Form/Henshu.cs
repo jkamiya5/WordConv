@@ -391,5 +391,11 @@ namespace WordConvTool.Forms
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
             }
         }
+
+        private void Henshu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
     }
 }

@@ -186,5 +186,11 @@ namespace WordConvTool.Forms
 
             this.hotKey.Text = str;
         }
+
+        private void Kojin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
     }
 }

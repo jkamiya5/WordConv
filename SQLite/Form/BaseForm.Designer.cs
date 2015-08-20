@@ -31,26 +31,55 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.一般ユーザーcontextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.申請ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.個人設定ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.管理ユーザーcontextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.申請ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.個人設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ユーザー管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.一般ユーザーcontextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.申請ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.個人設定ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.管理ユーザーcontextMenuStrip1.SuspendLayout();
             this.一般ユーザーcontextMenuStrip2.SuspendLayout();
+            this.管理ユーザーcontextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.一般ユーザーcontextMenuStrip2;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = false;
+            this.notifyIcon1.Text = "WordConverter";
+            // 
+            // 一般ユーザーcontextMenuStrip2
+            // 
+            this.一般ユーザーcontextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.終了ToolStripMenuItem,
+            this.申請ToolStripMenuItem1,
+            this.個人設定ToolStripMenuItem1});
+            this.一般ユーザーcontextMenuStrip2.Name = "一般ユーザーcontextMenuStrip2";
+            this.一般ユーザーcontextMenuStrip2.Size = new System.Drawing.Size(125, 70);
+            // 
+            // 終了ToolStripMenuItem
+            // 
+            this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
+            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.終了ToolStripMenuItem.Text = "終了";
+            this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了toolStripMenuItem_Click);
+            // 
+            // 申請ToolStripMenuItem1
+            // 
+            this.申請ToolStripMenuItem1.Name = "申請ToolStripMenuItem1";
+            this.申請ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.申請ToolStripMenuItem1.Text = "申請";
+            this.申請ToolStripMenuItem1.Click += new System.EventHandler(this.申請ToolStripMenuItem_Click);
+            // 
+            // 個人設定ToolStripMenuItem1
+            // 
+            this.個人設定ToolStripMenuItem1.Name = "個人設定ToolStripMenuItem1";
+            this.個人設定ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.個人設定ToolStripMenuItem1.Text = "個人設定";
+            this.個人設定ToolStripMenuItem1.Click += new System.EventHandler(this.個人設定ToolStripMenuItem_Click);
             // 
             // 管理ユーザーcontextMenuStrip1
             // 
@@ -98,36 +127,6 @@
             this.ユーザー管理ToolStripMenuItem.Text = "ユーザー管理";
             this.ユーザー管理ToolStripMenuItem.Click += new System.EventHandler(this.ユーザー管理ToolStripMenuItem_Click);
             // 
-            // 一般ユーザーcontextMenuStrip2
-            // 
-            this.一般ユーザーcontextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.終了ToolStripMenuItem,
-            this.申請ToolStripMenuItem1,
-            this.個人設定ToolStripMenuItem1});
-            this.一般ユーザーcontextMenuStrip2.Name = "一般ユーザーcontextMenuStrip2";
-            this.一般ユーザーcontextMenuStrip2.Size = new System.Drawing.Size(125, 70);
-            // 
-            // 終了ToolStripMenuItem
-            // 
-            this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.終了ToolStripMenuItem.Text = "終了";
-            this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了toolStripMenuItem_Click);
-            // 
-            // 申請ToolStripMenuItem1
-            // 
-            this.申請ToolStripMenuItem1.Name = "申請ToolStripMenuItem1";
-            this.申請ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.申請ToolStripMenuItem1.Text = "申請";
-            this.申請ToolStripMenuItem1.Click += new System.EventHandler(this.申請ToolStripMenuItem_Click);
-            // 
-            // 個人設定ToolStripMenuItem1
-            // 
-            this.個人設定ToolStripMenuItem1.Name = "個人設定ToolStripMenuItem1";
-            this.個人設定ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.個人設定ToolStripMenuItem1.Text = "個人設定";
-            this.個人設定ToolStripMenuItem1.Click += new System.EventHandler(this.個人設定ToolStripMenuItem_Click);
-            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -136,8 +135,8 @@
             this.Name = "BaseForm";
             this.Text = "BaseForm1";
             this.Load += new System.EventHandler(this.BaseForm_Load);
-            this.管理ユーザーcontextMenuStrip1.ResumeLayout(false);
             this.一般ユーザーcontextMenuStrip2.ResumeLayout(false);
+            this.管理ユーザーcontextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

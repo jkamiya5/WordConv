@@ -350,5 +350,11 @@ namespace WordConvTool.Forms
                 }
             }
         }
+
+        private void UserKanri_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
     }
 }

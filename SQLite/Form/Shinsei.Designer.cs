@@ -169,6 +169,7 @@
             this.MaximizeBox = false;
             this.Name = "Shinsei";
             this.Text = "申請・承認";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Shinsei_FormClosing);
             this.Load += new System.EventHandler(this.Shinsei_Load);
             ((System.ComponentModel.ISupportInitialize)(this.shinseiDataGridView1)).EndInit();
             this.ResumeLayout(false);

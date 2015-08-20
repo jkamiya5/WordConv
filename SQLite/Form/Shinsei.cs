@@ -145,6 +145,8 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void shounin_Click(object sender, EventArgs e)
         {
+            int upCount = 0;
+
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
                 if (shinseiDataGridView1.Rows[i].Cells[0].Value == null)
@@ -170,7 +172,14 @@ namespace WordConvertTool
                     context.WordDic.Add(word);
 
                     context.SaveChanges();
+
+                    upCount++;
                 }
+            }
+            if (upCount == 0)
+            {
+                MessageBox.Show("申請された単語はありません。");
+                return;
             }
             MessageBox.Show("選択された単語を承認しました。承認した単語が、辞書テーブルに登録されました。");
             this.Shinsei_Load(sender, e);
@@ -183,6 +192,8 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void kyakka_Click(object sender, EventArgs e)
         {
+            int upCount = 0;
+
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
                 if (shinseiDataGridView1.Rows[i].Cells[0].Value == null)
@@ -195,6 +206,11 @@ namespace WordConvertTool
                     string sql = "delete from WORD_SHINSEI where RONRI_NAME1 = '" + data[0] + "'";
                     common.executeQuery(sql);
                 }
+            }
+            if (upCount == 0)
+            {
+                MessageBox.Show("却下された単語はありません。");
+                return;
             }
             MessageBox.Show("選択された単語が却下されました。");
             this.Shinsei_Load(sender, e);
@@ -238,6 +254,12 @@ namespace WordConvertTool
                     }
                 }
             }
+        }
+
+        private void Shinsei_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
     }
 }

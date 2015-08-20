@@ -43,12 +43,12 @@
             this.tanitsuDataGridView = new System.Windows.Forms.DataGridView();
             this.ronrimei1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.ikkatsuRegistBtn = new System.Windows.Forms.Button();
             this.ikkatsuDataGridView = new System.Windows.Forms.DataGridView();
             this.readFile = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
@@ -193,10 +193,10 @@
             this.tanitsuDataGridView.Size = new System.Drawing.Size(454, 239);
             this.tanitsuDataGridView.TabIndex = 18;
             // 
-            // textBox1
+            // ronrimei1
             // 
             this.ronrimei1.Location = new System.Drawing.Point(78, 14);
-            this.ronrimei1.Name = "textBox1";
+            this.ronrimei1.Name = "ronrimei1";
             this.ronrimei1.Size = new System.Drawing.Size(367, 19);
             this.ronrimei1.TabIndex = 12;
             // 
@@ -215,6 +215,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "一括登録";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(36, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 15);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "ファイルパス";
             // 
             // ikkatsuRegistBtn
             // 
@@ -265,14 +273,6 @@
             this.filePath.Size = new System.Drawing.Size(307, 19);
             this.filePath.TabIndex = 9;
             // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(36, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 15);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "ファイルパス";
-            // 
             // Henshu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -282,6 +282,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Henshu";
             this.Text = "編集";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Henshu_FormClosing);
             this.Load += new System.EventHandler(this.Henshu_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

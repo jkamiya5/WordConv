@@ -64,6 +64,12 @@ namespace WordConverter.Services
                 return outBo;
             }
 
+            if (!System.Text.RegularExpressions.Regex.IsMatch(inBo.ronrimei2TextBox, @"^[あ-ん]*$"))
+            {
+                outBo.errorMessage = "ひらがな以外が含まれています。";
+                return outBo;
+            }
+
             using (var context = new MyContext())
             {
                 string condtion = inBo.ronrimei1TextBox;

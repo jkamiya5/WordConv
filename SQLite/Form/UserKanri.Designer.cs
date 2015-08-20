@@ -40,7 +40,7 @@ namespace WordConvTool.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.empId = new NumericTextBox();
+            this.empId = new WordConverter.Common.NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,6 +171,7 @@ namespace WordConvTool.Forms
             this.Controls.Add(this.userKanriDataGridView1);
             this.Name = "UserKanri";
             this.Text = "ユーザー管理";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserKanri_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

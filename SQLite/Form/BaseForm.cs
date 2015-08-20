@@ -131,6 +131,10 @@ namespace WordConvertTool
                 //一覧起動のショートカットキーが押された場合
                 if ((int)m.WParam == HOTKEY_ID)
                 {
+                    if (Kojin.Instance.Visible)
+                    {
+                        return;
+                    }
                     userInfo.pascal = WordConverter.Settings1.Default.Pascal;
                     userInfo.camel = WordConverter.Settings1.Default.Camel;
                     userInfo.snake = WordConverter.Settings1.Default.Snake;

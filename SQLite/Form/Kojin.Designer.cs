@@ -43,11 +43,11 @@
             this.displayNumberRadioBtn4 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
-            // textBox1
+            // hotKey
             // 
             this.hotKey.BackColor = System.Drawing.Color.White;
             this.hotKey.Location = new System.Drawing.Point(29, 36);
-            this.hotKey.Name = "textBox1";
+            this.hotKey.Name = "hotKey";
             this.hotKey.ReadOnly = true;
             this.hotKey.Size = new System.Drawing.Size(262, 19);
             this.hotKey.TabIndex = 0;
@@ -194,6 +194,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "Kojin";
             this.Text = "個人設定";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Kojin_FormClosing);
             this.Load += new System.EventHandler(this.Kojin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
