@@ -74,16 +74,24 @@ namespace WordConverter.Common
         }
 
 
-        public static IQueryable<WordDic> WordDicWhereLike(
-        this IQueryable<WordDic> source, object[] keyword)
+        public static IQueryable<HenshuWordBo> WordDicWhereLike(
+        this IQueryable<HenshuWordBo> source, object[] keyword)
         {
-            Expression<Func<WordDic, bool>> predict = x => x.RONRI_NAME1 == "";
+            Expression<Func<HenshuWordBo, bool>> predict = null;
 
             if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
                 !String.IsNullOrEmpty(keyword[1].ToString()) &&
-                keyword[2].ToString().ToIntType() != -1)
+                !String.IsNullOrEmpty(keyword[2].ToString()))
             {
-                predict = x => x.RONRI_NAME1 == keyword[0].ToString() && x.RONRI_NAME2.Contains(keyword[1].ToString()) && x.BUTSURI_NAME == keyword[2].ToString();
+                predict = x => x.RONRI_NAME1.Contains(keyword[0].ToString()) && x.RONRI_NAME2.Contains(keyword[1].ToString()) && x.BUTSURI_NAME.Contains(keyword[2].ToString());
+                return source.Where(predict);
+            }
+
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                !String.IsNullOrEmpty(keyword[1].ToString()) &&
+                String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.RONRI_NAME1.Contains(keyword[0].ToString()) && x.RONRI_NAME2.Contains(keyword[1].ToString());
                 return source.Where(predict);
             }
 

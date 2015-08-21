@@ -50,14 +50,17 @@ namespace WordConverter.Services
                         {
                             var w = context.WordDic.Single(x => x.WORD_ID == condtion);
                             w.RONRI_NAME1 = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
+                            w.RONRI_NAME2 = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME2"].Value);
                             w.BUTSURI_NAME = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
                             w.CRE_DATE = System.DateTime.Now.ToString();
+                            w.USER_ID = BaseForm.UserInfo.userId;
                             context.SaveChanges();
                             continue;
                         }
 
                         WordDic word = new WordDic();
                         word.RONRI_NAME1 = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME1"].Value);
+                        word.RONRI_NAME2 = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["RONRI_NAME2"].Value);
                         word.BUTSURI_NAME = Convert.ToString(this.inBo.tanitsuDataGridView.Rows[i].Cells["BUTSURI_NAME"].Value);
                         word.CRE_DATE = System.DateTime.Now.ToString();
                         word.USER_ID = BaseForm.UserInfo.userId;

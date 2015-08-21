@@ -8,6 +8,8 @@ namespace WordConverter.Models.InBo
 {
     class TanitsuTorokuSearchServiceInBo : IBo
     {
-        public string ronrimei1 { get; set; }
+        public string ronrimei1TextBox { get; set; }
+        public string ronrimei2TextBox { get; set; }
+        public string butsurimeiTextBox { get; set; }
     }
 }

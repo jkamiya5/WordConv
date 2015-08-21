@@ -132,9 +132,9 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(286, 99);
+            this.addBtn.Location = new System.Drawing.Point(301, 99);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(94, 23);
+            this.addBtn.Size = new System.Drawing.Size(97, 23);
             this.addBtn.TabIndex = 17;
             this.addBtn.Text = "追加";
             this.addBtn.UseVisualStyleBackColor = true;
@@ -152,9 +152,9 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(87, 99);
+            this.searchBtn.Location = new System.Drawing.Point(100, 99);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(71, 23);
+            this.searchBtn.Size = new System.Drawing.Size(73, 23);
             this.searchBtn.TabIndex = 15;
             this.searchBtn.Text = "検索";
             this.searchBtn.UseVisualStyleBackColor = true;
@@ -162,9 +162,9 @@
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(168, 99);
+            this.clearBtn.Location = new System.Drawing.Point(186, 99);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(71, 23);
+            this.clearBtn.Size = new System.Drawing.Size(73, 23);
             this.clearBtn.TabIndex = 16;
             this.clearBtn.Text = "クリア";
             this.clearBtn.UseVisualStyleBackColor = true;
@@ -172,18 +172,18 @@
             // 
             // butsurimeiTextBox
             // 
-            this.butsurimeiTextBox.Location = new System.Drawing.Point(78, 68);
+            this.butsurimeiTextBox.Location = new System.Drawing.Point(72, 68);
             this.butsurimeiTextBox.Name = "butsurimeiTextBox";
-            this.butsurimeiTextBox.Size = new System.Drawing.Size(367, 19);
+            this.butsurimeiTextBox.Size = new System.Drawing.Size(365, 19);
             this.butsurimeiTextBox.TabIndex = 14;
             this.butsurimeiTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.butsurimeiTextBox_Validating);
             this.butsurimeiTextBox.Validated += new System.EventHandler(this.butsurimeiTextBox_Validated);
             // 
             // ronrimei2TextBox
             // 
-            this.ronrimei2TextBox.Location = new System.Drawing.Point(78, 42);
+            this.ronrimei2TextBox.Location = new System.Drawing.Point(72, 42);
             this.ronrimei2TextBox.Name = "ronrimei2TextBox";
-            this.ronrimei2TextBox.Size = new System.Drawing.Size(367, 19);
+            this.ronrimei2TextBox.Size = new System.Drawing.Size(365, 19);
             this.ronrimei2TextBox.TabIndex = 13;
             this.ronrimei2TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei2TextBox_Validating);
             this.ronrimei2TextBox.Validated += new System.EventHandler(this.ronrimei2TextBox_Validated);
@@ -202,9 +202,9 @@
             // 
             // ronrimei1TextBox
             // 
-            this.ronrimei1TextBox.Location = new System.Drawing.Point(78, 14);
+            this.ronrimei1TextBox.Location = new System.Drawing.Point(72, 14);
             this.ronrimei1TextBox.Name = "ronrimei1TextBox";
-            this.ronrimei1TextBox.Size = new System.Drawing.Size(367, 19);
+            this.ronrimei1TextBox.Size = new System.Drawing.Size(365, 19);
             this.ronrimei1TextBox.TabIndex = 12;
             this.ronrimei1TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei1TextBox_Validating);
             this.ronrimei1TextBox.Validated += new System.EventHandler(this.ronrimei1TextBox_Validated);
@@ -318,10 +318,10 @@
         private System.Windows.Forms.Button registBtn;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button clearBtn;
-        private System.Windows.Forms.TextBox butsurimeiTextBox;
-        private System.Windows.Forms.TextBox ronrimei2TextBox;
-        private System.Windows.Forms.DataGridView tanitsuDataGridView;
         private System.Windows.Forms.TextBox ronrimei1TextBox;
+        private System.Windows.Forms.TextBox ronrimei2TextBox;
+        private System.Windows.Forms.TextBox butsurimeiTextBox;
+        private System.Windows.Forms.DataGridView tanitsuDataGridView;
         private System.Windows.Forms.Button ikkatsuRegistBtn;
         private System.Windows.Forms.DataGridView ikkatsuDataGridView;
         private System.Windows.Forms.Button readFile;

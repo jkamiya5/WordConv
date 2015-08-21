@@ -134,7 +134,9 @@ namespace WordConvTool.Forms
         {
             TanitsuTorokuSearchServiceInBo henshuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
             TanitsuTorokuSearchService henshuSearchService = new TanitsuTorokuSearchService();
-            henshuSearchServiceInBo.ronrimei1 = this.ronrimei1TextBox.Text;
+            henshuSearchServiceInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
+            henshuSearchServiceInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
+            henshuSearchServiceInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
             henshuSearchService.setInBo(henshuSearchServiceInBo);
             TanitsuTorokuSearchServiceOutBo shinseiServiseOutBo = henshuSearchService.execute();
             this.henshuViewDispSetthing(ref tanitsuDataGridView, shinseiServiseOutBo.wordList);
@@ -193,6 +195,7 @@ namespace WordConvTool.Forms
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             HenshuWordBo word = new HenshuWordBo();
             word.RONRI_NAME1 = this.ronrimei1TextBox.Text;
+            word.RONRI_NAME2 = this.ronrimei2TextBox.Text;
             word.BUTSURI_NAME = this.butsurimeiTextBox.Text;
             wordList.Add(word);
 
@@ -213,7 +216,7 @@ namespace WordConvTool.Forms
             tanitsuRegistServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
             tanitsuRegistService.setInBo(tanitsuRegistServiceInBo);
             TanitsuTorokuRegistServiceOutBo tanitsuRegistServiceOutBo = tanitsuRegistService.execute();
-            this.searchAction(this.tanitsuDataGridView);
+            this.searchAction(ref this.tanitsuDataGridView);
             MessageBox.Show("辞書テーブルに登録・更新しました。");
         }
 
@@ -246,7 +249,7 @@ namespace WordConvTool.Forms
             deleteServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
             deleteService.setInBo(deleteServiceInBo);
             TanitsuTorokuDeleteServiceOutBo deleteServiceOutBo = (TanitsuTorokuDeleteServiceOutBo)deleteService.execute();
-            this.searchAction(this.tanitsuDataGridView);
+            this.searchAction(ref this.tanitsuDataGridView);
         }
 
         /// <summary>
@@ -286,6 +289,7 @@ namespace WordConvTool.Forms
         {
             dataGridView.DataSource = wordList;
             dataGridView.Columns["RONRI_NAME1"].HeaderText = "論理名1";
+            dataGridView.Columns["RONRI_NAME2"].HeaderText = "論理名2";
             dataGridView.Columns["BUTSURI_NAME"].HeaderText = "物理名";
             dataGridView.Columns["USER_NAME"].HeaderText = "登録ユーザー";
             dataGridView.Columns["CRE_DATE"].HeaderText = "登録日付";
@@ -298,8 +302,8 @@ namespace WordConvTool.Forms
             common.addCheckBox(ref dataGridView, 0);
             common.viewWidthSetting(ref dataGridView, 20, 120);
 
-            dataGridView.Columns["USER_NAME"].Width = 70;
-            dataGridView.Columns["CRE_DATE"].Width = 70;
+            dataGridView.Columns["USER_NAME"].Width = 100;
+            dataGridView.Columns["CRE_DATE"].Width = 100;
         }
 
         /// <summary>
@@ -327,7 +331,7 @@ namespace WordConvTool.Forms
         /// 検索アクションサービス
         /// </summary>
         /// <param name="dataGridView"></param>
-        private void searchAction(DataGridView dataGridView)
+        private void searchAction(ref DataGridView dataGridView)
         {
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             using (var context = new MyContext())
@@ -340,6 +344,7 @@ namespace WordConvTool.Forms
                                                  {
                                                      WORD_ID = a.WORD_ID,
                                                      RONRI_NAME1 = a.RONRI_NAME1,
+                                                     RONRI_NAME2 = a.RONRI_NAME2,
                                                      BUTSURI_NAME = a.BUTSURI_NAME,
                                                      USER_NAME = b.USER_NAME,
                                                      CRE_DATE = a.CRE_DATE,
@@ -352,6 +357,7 @@ namespace WordConvTool.Forms
                     HenshuWordBo w = new HenshuWordBo();
                     w.WORD_ID = word.WORD_ID;
                     w.RONRI_NAME1 = word.RONRI_NAME1;
+                    w.RONRI_NAME2 = word.RONRI_NAME2;
                     w.BUTSURI_NAME = word.BUTSURI_NAME;
                     w.USER_NAME = word.USER_NAME;
                     w.CRE_DATE = word.CRE_DATE;
