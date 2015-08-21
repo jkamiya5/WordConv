@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordConverter.Common;
 using WordConverter.Form;
 using WordConvTool.Model;
 
@@ -29,6 +30,9 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void loginBtn_Click(object sender, EventArgs e)
         {
+            CommonFunction common = new CommonFunction();
+            common.setDbPath(this.dataSourcePath.Text);
+
             using (var context = new MyContext())
             {
                 long condtion = Convert.ToInt64(this.UserId.Text);
@@ -81,10 +85,14 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void openFile_Click(object sender, EventArgs e)
         {
-            //OpenFileDialogクラスのインスタンスを作成
+            string fileName = this.dataSourcePath.Text;
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = Path.GetDirectoryName(this.dataSourcePath.Text);
-            ofd.FileName = Path.GetFileName(this.dataSourcePath.Text);
+
+            if (System.IO.File.Exists(fileName))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(fileName);
+                ofd.FileName = Path.GetFileName(fileName);
+            }
 
             //ダイアログを表示する
             if (ofd.ShowDialog() == DialogResult.OK)

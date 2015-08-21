@@ -91,8 +91,49 @@ namespace WordConverter.Common
         {
             return dataGridViewRow.DefaultCellStyle.BackColor != Color.WhiteSmoke ? Color.WhiteSmoke : Color.White;
 
+        }
 
+        public string getDbPath()
+        {
+            System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+            string appConfigPath;
+            appConfigPath = System.IO.Path.GetDirectoryName(asm.Location) + @"\WordConverter.exe.config";
+            System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+            doc.Load(appConfigPath);
+            System.Xml.XmlNode node = doc["configuration"]["connectionStrings"];
+            foreach (System.Xml.XmlNode n in doc["configuration"]["connectionStrings"])
+            {
+                if (n.Name == "add")
+                {
+                    if (n.Attributes.GetNamedItem("name").Value == "MyContext")
+                    {
+                        return n.Attributes.GetNamedItem("connectionString").Value;
+                    }
+                }
+            }
+            return "";
+        }
 
+        public void setDbPath(string path)
+        {
+            System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+            string appConfigPath;
+            appConfigPath = System.IO.Path.GetDirectoryName(asm.Location) + @"\WordConverter.exe.config";
+            System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+            doc.Load(appConfigPath);
+            System.Xml.XmlNode node = doc["configuration"]["connectionStrings"];
+            foreach (System.Xml.XmlNode n in doc["configuration"]["connectionStrings"])
+            {
+                if (n.Name == "add")
+                {
+                    if (n.Attributes.GetNamedItem("name").Value == "MyContext")
+                    {
+                        n.Attributes.GetNamedItem("connectionString").Value = "Data Source=" + path + ";foreign keys=true;";
+                        break;
+                    }
+                }
+            }
+            doc.Save(appConfigPath);
         }
     }
 }

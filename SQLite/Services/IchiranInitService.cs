@@ -44,7 +44,8 @@ namespace WordConverter.Services
 
             if (!String.IsNullOrEmpty(this.inBo.clipboardText))
             {
-                string dbConnectionString = ConfigurationManager.AppSettings.Get("DataSource");
+                CommonFunction common = new CommonFunction();
+                string dbConnectionString = common.getDbPath();
                 string key = this.inBo.clipboardText;
                 string nl = Environment.NewLine;
                 String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);

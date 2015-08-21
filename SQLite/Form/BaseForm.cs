@@ -141,6 +141,7 @@ namespace WordConvertTool
                     userInfo.dispNumber = WordConverter.Settings1.Default.DispNumber;
 
                     Ichiran ichiran = Ichiran.Instance;
+                    ichiran.ichiran_Load();
                     ichiran.Show();
                 }
             }

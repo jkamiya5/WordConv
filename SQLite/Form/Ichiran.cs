@@ -57,12 +57,7 @@ namespace WordConvertTool
             //UnregisterHotKey(this.Handle, HOTKEY_ID);
         }
 
-        /// <summary>
-        /// 一覧画面初期表示イベント
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Ichiran_Load(object sender, EventArgs e)
+        public void ichiran_Load()
         {
             IchiranInitService initService = new IchiranInitService();
             IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
@@ -83,6 +78,33 @@ namespace WordConvertTool
             //透過性
             this.Opacity = 0.94;
         }
+
+        ///// <summary>
+        ///// 一覧画面初期表示イベント
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void Ichiran_Load(object sender, EventArgs e)
+        //{
+        //    IchiranInitService initService = new IchiranInitService();
+        //    IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
+        //    initServiceInBo.clipboardText = Clipboard.GetText();
+        //    initServiceInBo.dispNumber = BaseForm.UserInfo.dispNumber;
+        //    initService.setInBo(initServiceInBo);
+        //    IchiranInitServiceOutBo initServiceOutBo = initService.execute();
+
+        //    ichiranDataGridView.DataSource = initServiceOutBo.wordList;
+        //    ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
+        //    ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 195;
+        //    ichiranDataGridView.ReadOnly = true;
+
+        //    //隠していたフォームを表示する
+        //    this.Show();
+        //    this.Activate();
+
+        //    //透過性
+        //    this.Opacity = 0.94;
+        //}
 
 
         /// <summary>
