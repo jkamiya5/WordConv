@@ -17,6 +17,7 @@ using WordConverter.Common;
 using WordConverter.Services;
 using WordConverter.Models.OutBo;
 using WordConverter.Models.InBo;
+using System.Text.RegularExpressions;
 
 namespace WordConvertTool
 {
@@ -162,13 +163,10 @@ namespace WordConvertTool
                     w.CRE_DATE = System.DateTime.Now.ToString();
                     w.STATUS = 1;
 
-                    UserMst user = new UserMst();
-                    user.USER_NAME = "ジョウジ";
                     WordDic word = new WordDic();
                     word.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
                     word.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
                     word.CRE_DATE = System.DateTime.Now.ToString();
-                    word.User = user;
                     context.WordDic.Add(word);
 
                     context.SaveChanges();
@@ -260,6 +258,57 @@ namespace WordConvertTool
         {
             e.Cancel = true;
             this.Hide();
+        }
+
+
+        private void ronrimei1TextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
+            }
+        }
+
+        private void ronrimei2TextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
+                return;
+            }
+            Regex regex = new Regex(@"^[あ-を]+$");
+            if (!regex.IsMatch(this.ronrimei2TextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.ronrimei2TextBox, "ひらがな以外が入力されました。");
+            }
+        }
+
+        private void butsurimeiTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
+            }
+        }
+
+        private void ronrimei1TextBox_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.ronrimei1TextBox, "");
+        }
+
+        private void ronrimei2TextBox_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.ronrimei2TextBox, "");
+
+        }
+
+        private void butsurimeiTextBox_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.butsurimeiTextBox, "");
         }
     }
 }

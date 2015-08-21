@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ronrimei1TextBox = new System.Windows.Forms.TextBox();
             this.ronrimei2TextBox = new System.Windows.Forms.TextBox();
             this.butsurimeiTextBox = new System.Windows.Forms.TextBox();
@@ -39,7 +40,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.shounin = new System.Windows.Forms.Button();
             this.kyakka = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.shinseiDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // ronrimei1TextBox
@@ -48,13 +51,18 @@
             this.ronrimei1TextBox.Name = "ronrimei1TextBox";
             this.ronrimei1TextBox.Size = new System.Drawing.Size(298, 19);
             this.ronrimei1TextBox.TabIndex = 0;
+            this.ronrimei1TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei1TextBox_Validating);
+            this.ronrimei1TextBox.Validated += new System.EventHandler(this.ronrimei1TextBox_Validated);
             // 
             // ronrimei2TextBox
             // 
+            this.ronrimei2TextBox.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.ronrimei2TextBox.Location = new System.Drawing.Point(55, 43);
             this.ronrimei2TextBox.Name = "ronrimei2TextBox";
             this.ronrimei2TextBox.Size = new System.Drawing.Size(298, 19);
             this.ronrimei2TextBox.TabIndex = 1;
+            this.ronrimei2TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei2TextBox_Validating);
+            this.ronrimei2TextBox.Validated += new System.EventHandler(this.ronrimei2TextBox_Validated);
             // 
             // butsurimeiTextBox
             // 
@@ -62,6 +70,8 @@
             this.butsurimeiTextBox.Name = "butsurimeiTextBox";
             this.butsurimeiTextBox.Size = new System.Drawing.Size(298, 19);
             this.butsurimeiTextBox.TabIndex = 2;
+            this.butsurimeiTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.butsurimeiTextBox_Validating);
+            this.butsurimeiTextBox.Validated += new System.EventHandler(this.butsurimeiTextBox_Validated);
             // 
             // shinseiButton
             // 
@@ -149,6 +159,10 @@
             this.kyakka.UseVisualStyleBackColor = true;
             this.kyakka.Click += new System.EventHandler(this.kyakka_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Shinsei
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -172,6 +186,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Shinsei_FormClosing);
             this.Load += new System.EventHandler(this.Shinsei_Load);
             ((System.ComponentModel.ISupportInitialize)(this.shinseiDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +205,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button shounin;
         private System.Windows.Forms.Button kyakka;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

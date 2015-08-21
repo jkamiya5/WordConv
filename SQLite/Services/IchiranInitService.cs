@@ -45,7 +45,7 @@ namespace WordConverter.Services
             if (!String.IsNullOrEmpty(this.inBo.clipboardText))
             {
                 CommonFunction common = new CommonFunction();
-                string dbConnectionString = common.getDbPath();
+                string dbConnectionString = common.getDbConnectionString();
                 string key = this.inBo.clipboardText;
                 string nl = Environment.NewLine;
                 String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);

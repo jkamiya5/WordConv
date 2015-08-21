@@ -13,7 +13,7 @@ namespace WordConverter.Common
     /// <summary>
     /// 数字とバックスペース以外の入力を無効にしたTextBox
     /// </summary>
-    public class NumericTextBox : System.Windows.Forms.TextBox
+    public partial class NumericTextBox : System.Windows.Forms.TextBox
     {
         private const int WM_PASTE = 0x302;
 

@@ -25,7 +25,7 @@ namespace WordConverter {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("999")]
         public string UserId {
             get {
                 return ((string)(this["UserId"]));

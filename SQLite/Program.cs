@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordConverter.Common;
 
 namespace WordConvertTool
 {
@@ -48,8 +49,10 @@ namespace WordConvertTool
             }
 
             System.Data.SQLite.SQLiteConnection.CreateFile(path);
-            System.Diagnostics.Debug.Write(path);
             var cnStr = new System.Data.SQLite.SQLiteConnectionStringBuilder() { DataSource = path };
+
+            CommonFunction common = new CommonFunction();
+            common.setDbPath(path);
 
             using (var cn = new System.Data.SQLite.SQLiteConnection(cnStr.ToString()))
             {

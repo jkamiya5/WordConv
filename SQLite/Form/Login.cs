@@ -73,7 +73,8 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void Login_Load(object sender, EventArgs e)
         {
-            this.dataSourcePath.Text = WordConverter.Settings1.Default.DataSource;
+            CommonFunction common = new CommonFunction();
+            this.dataSourcePath.Text = common.getDbPath();
             this.UserId.Text = WordConverter.Settings1.Default.UserId;
 
         }

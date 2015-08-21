@@ -93,7 +93,7 @@ namespace WordConverter.Common
 
         }
 
-        public string getDbPath()
+        public string getDbConnectionString()
         {
             System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
             string appConfigPath;
@@ -112,6 +112,31 @@ namespace WordConverter.Common
                 }
             }
             return "";
+        }
+
+        public string getDbPath()
+        {
+            System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
+            string appConfigPath;
+            appConfigPath = System.IO.Path.GetDirectoryName(asm.Location) + @"\WordConverter.exe.config";
+            System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+            doc.Load(appConfigPath);
+            System.Xml.XmlNode node = doc["configuration"]["connectionStrings"];
+            string dbPath = "";
+            foreach (System.Xml.XmlNode n in doc["configuration"]["connectionStrings"])
+            {
+                if (n.Name == "add")
+                {
+                    if (n.Attributes.GetNamedItem("name").Value == "MyContext")
+                    {
+                        dbPath = n.Attributes.GetNamedItem("connectionString").Value;
+                        break;
+                    }
+                }
+            }
+            dbPath = dbPath.Replace("Data Source=", "");
+            dbPath = dbPath.Replace(";foreign keys=true;", "");
+            return dbPath;
         }
 
         public void setDbPath(string path)

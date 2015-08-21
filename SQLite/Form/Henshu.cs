@@ -18,6 +18,7 @@ using WordConverter.Common;
 using WordConverter.Models.InBo;
 using WordConverter.Services;
 using WordConverter.Models.OutBo;
+using System.Text.RegularExpressions;
 
 namespace WordConvTool.Forms
 {
@@ -133,7 +134,7 @@ namespace WordConvTool.Forms
         {
             TanitsuTorokuSearchServiceInBo henshuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
             TanitsuTorokuSearchService henshuSearchService = new TanitsuTorokuSearchService();
-            henshuSearchServiceInBo.ronrimei1 = this.ronrimei1.Text;
+            henshuSearchServiceInBo.ronrimei1 = this.ronrimei1TextBox.Text;
             henshuSearchService.setInBo(henshuSearchServiceInBo);
             TanitsuTorokuSearchServiceOutBo shinseiServiseOutBo = henshuSearchService.execute();
             this.henshuViewDispSetthing(ref tanitsuDataGridView, shinseiServiseOutBo.wordList);
@@ -147,9 +148,9 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void clearBtn_Click(object sender, EventArgs e)
         {
-            this.ronrimei1.Text = "";
-            this.textBox2.Text = "";
-            this.textBox3.Text = "";
+            this.ronrimei1TextBox.Text = "";
+            this.ronrimei2TextBox.Text = "";
+            this.butsurimeiTextBox.Text = "";
         }
 
 
@@ -160,7 +161,7 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.ronrimei1.Text) || String.IsNullOrEmpty(this.textBox3.Text))
+            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text) || String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
             {
                 MessageBox.Show(
                     "論理名1と物理名は必須項目です。\n",
@@ -174,7 +175,7 @@ namespace WordConvTool.Forms
             using (var context = new MyContext())
             {
                 var products = context.WordDic
-                    .Where(x => x.RONRI_NAME1 == this.ronrimei1.Text)
+                    .Where(x => x.RONRI_NAME1 == this.ronrimei1TextBox.Text)
                     .ToArray();
 
                 if (products.Count() > 0)
@@ -191,8 +192,8 @@ namespace WordConvTool.Forms
 
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             HenshuWordBo word = new HenshuWordBo();
-            word.RONRI_NAME1 = this.ronrimei1.Text;
-            word.BUTSURI_NAME = this.textBox3.Text;
+            word.RONRI_NAME1 = this.ronrimei1TextBox.Text;
+            word.BUTSURI_NAME = this.butsurimeiTextBox.Text;
             wordList.Add(word);
 
             this.henshuViewDispSetthing(ref this.tanitsuDataGridView, wordList);
@@ -331,7 +332,7 @@ namespace WordConvTool.Forms
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
             using (var context = new MyContext())
             {
-                String condition = this.ronrimei1.Text.Trim();
+                String condition = this.ronrimei1TextBox.Text.Trim();
                 IQueryable<HenshuWordBo> words = from a in context.WordDic
                                                  join b in context.UserMst on a.USER_ID equals b.USER_ID
                                                  where a.RONRI_NAME1.StartsWith(condition)
@@ -378,7 +379,7 @@ namespace WordConvTool.Forms
 
                 TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
-                this.ronrimei1.Text = inBo.clipboardText;
+                this.ronrimei1TextBox.Text = inBo.clipboardText;
             }
             else if (tabControl1.SelectedIndex == Constant.IKKATSU_TOROKU)
             {
@@ -397,5 +398,55 @@ namespace WordConvTool.Forms
             e.Cancel = true;
             this.Hide();
         }
+
+        private void ronrimei1TextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
+            }
+        }
+
+        private void butsurimeiTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
+            }
+        }
+
+        private void ronrimei2TextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
+                return;
+            }
+            Regex regex = new Regex(@"^[あ-を]+$");
+            if (!regex.IsMatch(this.ronrimei2TextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(this.ronrimei2TextBox, "ひらがな以外が入力されました。");
+            }
+        }
+
+        private void ronrimei1TextBox_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.ronrimei1TextBox, "");
+        }
+
+        private void ronrimei2TextBox_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.ronrimei2TextBox, "");
+        }
+
+        private void butsurimeiTextBox_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.butsurimeiTextBox, "");
+        }
+
     }
 }

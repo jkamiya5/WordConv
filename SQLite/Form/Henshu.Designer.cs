@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,10 +39,10 @@
             this.registBtn = new System.Windows.Forms.Button();
             this.searchBtn = new System.Windows.Forms.Button();
             this.clearBtn = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.butsurimeiTextBox = new System.Windows.Forms.TextBox();
+            this.ronrimei2TextBox = new System.Windows.Forms.TextBox();
             this.tanitsuDataGridView = new System.Windows.Forms.DataGridView();
-            this.ronrimei1 = new System.Windows.Forms.TextBox();
+            this.ronrimei1TextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.ikkatsuRegistBtn = new System.Windows.Forms.Button();
@@ -49,11 +50,13 @@
             this.readFile = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ikkatsuDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -65,7 +68,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(516, 483);
+            this.tabControl1.Size = new System.Drawing.Size(532, 483);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
@@ -81,14 +84,14 @@
             this.tabPage1.Controls.Add(this.registBtn);
             this.tabPage1.Controls.Add(this.searchBtn);
             this.tabPage1.Controls.Add(this.clearBtn);
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.butsurimeiTextBox);
+            this.tabPage1.Controls.Add(this.ronrimei2TextBox);
             this.tabPage1.Controls.Add(this.tanitsuDataGridView);
-            this.tabPage1.Controls.Add(this.ronrimei1);
+            this.tabPage1.Controls.Add(this.ronrimei1TextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(508, 450);
+            this.tabPage1.Size = new System.Drawing.Size(524, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "単一登録";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -121,7 +124,7 @@
             // 
             this.delete.Location = new System.Drawing.Point(258, 399);
             this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(115, 25);
+            this.delete.Size = new System.Drawing.Size(138, 25);
             this.delete.TabIndex = 20;
             this.delete.Text = "削除";
             this.delete.UseVisualStyleBackColor = true;
@@ -139,9 +142,9 @@
             // 
             // registBtn
             // 
-            this.registBtn.Location = new System.Drawing.Point(114, 399);
+            this.registBtn.Location = new System.Drawing.Point(102, 399);
             this.registBtn.Name = "registBtn";
-            this.registBtn.Size = new System.Drawing.Size(115, 25);
+            this.registBtn.Size = new System.Drawing.Size(138, 25);
             this.registBtn.TabIndex = 19;
             this.registBtn.Text = "登録";
             this.registBtn.UseVisualStyleBackColor = true;
@@ -167,19 +170,23 @@
             this.clearBtn.UseVisualStyleBackColor = true;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
-            // textBox3
+            // butsurimeiTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(78, 68);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(367, 19);
-            this.textBox3.TabIndex = 14;
+            this.butsurimeiTextBox.Location = new System.Drawing.Point(78, 68);
+            this.butsurimeiTextBox.Name = "butsurimeiTextBox";
+            this.butsurimeiTextBox.Size = new System.Drawing.Size(367, 19);
+            this.butsurimeiTextBox.TabIndex = 14;
+            this.butsurimeiTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.butsurimeiTextBox_Validating);
+            this.butsurimeiTextBox.Validated += new System.EventHandler(this.butsurimeiTextBox_Validated);
             // 
-            // textBox2
+            // ronrimei2TextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(78, 42);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(367, 19);
-            this.textBox2.TabIndex = 13;
+            this.ronrimei2TextBox.Location = new System.Drawing.Point(78, 42);
+            this.ronrimei2TextBox.Name = "ronrimei2TextBox";
+            this.ronrimei2TextBox.Size = new System.Drawing.Size(367, 19);
+            this.ronrimei2TextBox.TabIndex = 13;
+            this.ronrimei2TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei2TextBox_Validating);
+            this.ronrimei2TextBox.Validated += new System.EventHandler(this.ronrimei2TextBox_Validated);
             // 
             // tanitsuDataGridView
             // 
@@ -193,12 +200,14 @@
             this.tanitsuDataGridView.Size = new System.Drawing.Size(454, 239);
             this.tanitsuDataGridView.TabIndex = 18;
             // 
-            // ronrimei1
+            // ronrimei1TextBox
             // 
-            this.ronrimei1.Location = new System.Drawing.Point(78, 14);
-            this.ronrimei1.Name = "ronrimei1";
-            this.ronrimei1.Size = new System.Drawing.Size(367, 19);
-            this.ronrimei1.TabIndex = 12;
+            this.ronrimei1TextBox.Location = new System.Drawing.Point(78, 14);
+            this.ronrimei1TextBox.Name = "ronrimei1TextBox";
+            this.ronrimei1TextBox.Size = new System.Drawing.Size(367, 19);
+            this.ronrimei1TextBox.TabIndex = 12;
+            this.ronrimei1TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei1TextBox_Validating);
+            this.ronrimei1TextBox.Validated += new System.EventHandler(this.ronrimei1TextBox_Validated);
             // 
             // tabPage2
             // 
@@ -211,7 +220,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(508, 450);
+            this.tabPage2.Size = new System.Drawing.Size(524, 450);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "一括登録";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -273,11 +282,15 @@
             this.filePath.Size = new System.Drawing.Size(307, 19);
             this.filePath.TabIndex = 9;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Henshu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 485);
+            this.ClientSize = new System.Drawing.Size(532, 485);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Henshu";
@@ -291,6 +304,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ikkatsuDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,10 +318,10 @@
         private System.Windows.Forms.Button registBtn;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button clearBtn;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox butsurimeiTextBox;
+        private System.Windows.Forms.TextBox ronrimei2TextBox;
         private System.Windows.Forms.DataGridView tanitsuDataGridView;
-        private System.Windows.Forms.TextBox ronrimei1;
+        private System.Windows.Forms.TextBox ronrimei1TextBox;
         private System.Windows.Forms.Button ikkatsuRegistBtn;
         private System.Windows.Forms.DataGridView ikkatsuDataGridView;
         private System.Windows.Forms.Button readFile;
@@ -318,5 +332,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
