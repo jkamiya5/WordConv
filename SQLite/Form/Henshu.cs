@@ -163,14 +163,24 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text) || String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
+            bool isNgRequired = false;
+            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
             {
-                MessageBox.Show(
-                    "論理名1と物理名は必須項目です。\n",
-                    "入力エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
+                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
+            {
+                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
+            {
+                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
+                isNgRequired = true;
+            }
+            if (isNgRequired)
+            {
                 return;
             }
 
@@ -211,6 +221,7 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void registBtn_Click(object sender, EventArgs e)
         {
+            if (!this.registrationPreCheck(this.tanitsuDataGridView)) { return; }
             TanitsuTorokuRegistService tanitsuRegistService = new TanitsuTorokuRegistService();
             TanitsuTorokuRegistServiceInBo tanitsuRegistServiceInBo = new TanitsuTorokuRegistServiceInBo();
             tanitsuRegistServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
@@ -218,6 +229,47 @@ namespace WordConvTool.Forms
             TanitsuTorokuRegistServiceOutBo tanitsuRegistServiceOutBo = tanitsuRegistService.execute();
             this.searchAction(ref this.tanitsuDataGridView);
             MessageBox.Show("辞書テーブルに登録・更新しました。");
+        }
+
+        /// <summary>
+        /// 登録事前チェック
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <returns></returns>
+        private bool registrationPreCheck(DataGridView dataGridView)
+        {
+            bool isExistCheckWord = false;
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[0].Value == null)
+                {
+                    continue;
+                }
+                isExistCheckWord = true;
+            }
+
+            if (!isExistCheckWord)
+            {
+                MessageBox.Show(
+                    "単語が選択されていません。\n",
+                    "入力エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            DialogResult result = MessageBox.Show(
+                "選択された単語を登録してもよろしいですか？",
+                "登録確認",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return false;
+            }
+            return true;
         }
 
 
@@ -405,34 +457,10 @@ namespace WordConvTool.Forms
             this.Hide();
         }
 
-        private void ronrimei1TextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
-            }
-        }
-
-        private void butsurimeiTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
-            }
-        }
-
         private void ronrimei2TextBox_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
-                return;
-            }
-            Regex regex = new Regex(@"^[あ-を]+$");
-            if (!regex.IsMatch(this.ronrimei2TextBox.Text))
+            if (!String.IsNullOrEmpty(this.ronrimei2TextBox.Text)
+                && !Regex.IsMatch(this.ronrimei2TextBox.Text, @"^\p{IsHiragana}*$"))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(this.ronrimei2TextBox, "ひらがな以外が入力されました。");
@@ -453,6 +481,5 @@ namespace WordConvTool.Forms
         {
             errorProvider1.SetError(this.butsurimeiTextBox, "");
         }
-
     }
 }
