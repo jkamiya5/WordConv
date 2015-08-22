@@ -56,7 +56,7 @@ namespace WordConvTool.Forms
             this.userKanriDataGridView1.Name = "userKanriDataGridView1";
             this.userKanriDataGridView1.RowHeadersVisible = false;
             this.userKanriDataGridView1.RowTemplate.Height = 21;
-            this.userKanriDataGridView1.Size = new System.Drawing.Size(450, 230);
+            this.userKanriDataGridView1.Size = new System.Drawing.Size(456, 230);
             this.userKanriDataGridView1.TabIndex = 6;
             this.userKanriDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.userKanriDataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -84,9 +84,9 @@ namespace WordConvTool.Forms
             // 
             // userName
             // 
-            this.userName.Location = new System.Drawing.Point(84, 47);
+            this.userName.Location = new System.Drawing.Point(89, 47);
             this.userName.Name = "userName";
-            this.userName.Size = new System.Drawing.Size(335, 19);
+            this.userName.Size = new System.Drawing.Size(339, 19);
             this.userName.TabIndex = 2;
             // 
             // search
@@ -116,15 +116,15 @@ namespace WordConvTool.Forms
             this.kengen.Items.AddRange(new object[] {
             "管理",
             "一般"});
-            this.kengen.Location = new System.Drawing.Point(84, 79);
+            this.kengen.Location = new System.Drawing.Point(89, 79);
             this.kengen.Name = "kengen";
-            this.kengen.Size = new System.Drawing.Size(335, 20);
+            this.kengen.Size = new System.Drawing.Size(339, 20);
             this.kengen.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 51);
+            this.label1.Location = new System.Drawing.Point(22, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 12);
             this.label1.TabIndex = 8;
@@ -133,7 +133,7 @@ namespace WordConvTool.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 83);
+            this.label2.Location = new System.Drawing.Point(22, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 9;
@@ -142,7 +142,7 @@ namespace WordConvTool.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 21);
+            this.label3.Location = new System.Drawing.Point(22, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 12);
             this.label3.TabIndex = 10;
@@ -151,16 +151,16 @@ namespace WordConvTool.Forms
             // empId
             // 
             this.empId.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.empId.Location = new System.Drawing.Point(84, 18);
+            this.empId.Location = new System.Drawing.Point(89, 18);
             this.empId.Name = "empId";
-            this.empId.Size = new System.Drawing.Size(335, 19);
+            this.empId.Size = new System.Drawing.Size(339, 19);
             this.empId.TabIndex = 1;
             // 
             // UserKanri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 438);
+            this.ClientSize = new System.Drawing.Size(509, 438);
             this.Controls.Add(this.empId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);

@@ -26,35 +26,30 @@ namespace WordConverter.Services
             UserKanriSearchServiceOutBo outBo = new UserKanriSearchServiceOutBo();
             using (var context = new MyContext())
             {
-                String condition = this.inBo.userName.Trim();
+                IQueryable<UserBo> users = from a in context.UserMst
+                                           select new UserBo
+                                           {
+                                               USER_ID = a.USER_ID,
+                                               EMP_ID = a.EMP_ID,
+                                               USER_NAME = a.USER_NAME,
+                                               KENGEN = a.KENGEN,
+                                               MAIL_ID = a.MAIL_ID,
+                                               MAIL_ADDRESS = a.MAIL_ADDRESS,
+                                               PASSWORD = a.PASSWORD,
+                                               SANKA_KAHI = (a.SANKA_KAHI == 0 ? true : false),
+                                               VERSION = a.VERSION
+                                           };
 
                 object[] keywords = new object[3];
                 keywords[0] = this.inBo.empId;
                 keywords[1] = this.inBo.userName;
                 keywords[2] = this.inBo.kengenSelectedIndex;
-
-                IEnumerable<UserMst> dataSource = context.UserMst.ToList();
-                IQueryable<UserBo> users = from a in dataSource.AsQueryable().
-                                               UserMstWhereLike(keywords).
-                                               OrderByDescending(item => item)
-
-                                               select new UserBo
-                                               {
-                                                   USER_ID = a.USER_ID,
-                                                   EMP_ID = a.EMP_ID,
-                                                   USER_NAME = a.USER_NAME,
-                                                   KENGEN = a.KENGEN,
-                                                   MAIL_ID = a.MAIL_ID,
-                                                   MAIL_ADDRESS = a.MAIL_ADDRESS,
-                                                   PASSWORD = a.PASSWORD,
-                                                   SANKA_KAHI = (a.SANKA_KAHI == 0 ? true : false),
-                                                   VERSION = a.VERSION
-                                               };
+                IQueryable<UserBo> us = users.UserMstWhereLike(keywords).OrderByDescending(item => item);
 
                 List<UserBo> usersList = new List<UserBo>();
-                if (users.Count() > 0)
+                if (us.Count() > 0)
                 {
-                    usersList = users.ToList();
+                    usersList = us.ToList();
                 }
                 outBo.usersList = usersList;
             }
