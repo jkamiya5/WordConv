@@ -198,6 +198,9 @@
             this.tanitsuDataGridView.RowTemplate.Height = 21;
             this.tanitsuDataGridView.Size = new System.Drawing.Size(454, 239);
             this.tanitsuDataGridView.TabIndex = 18;
+            this.tanitsuDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tanitsuDataGridView_CellFormatting);
+            this.tanitsuDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tanitsuDataGridView_CellValueChanged);
+            this.tanitsuDataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.tanitsuDataGridView_CurrentCellDirtyStateChanged);
             // 
             // ronrimei1TextBox
             // 
@@ -250,7 +253,7 @@
             this.ikkatsuDataGridView.Name = "ikkatsuDataGridView";
             this.ikkatsuDataGridView.RowHeadersVisible = false;
             this.ikkatsuDataGridView.RowTemplate.Height = 21;
-            this.ikkatsuDataGridView.Size = new System.Drawing.Size(459, 239);
+            this.ikkatsuDataGridView.Size = new System.Drawing.Size(454, 239);
             this.ikkatsuDataGridView.TabIndex = 12;
             // 
             // readFile

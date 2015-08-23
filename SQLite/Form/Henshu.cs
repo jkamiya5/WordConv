@@ -241,7 +241,8 @@ namespace WordConvTool.Forms
             bool isExistCheckWord = false;
             for (int i = 0; i < dataGridView.Rows.Count; i++)
             {
-                if (dataGridView.Rows[i].Cells[0].Value == null)
+                if (dataGridView.Rows[i].Cells[0].Value == null
+                    || (bool)dataGridView.Rows[i].Cells[0].Value == false)
                 {
                     continue;
                 }
@@ -296,12 +297,55 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void delete_Click(object sender, EventArgs e)
         {
+            if (!this.deletePreCheck(this.tanitsuDataGridView)) { return; }
             TanitsuTorokuDeleteService deleteService = new TanitsuTorokuDeleteService();
             TanitsuTorokuDeleteServiceInBo deleteServiceInBo = new TanitsuTorokuDeleteServiceInBo();
             deleteServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
             deleteService.setInBo(deleteServiceInBo);
             TanitsuTorokuDeleteServiceOutBo deleteServiceOutBo = (TanitsuTorokuDeleteServiceOutBo)deleteService.execute();
             this.searchAction(ref this.tanitsuDataGridView);
+        }
+
+        /// <summary>
+        /// 削除事前チェック
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <returns></returns>
+        private bool deletePreCheck(DataGridView dataGridView)
+        {
+            bool isExistCheckWord = false;
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[0].Value == null
+                    || (bool)dataGridView.Rows[i].Cells[0].Value == false)
+                {
+                    continue;
+                }
+                isExistCheckWord = true;
+            }
+
+            if (!isExistCheckWord)
+            {
+                MessageBox.Show(
+                    "単語が選択されていません。\n",
+                    "入力エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            DialogResult result = MessageBox.Show(
+                "選択された単語を削除してもよろしいですか？",
+                "削除確認",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -348,11 +392,13 @@ namespace WordConvTool.Forms
             dataGridView.Columns["WORD_ID"].Visible = false;
             dataGridView.Columns["VERSION"].Visible = false;
             dataGridView.Columns["RONRI_NAME1"].ReadOnly = true;
+            dataGridView.Columns["RONRI_NAME2"].ReadOnly = true;
+            dataGridView.Columns["BUTSURI_NAME"].ReadOnly = true;
             dataGridView.Columns["USER_NAME"].ReadOnly = true;
             dataGridView.Columns["CRE_DATE"].ReadOnly = true;
 
             common.addCheckBox(ref dataGridView, 0);
-            common.viewWidthSetting(ref dataGridView, 20, 120);
+            common.checkBoxWidthSetting(ref dataGridView, 20, 120);
 
             dataGridView.Columns["USER_NAME"].Width = 100;
             dataGridView.Columns["CRE_DATE"].Width = 100;
@@ -480,6 +526,59 @@ namespace WordConvTool.Forms
         private void butsurimeiTextBox_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.butsurimeiTextBox, "");
+        }
+
+        private void tanitsuDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.tanitsuDataGridView != null && this.tanitsuDataGridView.Rows.Count > 0)
+            {
+                //列のインデックスを確認する
+                if (e.ColumnIndex == 0 && e.RowIndex > -1)
+                {
+                    this.columnsReadOnlyValueChange(ref this.tanitsuDataGridView, e.RowIndex);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView1"></param>
+        /// <param name="rowIndex"></param>
+        private void columnsReadOnlyValueChange(ref DataGridView dataGridView1, int rowIndex)
+        {
+            dataGridView1.Rows[rowIndex].Cells["RONRI_NAME2"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["RONRI_NAME2"].ReadOnly;
+            dataGridView1.Rows[rowIndex].Cells["BUTSURI_NAME"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["BUTSURI_NAME"].ReadOnly;
+            dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = common.switchRowBackColor(dataGridView1.Rows[rowIndex]);
+        }
+
+        private void tanitsuDataGridView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (tanitsuDataGridView.CurrentCellAddress.X == 0 && tanitsuDataGridView.IsCurrentCellDirty)
+            {
+                //コミットする
+                tanitsuDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void tanitsuDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //if (e.ColumnIndex == 3)
+            //{
+            //    if (e.RowIndex < comboValList.Count - 1)
+            //    {
+            //        string val = ((KengenKbn)comboValList[e.RowIndex]).ToString();
+            //        e.Value = val;
+            //    }
+            //}
+            //if (e.ColumnIndex == 4)
+            //{
+            //    if (e.RowIndex < sankaValList.Count - 1)
+            //    {
+            //        bool val = (bool)sankaValList[e.RowIndex];
+            //        e.Value = val;
+            //    }
+            //}
         }
     }
 }

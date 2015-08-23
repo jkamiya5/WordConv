@@ -112,7 +112,7 @@ namespace WordConvTool.Forms
             dataGridView1.Columns["VERSION"].ReadOnly = true;
 
             common.addCheckBox(ref dataGridView1, 0);
-            common.viewWidthSetting(ref dataGridView1, 20, 100);
+            common.checkBoxWidthSetting(ref dataGridView1, 20, 100);
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace WordConvTool.Forms
             }
             this.userKanriDataGridView1.DataSource = shinseiServiseOutBo.userList;
             common.addCheckBox(ref userKanriDataGridView1, 0);
-            common.viewWidthSetting(ref userKanriDataGridView1, 20, 100);
+            common.checkBoxWidthSetting(ref userKanriDataGridView1, 20, 100);
 
         }
 

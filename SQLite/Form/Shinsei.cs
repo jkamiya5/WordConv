@@ -135,7 +135,7 @@ namespace WordConvertTool
             shinseiDataGridView1.Columns["CRE_DATE"].ReadOnly = true;
 
             common.addCheckBox(ref shinseiDataGridView1, 0);
-            common.viewWidthSetting(ref shinseiDataGridView1, 20, 100);
+            common.checkBoxWidthSetting(ref shinseiDataGridView1, 20, 100);
 
         }
 
