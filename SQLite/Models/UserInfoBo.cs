@@ -7,7 +7,7 @@ namespace WordConverter.Form
 {
     public class UserInfoBo
     {
-        public int role { get; set; }
+        public int kengen { get; set; }
         public long userId { get; set; }
         public Boolean pascal { get; set; }
         public Boolean camel { get; set; }

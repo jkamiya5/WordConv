@@ -65,11 +65,11 @@ namespace WordConvertTool
             this.InitializeComponent();
             this.notifyIcon1.Visible = true;
 
-            if (BaseForm.userInfo.role == Constant.KANRI)
+            if (BaseForm.userInfo.kengen == Constant.KANRI)
             {
                 this.notifyIcon1.ContextMenuStrip = this.管理ユーザーcontextMenuStrip1;
             }
-            else if (BaseForm.userInfo.role == Constant.IPPAN)
+            else if (BaseForm.userInfo.kengen == Constant.IPPAN)
             {
                 this.notifyIcon1.ContextMenuStrip = this.一般ユーザーcontextMenuStrip2;
             }

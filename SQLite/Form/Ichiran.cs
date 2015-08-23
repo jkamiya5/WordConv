@@ -176,14 +176,14 @@ namespace WordConvertTool
                 //マウスカーソルの位置を画面座標で取得
                 Point p = Control.MousePosition;
 
-                if (BaseForm.UserInfo.role == Constant.KANRI)
+                if (BaseForm.UserInfo.kengen == Constant.KANRI)
                 {
                     //コンテキストメニューを表示する
                     this.kanriUserContextMenuStrip.Show();
                     this.kanriUserContextMenuStrip.Top = p.Y;
                     this.kanriUserContextMenuStrip.Left = p.X;
                 }
-                if (BaseForm.UserInfo.role == Constant.IPPAN)
+                if (BaseForm.UserInfo.kengen == Constant.IPPAN)
                 {
                     //コンテキストメニューを表示する
                     this.ippanUserContextMenuStrip.Show();

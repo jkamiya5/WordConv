@@ -55,7 +55,7 @@ namespace WordConvertTool
                     WordConverter.Settings1.Default.Save();
 
                     UserInfoBo userInfo = new UserInfoBo();
-                    userInfo.role = w[0].KENGEN;
+                    userInfo.kengen = w[0].KENGEN;
                     userInfo.userId = w[0].USER_ID;
                     userInfo.hotKey = WordConverter.Settings1.Default.HotKey;
                     BaseForm form = new BaseForm(userInfo);

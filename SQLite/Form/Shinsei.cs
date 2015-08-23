@@ -55,18 +55,20 @@ namespace WordConvertTool
         /// <param name="text"></param>
         public void moveShinsei(string text)
         {
-            this.shinseiDataGridView1.ReadOnly = true;
             this.ronrimei1TextBox.Text = text.Trim();
-
-            if (BaseForm.UserInfo.role == Constant.IPPAN)
+            if (BaseForm.UserInfo.kengen == Constant.IPPAN)
             {
                 this.shounin.Enabled = false;
                 this.kyakka.Enabled = false;
             }
-            if (BaseForm.UserInfo.role == Constant.KANRI)
+            if (BaseForm.UserInfo.kengen == Constant.KANRI)
             {
                 this.shinseiButton.Enabled = false;
                 this.clearButton.Enabled = false;
+                this.ronrimei1TextBox.Enabled = false;
+                this.ronrimei2TextBox.Enabled = false;
+                this.butsurimeiTextBox.Enabled = false;
+                errorProvider1.SetError(this.ronrimei1TextBox, "");
             }
         }
 
@@ -77,6 +79,27 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void shinseiButton_Click(object sender, EventArgs e)
         {
+            bool isNgRequired = false;
+            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
+            {
+                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
+            {
+                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
+            {
+                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
+                isNgRequired = true;
+            }
+            if (isNgRequired)
+            {
+                return;
+            }
+
             ShinseiShinseiServiceInBo shinseiServiseInBo = new ShinseiShinseiServiceInBo();
             ShinseiShinseiService shinseiService = new ShinseiShinseiService();
             shinseiServiseInBo.clipboardText = Clipboard.GetText();
@@ -131,6 +154,8 @@ namespace WordConvertTool
             shinseiDataGridView1.Columns["VERSION"].Visible = false;
             shinseiDataGridView1.Columns["RONRI_NAME1"].ReadOnly = true;
             shinseiDataGridView1.Columns["RONRI_NAME2"].ReadOnly = true;
+            shinseiDataGridView1.Columns["BUTSURI_NAME"].ReadOnly = true;
+            shinseiDataGridView1.Columns["STATUS"].ReadOnly = true;
             shinseiDataGridView1.Columns["USER_NAME"].ReadOnly = true;
             shinseiDataGridView1.Columns["CRE_DATE"].ReadOnly = true;
 
@@ -150,7 +175,8 @@ namespace WordConvertTool
 
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
-                if (shinseiDataGridView1.Rows[i].Cells[0].Value == null)
+                if (shinseiDataGridView1.Rows[i].Cells[0].Value == null
+                    || (bool)shinseiDataGridView1.Rows[i].Cells[0].Value == false)
                 {
                     continue;
                 }
@@ -165,7 +191,9 @@ namespace WordConvertTool
 
                     WordDic word = new WordDic();
                     word.RONRI_NAME1 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value);
+                    word.RONRI_NAME2 = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["RONRI_NAME2"].Value);
                     word.BUTSURI_NAME = Convert.ToString(this.shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value);
+                    word.USER_ID = BaseForm.UserInfo.userId;
                     word.CRE_DATE = System.DateTime.Now.ToString();
                     context.WordDic.Add(word);
 
@@ -176,7 +204,7 @@ namespace WordConvertTool
             }
             if (upCount == 0)
             {
-                MessageBox.Show("申請された単語はありません。");
+                MessageBox.Show("単語が選択されていません。");
                 return;
             }
             MessageBox.Show("選択された単語を承認しました。承認した単語が、辞書テーブルに登録されました。");
@@ -194,20 +222,24 @@ namespace WordConvertTool
 
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
-                if (shinseiDataGridView1.Rows[i].Cells[0].Value == null)
+                if (shinseiDataGridView1.Rows[i].Cells[0].Value == null
+                    || (bool)shinseiDataGridView1.Rows[i].Cells[0].Value == false)
                 {
                     continue;
                 }
-                string[] data = { shinseiDataGridView1.Rows[i].Cells["RONRI_NAME1"].Value.ToString(), shinseiDataGridView1.Rows[i].Cells["BUTSURI_NAME"].Value.ToString() };
-                if (shinseiDataGridView1.Rows[i].Cells[0].Value.Equals(true))
+                using (var context = new MyContext())
                 {
-                    string sql = "delete from WORD_SHINSEI where RONRI_NAME1 = '" + data[0] + "'";
-                    common.executeQuery(sql);
+                    long condtion = Convert.ToInt64(this.shinseiDataGridView1.Rows[i].Cells["SHINSEI_ID"].Value.ToString());
+                    var w = context.WordShinsei.Single(x => x.SHINSEI_ID == condtion);
+                    w.CRE_DATE = System.DateTime.Now.ToString();
+                    w.STATUS = 2;
+                    context.SaveChanges();
                 }
+                upCount++;
             }
             if (upCount == 0)
             {
-                MessageBox.Show("却下された単語はありません。");
+                MessageBox.Show("単語が選択されていません。");
                 return;
             }
             MessageBox.Show("選択された単語が却下されました。");
@@ -222,36 +254,36 @@ namespace WordConvertTool
         /// <param name="e"></param>
         private void shinseiDataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn clickedColumn = this.shinseiDataGridView1.Columns[e.ColumnIndex];
-            if (this.shinseiDataGridView1[0, 0].Value == null)
-            {
-                this.allCheckBoxValue = false;
-            }
+            //DataGridViewColumn clickedColumn = this.shinseiDataGridView1.Columns[e.ColumnIndex];
+            //if (this.shinseiDataGridView1[0, 0].Value == null)
+            //{
+            //    this.allCheckBoxValue = false;
+            //}
 
-            if (clickedColumn.Index == 0)
-            {
-                for (int i = 0; i < this.shinseiDataGridView1.RowCount; i++)
-                {
-                    if (i == 0)
-                    {
-                        DataGridViewCell tmp = shinseiDataGridView1.CurrentCell;
-                        shinseiDataGridView1.CurrentCell = shinseiDataGridView1.Rows[0].Cells[0];
-                        shinseiDataGridView1.EndEdit();
-                        shinseiDataGridView1[0, 0].Value = !this.allCheckBoxValue;
-                        shinseiDataGridView1.CurrentCell = tmp;
-                        continue;
-                    }
-                    if (this.shinseiDataGridView1[0, i].Value != null)
-                    {
-                        this.shinseiDataGridView1[0, i].Value = !this.allCheckBoxValue;
-                        this.allCheckBoxValue = !this.allCheckBoxValue;
-                    }
-                    else
-                    {
-                        this.shinseiDataGridView1[0, i].Value = true;
-                    }
-                }
-            }
+            //if (clickedColumn.Index == 0)
+            //{
+            //    for (int i = 0; i < this.shinseiDataGridView1.RowCount; i++)
+            //    {
+            //        if (i == 0)
+            //        {
+            //            DataGridViewCell tmp = shinseiDataGridView1.CurrentCell;
+            //            shinseiDataGridView1.CurrentCell = shinseiDataGridView1.Rows[0].Cells[0];
+            //            shinseiDataGridView1.EndEdit();
+            //            shinseiDataGridView1[0, 0].Value = !this.allCheckBoxValue;
+            //            shinseiDataGridView1.CurrentCell = tmp;
+            //            continue;
+            //        }
+            //        if (this.shinseiDataGridView1[0, i].Value != null)
+            //        {
+            //            this.shinseiDataGridView1[0, i].Value = !this.allCheckBoxValue;
+            //            this.allCheckBoxValue = !this.allCheckBoxValue;
+            //        }
+            //        else
+            //        {
+            //            this.shinseiDataGridView1[0, i].Value = true;
+            //        }
+            //    }
+            //}
         }
 
         private void Shinsei_FormClosing(object sender, FormClosingEventArgs e)
@@ -260,38 +292,13 @@ namespace WordConvertTool
             this.Hide();
         }
 
-
-        private void ronrimei1TextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
-            }
-        }
-
         private void ronrimei2TextBox_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
-                return;
-            }
-            Regex regex = new Regex(@"^[あ-を]+$");
-            if (!regex.IsMatch(this.ronrimei2TextBox.Text))
+            if (!String.IsNullOrEmpty(this.ronrimei2TextBox.Text)
+                && !Regex.IsMatch(this.ronrimei2TextBox.Text, @"^\p{IsHiragana}*$"))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(this.ronrimei2TextBox, "ひらがな以外が入力されました。");
-            }
-        }
-
-        private void butsurimeiTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
             }
         }
 

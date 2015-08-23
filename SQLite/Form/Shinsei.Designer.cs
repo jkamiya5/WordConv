@@ -51,7 +51,6 @@
             this.ronrimei1TextBox.Name = "ronrimei1TextBox";
             this.ronrimei1TextBox.Size = new System.Drawing.Size(298, 19);
             this.ronrimei1TextBox.TabIndex = 0;
-            this.ronrimei1TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei1TextBox_Validating);
             this.ronrimei1TextBox.Validated += new System.EventHandler(this.ronrimei1TextBox_Validated);
             // 
             // ronrimei2TextBox
@@ -70,7 +69,6 @@
             this.butsurimeiTextBox.Name = "butsurimeiTextBox";
             this.butsurimeiTextBox.Size = new System.Drawing.Size(298, 19);
             this.butsurimeiTextBox.TabIndex = 2;
-            this.butsurimeiTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.butsurimeiTextBox_Validating);
             this.butsurimeiTextBox.Validated += new System.EventHandler(this.butsurimeiTextBox_Validated);
             // 
             // shinseiButton
@@ -110,7 +108,7 @@
             this.shinseiDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.shinseiDataGridView1.Size = new System.Drawing.Size(341, 170);
             this.shinseiDataGridView1.TabIndex = 5;
-            this.shinseiDataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.shinseiDataGridView1_ColumnHeaderMouseClick);
+            this.shinseiDataGridView1.ReadOnly = false;
             // 
             // label1
             // 

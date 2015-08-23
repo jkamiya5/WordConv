@@ -78,7 +78,7 @@ namespace WordConverter.Services
 
                 if (upWord.Count() > 0)
                 {
-                    outBo.errorMessage = "論理名は、辞書テーブルに既に存在します。";
+                    outBo.errorMessage = "辞書テーブルに既に存在する単語です。";
                     return outBo;
                 }
             }
@@ -87,11 +87,24 @@ namespace WordConverter.Services
             {
                 string condtion = inBo.ronrimei1TextBox;
                 var upWord = context.WordShinsei
-                    .Where(x => x.RONRI_NAME1 == condtion);
+                    .Where(x => x.RONRI_NAME1 == condtion && x.STATUS == 1);
 
                 if (upWord.Count() > 0)
                 {
                     outBo.errorMessage = "既に申請中の単語です。";
+                    return outBo;
+                }
+            }
+
+            using (var context = new MyContext())
+            {
+                string condtion = inBo.ronrimei1TextBox;
+                var upWord = context.WordShinsei
+                    .Where(x => x.RONRI_NAME1 == condtion && x.STATUS == 2);
+
+                if (upWord.Count() > 0)
+                {
+                    outBo.errorMessage = "既に却下済みの単語です。";
                     return outBo;
                 }
             }

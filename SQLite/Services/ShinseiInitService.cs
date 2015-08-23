@@ -43,6 +43,7 @@ namespace WordConverter.Services
                                                      {
                                                          SHINSEI_ID = a.SHINSEI_ID,
                                                          RONRI_NAME1 = a.RONRI_NAME1,
+                                                         RONRI_NAME2 = a.RONRI_NAME2,
                                                          BUTSURI_NAME = a.BUTSURI_NAME,
                                                          USER_NAME = null != u ? u.USER_NAME : "",
                                                          CRE_DATE = a.CRE_DATE,
