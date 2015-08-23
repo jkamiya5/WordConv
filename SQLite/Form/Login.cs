@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConverter.Common;
+using WordConverter.Const;
 using WordConverter.Form;
 using WordConvTool.Model;
 
@@ -36,12 +37,12 @@ namespace WordConvertTool
             using (var context = new MyContext())
             {
                 long condtion = Convert.ToInt64(this.UserId.Text);
-                var w = context.UserMst.Where(x => x.EMP_ID == condtion).ToArray();
+                var w = context.UserMst.Where(x => x.EMP_ID == condtion && x.SANKA_KAHI == 0).ToArray();
 
                 if (w.Count() == 0)
                 {
                     MessageBox.Show(
-                        "ユーザーIDが存在しません。\n",
+                        MessageConst.ERR_007,
                         System.Windows.Forms.Application.ProductName,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
