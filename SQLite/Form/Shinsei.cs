@@ -18,6 +18,8 @@ using WordConverter.Services;
 using WordConverter.Models.OutBo;
 using WordConverter.Models.InBo;
 using System.Text.RegularExpressions;
+using WordConvTool.Const;
+using WordConverter.Const;
 
 namespace WordConvertTool
 {
@@ -82,17 +84,17 @@ namespace WordConvertTool
             bool isNgRequired = false;
             if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
             {
-                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
+                errorProvider1.SetError(this.ronrimei1TextBox, MessageConst.ERR_001);
                 isNgRequired = true;
             }
             if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
             {
-                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
+                errorProvider1.SetError(this.ronrimei2TextBox, MessageConst.ERR_001);
                 isNgRequired = true;
             }
             if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
             {
-                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
+                errorProvider1.SetError(this.butsurimeiTextBox, MessageConst.ERR_001);
                 isNgRequired = true;
             }
             if (isNgRequired)
@@ -111,7 +113,7 @@ namespace WordConvertTool
 
             if (!String.IsNullOrEmpty(shinseiServiseOutBo.errorMessage))
             {
-                MessageBox.Show(shinseiServiseOutBo.errorMessage, "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(shinseiServiseOutBo.errorMessage, MessageConst.ERR_003, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             this.Shinsei_Load(sender, e);
@@ -204,10 +206,10 @@ namespace WordConvertTool
             }
             if (upCount == 0)
             {
-                MessageBox.Show("単語が選択されていません。");
+                MessageBox.Show(MessageConst.ERR_004);
                 return;
             }
-            MessageBox.Show("選択された単語を承認しました。承認した単語が、辞書テーブルに登録されました。");
+            MessageBox.Show(MessageConst.CONF_002);
             this.Shinsei_Load(sender, e);
         }
 
@@ -239,10 +241,10 @@ namespace WordConvertTool
             }
             if (upCount == 0)
             {
-                MessageBox.Show("単語が選択されていません。");
+                MessageBox.Show(MessageConst.ERR_004);
                 return;
             }
-            MessageBox.Show("選択された単語が却下されました。");
+            MessageBox.Show(MessageConst.CONF_003);
             this.Shinsei_Load(sender, e);
         }
 

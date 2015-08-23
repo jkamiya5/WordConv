@@ -9,6 +9,7 @@ using WordConvTool.Model;
 using WordConverter.Common;
 using WordConverter.Models.InBo;
 using WordConverter.Models.OutBo;
+using WordConvTool.Const;
 
 namespace WordConverter.Services
 {

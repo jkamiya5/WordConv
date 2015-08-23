@@ -14,6 +14,8 @@ using WordConverter.Services;
 using WordConverter.Common;
 using WordConverter.Models.InBo;
 using WordConverter.Models.OutBo;
+using WordConvTool.Const;
+using WordConverter.Const;
 
 namespace WordConvTool.Forms
 {
@@ -22,12 +24,12 @@ namespace WordConvTool.Forms
         private static CommonFunction common = new CommonFunction();
         List<int> comboValList = new List<int>();
         List<bool> sankaValList = new List<bool>();
-        
+
         /// <summary>
         /// 
         /// </summary>
         private static readonly UserKanri _instance = new UserKanri();
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -64,6 +66,10 @@ namespace WordConvTool.Forms
         /// <param name="dataGridView1"></param>
         private void searchAction(ref DataGridView dataGridView1)
         {
+            errorProvider1.SetError(this.empId, "");
+            errorProvider1.SetError(this.userName, "");
+            errorProvider1.SetError(this.kengen, "");
+
             UserKanriSearchServiceInBo userSearchServiceInBo = new UserKanriSearchServiceInBo();
             UserKanriSearchService userSearchService = new UserKanriSearchService();
             userSearchServiceInBo.empId = this.empId.Text;
@@ -98,6 +104,7 @@ namespace WordConvTool.Forms
             dataGridView1.Columns["MAIL_ADDRESS"].HeaderText = "メールアドレス";
             dataGridView1.Columns["PASSWORD"].HeaderText = "パスワード";
             dataGridView1.Columns["SANKA_KAHI"].HeaderText = "参加可否";
+            dataGridView1.Columns["CRE_DATE"].HeaderText = "更新日付";
             dataGridView1.Columns["USER_ID"].Visible = false;
             dataGridView1.Columns["DELETE_FLG"].Visible = false;
             dataGridView1.Columns["VERSION"].Visible = false;
@@ -110,6 +117,7 @@ namespace WordConvTool.Forms
             dataGridView1.Columns["SANKA_KAHI"].ReadOnly = true;
             dataGridView1.Columns["DELETE_FLG"].ReadOnly = true;
             dataGridView1.Columns["VERSION"].ReadOnly = true;
+            dataGridView1.Columns["CRE_DATE"].ReadOnly = true;
 
             common.addCheckBox(ref dataGridView1, 0);
             common.checkBoxWidthSetting(ref dataGridView1, 20, 100);
@@ -151,7 +159,6 @@ namespace WordConvTool.Forms
                 dataGridView1.Columns.Remove("Kengen");
                 dataGridView1.Columns.Insert(index, column);
                 dataGridView1.Columns[index].Name = "Kengen";
-
             }
         }
 
@@ -162,15 +169,34 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void add_Click(object sender, EventArgs e)
         {
+            bool isNgRequired = false;
+            if (String.IsNullOrEmpty(this.empId.Text))
+            {
+                errorProvider1.SetError(this.empId, MessageConst.ERR_001);
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(this.userName.Text))
+            {
+                errorProvider1.SetError(this.userName, MessageConst.ERR_001);
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(this.kengen.Text) || this.kengen.Text.ToIntType() == 2)
+            {
+                errorProvider1.SetError(this.kengen, MessageConst.ERR_001);
+                isNgRequired = true;
+            }
+            if (isNgRequired)
+            {
+                return;
+            }
+
             UserKanriAddServiceInBo userAddServiceInBo = new UserKanriAddServiceInBo();
             userAddServiceInBo.empId = this.empId.Text.ToString();
             userAddServiceInBo.userName = this.userName.Text.ToString();
             userAddServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
-
             userAddServiceInBo.userKanriDataGridView1 = this.userKanriDataGridView1;
             UserKanriAddService userAddService = new UserKanriAddService();
             userAddService.setInBo(userAddServiceInBo);
-
             UserKanriAddServiceOutBo shinseiServiseOutBo = userAddService.execute();
 
             if (!String.IsNullOrEmpty(shinseiServiseOutBo.errorMessage))
@@ -224,9 +250,10 @@ namespace WordConvTool.Forms
                     if (upUser.Count() == 1)
                     {
                         var u = context.UserMst.Single(x => x.USER_ID == condtion);
+                        u.EMP_ID = this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
                         u.USER_NAME = Convert.ToString(this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value);
                         u.KENGEN = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
-                        u.SANKA_KAHI = this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value.ToString().ToIntType();
+                        u.SANKA_KAHI = (bool)this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value ? 0 : 1;
                         u.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
                         u.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
                         u.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
@@ -237,7 +264,7 @@ namespace WordConvTool.Forms
                     user.EMP_ID = this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
                     user.USER_NAME = this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
                     user.KENGEN = Convert.ToInt32(this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value);
-                    user.SANKA_KAHI = this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value.ToString().ToIntType();
+                    user.SANKA_KAHI = (bool)this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value ? 0 : 1;
                     user.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
                     user.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
                     user.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
@@ -355,6 +382,21 @@ namespace WordConvTool.Forms
         {
             e.Cancel = true;
             this.Hide();
+        }
+
+        private void empId_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.empId, "");
+        }
+
+        private void userName_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.userName, "");
+        }
+
+        private void kengen_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.kengen, "");
         }
     }
 }

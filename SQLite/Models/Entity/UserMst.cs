@@ -23,6 +23,7 @@ namespace WordConvTool.Model
         public int SANKA_KAHI { get; set; }
         public int DELETE_FLG { get; set; }
         public int VERSION { get; set; }
+        public string CRE_DATE { get; set; }
         public virtual ICollection<WordDic> Words { get; set; }
         public virtual ICollection<WordShinsei> Shinseis { get; set; }
     }

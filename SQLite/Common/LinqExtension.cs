@@ -32,7 +32,8 @@ namespace WordConverter.Common
 
             if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
                 !String.IsNullOrEmpty(keyword[1].ToString()) &&
-                keyword[2].ToString().ToIntType() != -1)
+                keyword[2].ToString().ToIntType() != -1 && 
+                keyword[2].ToString().ToIntType() != 2)
             {
                 predict = x => x.EMP_ID == empId && x.USER_NAME.Contains(userName) && x.KENGEN == kengen;
                 return source.Where(predict);
@@ -40,7 +41,8 @@ namespace WordConverter.Common
 
             if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
                 !String.IsNullOrEmpty(keyword[1].ToString()) &&
-                keyword[2].ToString().ToIntType() == -1)
+                (keyword[2].ToString().ToIntType() == -1 ||
+                keyword[2].ToString().ToIntType() == 2))
             {
                 predict = x => x.EMP_ID == empId && x.USER_NAME.Contains(userName);
                 return source.Where(predict);
@@ -48,7 +50,8 @@ namespace WordConverter.Common
 
             if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
                 String.IsNullOrEmpty(keyword[1].ToString()) &&
-                keyword[2].ToString().ToIntType() != -1)
+                keyword[2].ToString().ToIntType() != -1 &&
+                keyword[2].ToString().ToIntType() != 2)
             {
                 predict = x => x.EMP_ID == empId && x.KENGEN == kengen;
                 return source.Where(predict);
@@ -56,7 +59,8 @@ namespace WordConverter.Common
 
             if (String.IsNullOrEmpty(keyword[0].ToString()) &&
                 !String.IsNullOrEmpty(keyword[1].ToString()) &&
-                keyword[2].ToString().ToIntType() != -1)
+                keyword[2].ToString().ToIntType() != -1 &&
+                keyword[2].ToString().ToIntType() != 2)
             {
                 predict = x => x.USER_NAME.Contains(userName) && x.KENGEN == kengen;
                 return source.Where(predict);
@@ -74,7 +78,7 @@ namespace WordConverter.Common
                 return source.Where(predict);
             }
 
-            if (keyword[2].ToString().ToIntType() != -1)
+            if (keyword[2].ToString().ToIntType() != -1 && keyword[2].ToString().ToIntType() != 2)
             {
                 predict = x => x.KENGEN == kengen;
                 return source.Where(predict);

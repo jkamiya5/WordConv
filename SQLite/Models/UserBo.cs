@@ -16,6 +16,7 @@ namespace WordConverter.Form
         public string MAIL_ID { get; set; }
         public string MAIL_ADDRESS { get; set; }
         public string PASSWORD { get; set; }
+        public string CRE_DATE { get; set; }
         public int DELETE_FLG { get; set; }
         public int VERSION { get; set; }
     }

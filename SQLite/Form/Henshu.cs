@@ -19,6 +19,8 @@ using WordConverter.Models.InBo;
 using WordConverter.Services;
 using WordConverter.Models.OutBo;
 using System.Text.RegularExpressions;
+using WordConverter.Const;
+using WordConvTool.Const;
 
 namespace WordConvTool.Forms
 {
@@ -166,17 +168,17 @@ namespace WordConvTool.Forms
             bool isNgRequired = false;
             if (String.IsNullOrEmpty(this.ronrimei1TextBox.Text))
             {
-                errorProvider1.SetError(this.ronrimei1TextBox, "必須項目です。");
+                errorProvider1.SetError(this.ronrimei1TextBox, MessageConst.ERR_001);
                 isNgRequired = true;
             }
             if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
             {
-                errorProvider1.SetError(this.ronrimei2TextBox, "必須項目です。");
+                errorProvider1.SetError(this.ronrimei2TextBox, MessageConst.ERR_001);
                 isNgRequired = true;
             }
             if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
             {
-                errorProvider1.SetError(this.butsurimeiTextBox, "必須項目です。");
+                errorProvider1.SetError(this.butsurimeiTextBox, MessageConst.ERR_001);
                 isNgRequired = true;
             }
             if (isNgRequired)
@@ -193,8 +195,8 @@ namespace WordConvTool.Forms
                 if (products.Count() > 0)
                 {
                     MessageBox.Show(
-                        "既に登録されています\n",
-                        "入力エラー",
+                        MessageConst.ERR_002,
+                        MessageConst.ERR_003,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -228,10 +230,10 @@ namespace WordConvTool.Forms
             tanitsuRegistService.setInBo(tanitsuRegistServiceInBo);
             TanitsuTorokuRegistServiceOutBo tanitsuRegistServiceOutBo = tanitsuRegistService.execute();
             this.searchAction(ref this.tanitsuDataGridView);
-            MessageBox.Show("辞書テーブルに登録・更新しました。");
+            MessageBox.Show(MessageConst.CONF_001);
         }
 
-        /// <summary>
+
         /// 登録事前チェック
         /// </summary>
         /// <param name="dataGridView"></param>

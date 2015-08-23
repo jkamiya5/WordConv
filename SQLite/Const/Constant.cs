@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WordConvTool.Model
+namespace WordConvTool.Const
 {
     public static class Constant
     {

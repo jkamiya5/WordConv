@@ -23,14 +23,6 @@ namespace WordConverter.Services
         public UserKanriAddServiceOutBo execute()
         {
             UserKanriAddServiceOutBo outBo = new UserKanriAddServiceOutBo();
-            if (String.IsNullOrEmpty(this.inBo.userName)
-                || String.IsNullOrEmpty(this.inBo.empId)
-                || this.inBo.kengenSelectedIndex.ToString().ToIntType() == -1)
-            {
-                outBo.errorMessage = "ユーザーID、ユーザー名、権限は必須項目です。\n";
-                return outBo;
-            }
-
             using (var context = new MyContext())
             {
                 int condition = this.inBo.empId.ToIntType();
@@ -64,6 +56,10 @@ namespace WordConverter.Services
                 user.EMP_ID = this.inBo.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
                 user.USER_NAME = this.inBo.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
                 user.KENGEN = this.inBo.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
+                user.SANKA_KAHI = (bool)this.inBo.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value;
+                user.MAIL_ID = this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
+                user.MAIL_ADDRESS = this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
+                user.PASSWORD = this.inBo.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
                 userList.Add(user);
             }
 

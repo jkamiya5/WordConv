@@ -19,6 +19,7 @@ using SQLite.Form;
 using WordConverter.Models.InBo;
 using WordConverter.Services;
 using WordConverter.Models.OutBo;
+using WordConvTool.Const;
 
 namespace WordConvertTool
 {

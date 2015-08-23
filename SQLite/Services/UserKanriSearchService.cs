@@ -36,6 +36,7 @@ namespace WordConverter.Services
                                                MAIL_ID = a.MAIL_ID,
                                                MAIL_ADDRESS = a.MAIL_ADDRESS,
                                                PASSWORD = a.PASSWORD,
+                                               CRE_DATE = a.CRE_DATE,
                                                SANKA_KAHI = (a.SANKA_KAHI == 0 ? true : false),
                                                VERSION = a.VERSION
                                            };

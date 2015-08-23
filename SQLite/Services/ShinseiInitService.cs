@@ -4,6 +4,7 @@ using System.Linq;
 using WordConverter.Models.InBo;
 using WordConverter.Models.OutBo;
 using WordConvertTool;
+using WordConvTool.Const;
 using WordConvTool.Model;
 
 namespace WordConverter.Services

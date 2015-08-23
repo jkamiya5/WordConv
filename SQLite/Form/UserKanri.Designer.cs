@@ -33,6 +33,7 @@ namespace WordConvTool.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.userKanriDataGridView1 = new System.Windows.Forms.DataGridView();
             this.regist = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
@@ -44,7 +45,9 @@ namespace WordConvTool.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.empId = new WordConverter.Common.NumericTextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // userKanriDataGridView1
@@ -88,6 +91,7 @@ namespace WordConvTool.Forms
             this.userName.Name = "userName";
             this.userName.Size = new System.Drawing.Size(339, 19);
             this.userName.TabIndex = 2;
+            this.userName.Validated += new System.EventHandler(this.userName_Validated);
             // 
             // search
             // 
@@ -115,11 +119,13 @@ namespace WordConvTool.Forms
             this.kengen.FormattingEnabled = true;
             this.kengen.Items.AddRange(new object[] {
             "管理",
-            "一般"});
+            "一般",
+            ""});
             this.kengen.Location = new System.Drawing.Point(89, 79);
             this.kengen.Name = "kengen";
             this.kengen.Size = new System.Drawing.Size(339, 20);
             this.kengen.TabIndex = 3;
+            this.kengen.Validated += new System.EventHandler(this.kengen_Validated);
             // 
             // label1
             // 
@@ -155,6 +161,11 @@ namespace WordConvTool.Forms
             this.empId.Name = "empId";
             this.empId.Size = new System.Drawing.Size(339, 19);
             this.empId.TabIndex = 1;
+            this.empId.Validated += new System.EventHandler(this.empId_Validated);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // UserKanri
             // 
@@ -176,6 +187,7 @@ namespace WordConvTool.Forms
             this.Text = "ユーザー管理";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserKanri_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +206,6 @@ namespace WordConvTool.Forms
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private NumericTextBox empId;
+        private ErrorProvider errorProvider1;
     }
 }
