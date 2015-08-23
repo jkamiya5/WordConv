@@ -53,6 +53,7 @@ namespace WordConverter.Services
             for (int i = 0; i < this.inBo.userKanriDataGridView1.Rows.Count; i++)
             {
                 user = new UserBo();
+                user.USER_ID = this.inBo.userKanriDataGridView1.Rows[i].Cells["USER_ID"].Value.ToString().ToIntType();
                 user.EMP_ID = this.inBo.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
                 user.USER_NAME = this.inBo.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
                 user.KENGEN = this.inBo.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
@@ -60,6 +61,7 @@ namespace WordConverter.Services
                 user.MAIL_ID = this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
                 user.MAIL_ADDRESS = this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
                 user.PASSWORD = this.inBo.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
+                user.CRE_DATE = this.inBo.userKanriDataGridView1.Rows[i].Cells["CRE_DATE"].Value.ToString();
                 userList.Add(user);
             }
 

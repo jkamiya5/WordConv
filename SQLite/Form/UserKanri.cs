@@ -222,9 +222,11 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void regist_Click(object sender, EventArgs e)
         {
+            bool isExistCheck = false;
             for (int i = 0; i < userKanriDataGridView1.Rows.Count; i++)
             {
-                if (userKanriDataGridView1.Rows[i].Cells[0].Value == null)
+                if (userKanriDataGridView1.Rows[i].Cells[0].Value == null
+                    || (bool)userKanriDataGridView1.Rows[i].Cells[0].Value == false)
                 {
                     continue;
                 }
@@ -235,12 +237,33 @@ namespace WordConvTool.Forms
                 {
                     MessageBox.Show(
                         "社員ID:" + this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString()
-                        + " の「メールID、メールアドレス、パスワード」は必須項目です。",
+                        + MessageConst.ERR_006,
                         "入力エラー",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
                     return;
+                }
+                isExistCheck = true;
+            }
+
+            if (!isExistCheck)
+            {
+                MessageBox.Show(
+                    MessageConst.ERR_005,
+                    "入力エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            for (int i = 0; i < userKanriDataGridView1.Rows.Count; i++)
+            {
+                if (userKanriDataGridView1.Rows[i].Cells[0].Value == null
+                    || (bool)userKanriDataGridView1.Rows[i].Cells[0].Value == false)
+                {
+                    continue;
                 }
 
                 using (var context = new MyContext())
@@ -257,22 +280,24 @@ namespace WordConvTool.Forms
                         u.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
                         u.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
                         u.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
+                        u.CRE_DATE = System.DateTime.Now.ToString();
                         context.SaveChanges();
                         continue;
                     }
                     UserMst user = new UserMst();
                     user.EMP_ID = this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
                     user.USER_NAME = this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
-                    user.KENGEN = Convert.ToInt32(this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value);
+                    user.KENGEN = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
                     user.SANKA_KAHI = (bool)this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value ? 0 : 1;
                     user.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
                     user.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
                     user.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
+                    user.CRE_DATE = System.DateTime.Now.ToString();
                     context.UserMst.Add(user);
                     context.SaveChanges();
                 }
             }
-            MessageBox.Show("ユーザーマスタに登録されました。");
+            MessageBox.Show(MessageConst.CONF_004);
             this.searchAction(ref userKanriDataGridView1);
         }
 
@@ -283,7 +308,6 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void delete_Click(object sender, EventArgs e)
         {
-
             for (int i = 0; i < this.userKanriDataGridView1.Rows.Count; i++)
             {
                 if (this.userKanriDataGridView1.Rows[i].Cells[0].Value == null)
@@ -302,7 +326,7 @@ namespace WordConvTool.Forms
                     }
                 }
             }
-            MessageBox.Show("ユーザーマスタから削除されました。");
+            MessageBox.Show(MessageConst.CONF_005);
             this.searchAction(ref userKanriDataGridView1);
         }
 

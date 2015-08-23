@@ -94,7 +94,7 @@ namespace WordConvertTool
                 sql += "  , VERSION INTEGER";
                 sql += "  , CRE_DATE TEXT";
                 sql += "); ";
-                sql += "insert into USER_MST(USER_ID,EMP_ID,USER_NAME,KENGEN,MAIL_ID,PASSWORD,MAIL_ADDRESS,SANKA_KAHI,DELETE_FLG,VERSION) values (1,999, 'Admin',0,null,null,null,0,0,0);";
+                sql += "insert into USER_MST(USER_ID,EMP_ID,USER_NAME,KENGEN,MAIL_ID,PASSWORD,MAIL_ADDRESS,SANKA_KAHI,DELETE_FLG,VERSION) values (1,999, 'Admin',0,'999','admin@co.jp','admin@co.jp',0,0,0);";
 
                 var cmd = new System.Data.SQLite.SQLiteCommand(sql, cn);
                 cmd.ExecuteNonQuery();
