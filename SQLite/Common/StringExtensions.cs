@@ -40,14 +40,14 @@ namespace WordConverter.Common
             return self.ToString();
         }
 
-        public static int NullAble(this int self)
-        {
-            if (null == self)
-            {
-                return 0;
-            }
-            return self;
-        }
+        //public static int NullAble(this int self)
+        //{
+        //    if (null == self)
+        //    {
+        //        return 0;
+        //    }
+        //    return self;
+        //}
 
         /// <summary>
         /// 

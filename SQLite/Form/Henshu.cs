@@ -211,7 +211,6 @@ namespace WordConvTool.Forms
             {
                 return;
             }
-
             TanitsuTorokuAddServiceInBo addServiseInBo = new TanitsuTorokuAddServiceInBo();
             TanitsuTorokuAddService addService = new TanitsuTorokuAddService();
             addServiseInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
@@ -382,12 +381,7 @@ namespace WordConvTool.Forms
         {
             if (e.TabPageIndex == Constant.TANITSU_TOROKU)
             {
-                TanitsuTorokuInitService tanitsuService = new TanitsuTorokuInitService();
-                TanitsuTorokuInitServiceInBo inBo = new TanitsuTorokuInitServiceInBo();
-                inBo.clipboardText = this.henshuInBo.clipBoardText;
-                tanitsuService.setInBo(inBo);
-                TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
-                this.henshuViewDispSetthing(ref this.tanitsuDataGridView, outBo.henshuWordBoList);
+                this.searchAction(ref this.tanitsuDataGridView, this);
 
             }
             else if (e.TabPageIndex == Constant.IKKATSU_TOROKU)
@@ -398,6 +392,7 @@ namespace WordConvTool.Forms
                 ikkatsuService.setInBo(inBo);
                 IkkatsuTorokuInitServiceOutBo outBo = ikkatsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
+                this.searchAction(ref this.ikkatsuDataGridView, this);
             }
         }
 
@@ -409,6 +404,9 @@ namespace WordConvTool.Forms
         private void henshuViewDispSetthing(ref DataGridView dataGridView, List<HenshuWordBo> wordList)
         {
             dataGridView.DataSource = wordList;
+            common.addCheckBox(ref dataGridView, 0);
+            common.checkBoxWidthSetting(ref dataGridView, 20, 120);
+
             dataGridView.Columns["RONRI_NAME1"].HeaderText = "論理名1";
             dataGridView.Columns["RONRI_NAME2"].HeaderText = "論理名2";
             dataGridView.Columns["BUTSURI_NAME"].HeaderText = "物理名";
@@ -421,12 +419,14 @@ namespace WordConvTool.Forms
             dataGridView.Columns["BUTSURI_NAME"].ReadOnly = true;
             dataGridView.Columns["USER_NAME"].ReadOnly = true;
             dataGridView.Columns["CRE_DATE"].ReadOnly = true;
-
-            common.addCheckBox(ref dataGridView, 0);
-            common.checkBoxWidthSetting(ref dataGridView, 20, 120);
-
             dataGridView.Columns["USER_NAME"].Width = 100;
-            dataGridView.Columns["CRE_DATE"].Width = 100;
+            dataGridView.Columns["CRE_DATE"].Width = 130;
+
+            dataGridView.Columns["RONRI_NAME1"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["RONRI_NAME2"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["BUTSURI_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["USER_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["CRE_DATE"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         /// <summary>
@@ -475,14 +475,7 @@ namespace WordConvTool.Forms
         {
             if (tabControl1.SelectedIndex == Constant.TANITSU_TOROKU)
             {
-                TanitsuTorokuInitService tanitsuService = new TanitsuTorokuInitService();
-                TanitsuTorokuInitServiceInBo inBo = new TanitsuTorokuInitServiceInBo();
-                inBo.clipboardText = this.henshuInBo.clipBoardText;
-                tanitsuService.setInBo(inBo);
-
-                TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
-                this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
-                this.ronrimei1TextBox.Text = inBo.clipboardText;
+                this.searchAction(ref this.tanitsuDataGridView, this);
             }
             else if (tabControl1.SelectedIndex == Constant.IKKATSU_TOROKU)
             {
@@ -490,7 +483,6 @@ namespace WordConvTool.Forms
                 IkkatsuTorokuInitServiceInBo inBo = new IkkatsuTorokuInitServiceInBo();
                 inBo.clipboardText = this.henshuInBo.clipBoardText;
                 ikkatsuService.setInBo(inBo);
-
                 IkkatsuTorokuInitServiceOutBo outBo = ikkatsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
             }
@@ -560,24 +552,42 @@ namespace WordConvTool.Forms
             }
         }
 
-        private void tanitsuDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //if (e.ColumnIndex == 3)
-            //{
-            //    if (e.RowIndex < comboValList.Count - 1)
-            //    {
-            //        string val = ((KengenKbn)comboValList[e.RowIndex]).ToString();
-            //        e.Value = val;
-            //    }
-            //}
-            //if (e.ColumnIndex == 4)
-            //{
-            //    if (e.RowIndex < sankaValList.Count - 1)
-            //    {
-            //        bool val = (bool)sankaValList[e.RowIndex];
-            //        e.Value = val;
-            //    }
-            //}
+            //対象のTabControlを取得
+            TabControl tab = (TabControl)sender;
+            //タブページのテキストを取得
+            string txt = tab.TabPages[e.Index].Text;
+
+            //タブのテキストと背景を描画するためのブラシを決定する
+            Brush foreBrush, backBrush;
+            SolidBrush b = new SolidBrush(Color.FromArgb(215, 228, 242));
+
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                //選択されているタブのテキストを赤、背景を青とする
+                foreBrush = Brushes.Black;
+                backBrush = b;
+            }
+            else
+            {
+                //選択されていないタブのテキストは灰色、背景を白とする
+                foreBrush = Brushes.Black;
+                backBrush = Brushes.AliceBlue;
+            }
+
+            //StringFormatを作成
+            StringFormat sf = new StringFormat();
+            //中央に表示する
+            sf.Alignment = StringAlignment.Center;
+            sf.LineAlignment = StringAlignment.Center;
+
+            //背景の描画
+            e.Graphics.FillRectangle(backBrush, e.Bounds);
+            //Textの描画
+            e.Graphics.DrawString(txt, e.Font, foreBrush, e.Bounds, sf);
+
+            b.Dispose();
         }
     }
 }

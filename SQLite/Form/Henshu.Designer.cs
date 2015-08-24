@@ -1,4 +1,5 @@
-﻿namespace WordConvTool.Forms
+﻿using System.Windows.Forms;
+namespace WordConvTool.Forms
 {
     partial class Henshu
     {
@@ -29,6 +30,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,6 +57,7 @@
             this.openFile = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
@@ -64,13 +71,16 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.HotTrack = true;
             this.tabControl1.ItemSize = new System.Drawing.Size(96, 25);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(689, 483);
+            this.tabControl1.Size = new System.Drawing.Size(745, 483);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
@@ -92,12 +102,13 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(681, 450);
+            this.tabPage1.Size = new System.Drawing.Size(737, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "単一登録";
             // 
             // label3
             // 
+            this.label3.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(20, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 15);
@@ -106,6 +117,7 @@
             // 
             // label2
             // 
+            this.label2.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(20, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 15);
@@ -114,6 +126,7 @@
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(20, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 15);
@@ -123,9 +136,10 @@
             // delete
             // 
             this.delete.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.delete.Location = new System.Drawing.Point(356, 399);
+            this.delete.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.delete.Location = new System.Drawing.Point(277, 399);
             this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(174, 30);
+            this.delete.Size = new System.Drawing.Size(142, 27);
             this.delete.TabIndex = 20;
             this.delete.Text = "削除";
             this.delete.UseVisualStyleBackColor = false;
@@ -134,9 +148,10 @@
             // addBtn
             // 
             this.addBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.addBtn.Location = new System.Drawing.Point(324, 99);
+            this.addBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.addBtn.Location = new System.Drawing.Point(318, 99);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(87, 23);
+            this.addBtn.Size = new System.Drawing.Size(96, 23);
             this.addBtn.TabIndex = 17;
             this.addBtn.Text = "追加";
             this.addBtn.UseVisualStyleBackColor = false;
@@ -145,9 +160,10 @@
             // registBtn
             // 
             this.registBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.registBtn.Location = new System.Drawing.Point(135, 399);
+            this.registBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.registBtn.Location = new System.Drawing.Point(102, 399);
             this.registBtn.Name = "registBtn";
-            this.registBtn.Size = new System.Drawing.Size(174, 30);
+            this.registBtn.Size = new System.Drawing.Size(142, 27);
             this.registBtn.TabIndex = 19;
             this.registBtn.Text = "登録";
             this.registBtn.UseVisualStyleBackColor = false;
@@ -156,9 +172,10 @@
             // searchBtn
             // 
             this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.searchBtn.Location = new System.Drawing.Point(100, 99);
+            this.searchBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.searchBtn.Location = new System.Drawing.Point(94, 99);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(87, 23);
+            this.searchBtn.Size = new System.Drawing.Size(96, 23);
             this.searchBtn.TabIndex = 15;
             this.searchBtn.Text = "検索";
             this.searchBtn.UseVisualStyleBackColor = false;
@@ -167,9 +184,10 @@
             // clearBtn
             // 
             this.clearBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.clearBtn.Location = new System.Drawing.Point(212, 99);
+            this.clearBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.clearBtn.Location = new System.Drawing.Point(206, 99);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(87, 23);
+            this.clearBtn.Size = new System.Drawing.Size(96, 23);
             this.clearBtn.TabIndex = 16;
             this.clearBtn.Text = "クリア";
             this.clearBtn.UseVisualStyleBackColor = false;
@@ -179,7 +197,7 @@
             // 
             this.butsurimeiTextBox.Location = new System.Drawing.Point(72, 68);
             this.butsurimeiTextBox.Name = "butsurimeiTextBox";
-            this.butsurimeiTextBox.Size = new System.Drawing.Size(365, 19);
+            this.butsurimeiTextBox.Size = new System.Drawing.Size(373, 19);
             this.butsurimeiTextBox.TabIndex = 14;
             this.butsurimeiTextBox.Validated += new System.EventHandler(this.butsurimeiTextBox_Validated);
             // 
@@ -187,7 +205,7 @@
             // 
             this.ronrimei2TextBox.Location = new System.Drawing.Point(72, 42);
             this.ronrimei2TextBox.Name = "ronrimei2TextBox";
-            this.ronrimei2TextBox.Size = new System.Drawing.Size(365, 19);
+            this.ronrimei2TextBox.Size = new System.Drawing.Size(373, 19);
             this.ronrimei2TextBox.TabIndex = 13;
             this.ronrimei2TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei2TextBox_Validating);
             this.ronrimei2TextBox.Validated += new System.EventHandler(this.ronrimei2TextBox_Validated);
@@ -197,12 +215,28 @@
             this.tanitsuDataGridView.AllowUserToResizeColumns = false;
             this.tanitsuDataGridView.AllowUserToResizeRows = false;
             this.tanitsuDataGridView.BackgroundColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tanitsuDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.tanitsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tanitsuDataGridView.Location = new System.Drawing.Point(24, 139);
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tanitsuDataGridView.DefaultCellStyle = dataGridViewCellStyle22;
+            this.tanitsuDataGridView.Location = new System.Drawing.Point(26, 139);
             this.tanitsuDataGridView.Name = "tanitsuDataGridView";
             this.tanitsuDataGridView.RowHeadersVisible = false;
             this.tanitsuDataGridView.RowTemplate.Height = 21;
-            this.tanitsuDataGridView.Size = new System.Drawing.Size(611, 239);
+            this.tanitsuDataGridView.Size = new System.Drawing.Size(670, 240);
             this.tanitsuDataGridView.TabIndex = 18;
             this.tanitsuDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tanitsuDataGridView_CellFormatting);
             this.tanitsuDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tanitsuDataGridView_CellValueChanged);
@@ -212,7 +246,7 @@
             // 
             this.ronrimei1TextBox.Location = new System.Drawing.Point(72, 14);
             this.ronrimei1TextBox.Name = "ronrimei1TextBox";
-            this.ronrimei1TextBox.Size = new System.Drawing.Size(365, 19);
+            this.ronrimei1TextBox.Size = new System.Drawing.Size(373, 19);
             this.ronrimei1TextBox.TabIndex = 12;
             this.ronrimei1TextBox.Validated += new System.EventHandler(this.ronrimei1TextBox_Validated);
             // 
@@ -228,13 +262,14 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(681, 450);
+            this.tabPage2.Size = new System.Drawing.Size(737, 450);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "一括登録";
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(36, 29);
+            this.label4.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Location = new System.Drawing.Point(32, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 15);
             this.label4.TabIndex = 22;
@@ -243,6 +278,7 @@
             // ikkatsuRegistBtn
             // 
             this.ikkatsuRegistBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ikkatsuRegistBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ikkatsuRegistBtn.Location = new System.Drawing.Point(410, 399);
             this.ikkatsuRegistBtn.Name = "ikkatsuRegistBtn";
             this.ikkatsuRegistBtn.Size = new System.Drawing.Size(174, 30);
@@ -256,17 +292,42 @@
             this.ikkatsuDataGridView.AllowUserToResizeColumns = false;
             this.ikkatsuDataGridView.AllowUserToResizeRows = false;
             this.ikkatsuDataGridView.BackgroundColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ikkatsuDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.ikkatsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ikkatsuDataGridView.DefaultCellStyle = dataGridViewCellStyle24;
             this.ikkatsuDataGridView.Location = new System.Drawing.Point(24, 139);
             this.ikkatsuDataGridView.Name = "ikkatsuDataGridView";
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ikkatsuDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.ikkatsuDataGridView.RowHeadersVisible = false;
             this.ikkatsuDataGridView.RowTemplate.Height = 21;
-            this.ikkatsuDataGridView.Size = new System.Drawing.Size(611, 239);
+            this.ikkatsuDataGridView.Size = new System.Drawing.Size(670, 240);
             this.ikkatsuDataGridView.TabIndex = 12;
             // 
             // readFile
             // 
             this.readFile.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.readFile.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.readFile.Location = new System.Drawing.Point(50, 78);
             this.readFile.Name = "readFile";
             this.readFile.Size = new System.Drawing.Size(101, 27);
@@ -278,6 +339,7 @@
             // openFile
             // 
             this.openFile.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.openFile.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.openFile.Location = new System.Drawing.Point(440, 44);
             this.openFile.Name = "openFile";
             this.openFile.Size = new System.Drawing.Size(107, 25);
@@ -303,7 +365,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(689, 485);
+            this.ClientSize = new System.Drawing.Size(745, 485);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Henshu";
@@ -347,5 +409,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private TabStyle Chrome;
     }
 }
