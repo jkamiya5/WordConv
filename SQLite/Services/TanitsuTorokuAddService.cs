@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using WordConverter.Common;
 using WordConverter.Const;
+using WordConverter.Models.InBo;
+using WordConverter.Models.OutBo;
 using WordConverter.Services;
 using WordConvertTool;
 
-namespace WordConverter.Form
+namespace WordConverter.Services
 {
     public class TanitsuTorokuAddService : IService<TanitsuTorokuAddServiceInBo, TanitsuTorokuAddServiceOutBo>
     {

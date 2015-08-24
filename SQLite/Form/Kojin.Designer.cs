@@ -192,6 +192,7 @@
             this.Controls.Add(this.hotKey);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Kojin";
             this.Text = "個人設定";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Kojin_FormClosing);

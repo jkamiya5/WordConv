@@ -70,13 +70,11 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void readFile_Click(object sender, EventArgs e)
         {
-
             IkkatsuTorokuReadFileService readFileService = new IkkatsuTorokuReadFileService();
             IkkatsuTorokuReadFileServiceInBo readFileServiceInBo = new IkkatsuTorokuReadFileServiceInBo();
             readFileServiceInBo.Filename = this.filePath.Text;
             readFileService.setInBo(readFileServiceInBo);
             IkkatsuTorokuReadFileServiceOutBo registServiceOutBo = readFileService.execute();
-
         }
 
         private void ProgressDialog_DoWork(object sender, DoWorkEventArgs e)
@@ -230,6 +228,7 @@ namespace WordConvTool.Forms
         private void registBtn_Click(object sender, EventArgs e)
         {
             if (!this.registrationPreCheck(this.tanitsuDataGridView)) { return; }
+
             TanitsuTorokuRegistService tanitsuRegistService = new TanitsuTorokuRegistService();
             TanitsuTorokuRegistServiceInBo tanitsuRegistServiceInBo = new TanitsuTorokuRegistServiceInBo();
             tanitsuRegistServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;

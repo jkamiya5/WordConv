@@ -6,7 +6,7 @@ using WordConvTool.Service;
 
 namespace WordConverter.Models.OutBo
 {
-    class IkkatsuTorokuReadFileServiceOutBo : IBo
+    public class IkkatsuTorokuReadFileServiceOutBo : IBo
     {
     }
 }

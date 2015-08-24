@@ -182,13 +182,13 @@ namespace WordConvertTool
             // 
             // Ichiran
             // 
+            this.Controls.Add(this.formHeanderLabel);
+            this.Controls.Add(this.ichiranDataGridView);
+            this.Controls.Add(this.label1);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(330, 500);
-            this.Controls.Add(this.formHeanderLabel);
-            this.Controls.Add(this.ichiranDataGridView);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Ichiran";
             this.Text = "Ichiran";

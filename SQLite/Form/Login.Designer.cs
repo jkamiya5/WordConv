@@ -99,6 +99,7 @@
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.UserId);
             this.Controls.Add(this.dataSourcePath);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Login";
             this.Text = "ログイン";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);

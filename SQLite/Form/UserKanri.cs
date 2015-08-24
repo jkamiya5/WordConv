@@ -56,29 +56,26 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void search_Click(object sender, EventArgs e)
         {
-            this.searchAction(ref userKanriDataGridView1);
+            this.searchAction(ref userKanriDataGridView1, this);
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataGridView1"></param>
-        private void searchAction(ref DataGridView dataGridView1)
+        private void searchAction(ref DataGridView userKanriDataGridView1, UserKanri userKanri)
         {
-            errorProvider1.SetError(this.empId, "");
-            errorProvider1.SetError(this.userName, "");
-            errorProvider1.SetError(this.kengen, "");
+            errorProvider1.SetError(userKanri.empId, "");
+            errorProvider1.SetError(userKanri.userName, "");
+            errorProvider1.SetError(userKanri.kengen, "");
 
             UserKanriSearchServiceInBo userSearchServiceInBo = new UserKanriSearchServiceInBo();
             UserKanriSearchService userSearchService = new UserKanriSearchService();
-            userSearchServiceInBo.empId = this.empId.Text;
-            userSearchServiceInBo.userName = this.userName.Text;
-            userSearchServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
+            userSearchServiceInBo.empId = userKanri.empId.Text;
+            userSearchServiceInBo.userName = userKanri.userName.Text;
+            userSearchServiceInBo.kengenSelectedIndex = userKanri.kengen.SelectedIndex;
             userSearchService.setInBo(userSearchServiceInBo);
-            UserKanriSearchServiceOutBo shinseiServiseOutBo = userSearchService.execute();
-            dataGridView1.DataSource = shinseiServiseOutBo.usersList;
-            this.userKanriViewSetthing(ref dataGridView1);
+            UserKanriSearchServiceOutBo userSearchServiceOutBo = userSearchService.execute();
+            userKanriDataGridView1.DataSource = userSearchServiceOutBo.usersList;
+
+            this.userKanriViewSetthing(ref userKanriDataGridView1);
         }
 
         /// <summary>
@@ -121,6 +118,18 @@ namespace WordConvTool.Forms
 
             common.addCheckBox(ref dataGridView1, 0);
             common.checkBoxWidthSetting(ref dataGridView1, 20, 100);
+
+            dataGridView1.Columns["MAIL_ADDRESS"].Width = 120;
+            dataGridView1.Columns["EMP_ID"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["USER_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["KENGEN"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["MAIL_ID"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["MAIL_ADDRESS"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["PASSWORD"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["SANKA_KAHI"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["CRE_DATE"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["USER_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         /// <summary>
@@ -134,8 +143,7 @@ namespace WordConvTool.Forms
                 comboValList = new List<int>();
                 comboValList.Add((int)dataGridView1.Rows[i].Cells["Kengen"].Value);
             }
-
-            Boolean isExistComboBox = false;
+            bool isExistComboBox = false;
             foreach (Object obj in dataGridView1.Columns)
             {
                 if (obj is DataGridViewComboBoxColumn)
@@ -222,31 +230,55 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void regist_Click(object sender, EventArgs e)
         {
-            bool isExistCheck = false;
-            for (int i = 0; i < userKanriDataGridView1.Rows.Count; i++)
+            UserKanriRegistServiceInBo userAddServiceInBo = new UserKanriRegistServiceInBo();
+            userAddServiceInBo.empId = this.empId.Text.ToString();
+            userAddServiceInBo.userName = this.userName.Text.ToString();
+            userAddServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
+            userAddServiceInBo.userKanriDataGridView1 = this.userKanriDataGridView1;
+            UserKanriRegistService userAddService = new UserKanriRegistService();
+            userAddService.setInBo(userAddServiceInBo);
+            UserKanriRegistServiceOutBo userAddServiceOutBo = userAddService.execute();
+
+            if (!String.IsNullOrEmpty(userAddServiceOutBo.errorMessage))
             {
-                if (userKanriDataGridView1.Rows[i].Cells[0].Value == null
-                    || (bool)userKanriDataGridView1.Rows[i].Cells[0].Value == false)
+                MessageBox.Show(
+                    userAddServiceOutBo.errorMessage,
+                    "入力エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            MessageBox.Show(MessageConst.CONF_004);
+            this.searchAction(ref userKanriDataGridView1, this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void delete_Click(object sender, EventArgs e)
+        {
+            bool isExistCheck = false;
+            for (int i = 0; i < this.userKanriDataGridView1.Rows.Count; i++)
+            {
+                if (this.userKanriDataGridView1.Rows[i].Cells[0].Value == null
+                    || (bool)this.userKanriDataGridView1.Rows[i].Cells[0].Value == false)
                 {
                     continue;
                 }
-
-                if (this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value == null
-                    || this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value == null
-                    || this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value == null)
+                using (var context = new MyContext())
                 {
-                    MessageBox.Show(
-                        "社員ID:" + this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString()
-                        + MessageConst.ERR_006,
-                        "入力エラー",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
+                    long condtion = this.userKanriDataGridView1.Rows[i].Cells["USER_ID"].Value.ToString().ToKeyType();
+                    var toRemoveWord = new UserMst { USER_ID = condtion };
+                    context.UserMst.Attach(toRemoveWord);
+                    context.UserMst.Remove(toRemoveWord);
+                    context.SaveChanges();
                 }
                 isExistCheck = true;
             }
-
             if (!isExistCheck)
             {
                 MessageBox.Show(
@@ -257,77 +289,8 @@ namespace WordConvTool.Forms
 
                 return;
             }
-
-            for (int i = 0; i < userKanriDataGridView1.Rows.Count; i++)
-            {
-                if (userKanriDataGridView1.Rows[i].Cells[0].Value == null
-                    || (bool)userKanriDataGridView1.Rows[i].Cells[0].Value == false)
-                {
-                    continue;
-                }
-
-                using (var context = new MyContext())
-                {
-                    long condtion = Convert.ToInt64(this.userKanriDataGridView1.Rows[i].Cells["USER_ID"].Value.ToString());
-                    var upUser = context.UserMst.Where(x => x.USER_ID == condtion);
-                    if (upUser.Count() == 1)
-                    {
-                        var u = context.UserMst.Single(x => x.USER_ID == condtion);
-                        u.EMP_ID = this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
-                        u.USER_NAME = Convert.ToString(this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value);
-                        u.KENGEN = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
-                        u.SANKA_KAHI = (bool)this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value ? 0 : 1;
-                        u.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
-                        u.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
-                        u.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
-                        u.CRE_DATE = System.DateTime.Now.ToString();
-                        context.SaveChanges();
-                        continue;
-                    }
-                    UserMst user = new UserMst();
-                    user.EMP_ID = this.userKanriDataGridView1.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType();
-                    user.USER_NAME = this.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
-                    user.KENGEN = this.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
-                    user.SANKA_KAHI = (bool)this.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value ? 0 : 1;
-                    user.MAIL_ID = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
-                    user.MAIL_ADDRESS = this.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
-                    user.PASSWORD = this.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
-                    user.CRE_DATE = System.DateTime.Now.ToString();
-                    context.UserMst.Add(user);
-                    context.SaveChanges();
-                }
-            }
-            MessageBox.Show(MessageConst.CONF_004);
-            this.searchAction(ref userKanriDataGridView1);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void delete_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < this.userKanriDataGridView1.Rows.Count; i++)
-            {
-                if (this.userKanriDataGridView1.Rows[i].Cells[0].Value == null)
-                {
-                    continue;
-                }
-                if (this.userKanriDataGridView1.Rows[i].Cells[0].Value.Equals(true))
-                {
-                    using (var context = new MyContext())
-                    {
-                        long condtion = this.userKanriDataGridView1.Rows[i].Cells["USER_ID"].Value.ToString().ToKeyType();
-                        var toRemoveWord = new UserMst { USER_ID = condtion };
-                        context.UserMst.Attach(toRemoveWord);
-                        context.UserMst.Remove(toRemoveWord);
-                        context.SaveChanges();
-                    }
-                }
-            }
             MessageBox.Show(MessageConst.CONF_005);
-            this.searchAction(ref userKanriDataGridView1);
+            this.searchAction(ref userKanriDataGridView1, this);
         }
 
         /// <summary>
@@ -402,22 +365,42 @@ namespace WordConvTool.Forms
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserKanri_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Hide();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void empId_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.empId, "");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void userName_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.userName, "");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void kengen_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.kengen, "");

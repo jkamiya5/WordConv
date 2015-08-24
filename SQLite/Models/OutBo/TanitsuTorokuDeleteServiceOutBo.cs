@@ -6,7 +6,7 @@ using WordConvTool.Service;
 
 namespace WordConverter.Models.OutBo
 {
-    class TanitsuTorokuDeleteServiceOutBo : IBo
+    public class TanitsuTorokuDeleteServiceOutBo : IBo
     {
         private System.Windows.Forms.DataGridView tanitsuDataGridView { get; set; }
     }

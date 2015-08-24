@@ -6,9 +6,8 @@ using WordConvTool.Service;
 
 namespace WordConverter.Models.OutBo
 {
-    public class UserKanriAddServiceOutBo : IBo
+    public class UserKanriRegistServiceOutBo : IBo
     {
-        public object userList { get; set; }
         public string errorMessage { get; set; }
     }
 }

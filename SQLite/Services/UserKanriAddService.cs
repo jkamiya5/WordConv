@@ -58,10 +58,10 @@ namespace WordConverter.Services
                 user.USER_NAME = this.inBo.userKanriDataGridView1.Rows[i].Cells["USER_NAME"].Value.ToString();
                 user.KENGEN = this.inBo.userKanriDataGridView1.Rows[i].Cells["KENGEN"].Value.ToString().ToIntType();
                 user.SANKA_KAHI = (bool)this.inBo.userKanriDataGridView1.Rows[i].Cells["SANKA_KAHI"].Value;
-                user.MAIL_ID = this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value.ToString();
-                user.MAIL_ADDRESS = this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value.ToString();
-                user.PASSWORD = this.inBo.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value.ToString();
-                user.CRE_DATE = this.inBo.userKanriDataGridView1.Rows[i].Cells["CRE_DATE"].Value.ToString();
+                user.MAIL_ID = common.nullAble(this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ID"].Value);
+                user.MAIL_ADDRESS = common.nullAble(this.inBo.userKanriDataGridView1.Rows[i].Cells["MAIL_ADDRESS"].Value);
+                user.PASSWORD = common.nullAble(this.inBo.userKanriDataGridView1.Rows[i].Cells["PASSWORD"].Value);
+                user.CRE_DATE = common.nullAble(this.inBo.userKanriDataGridView1.Rows[i].Cells["CRE_DATE"].Value);
                 userList.Add(user);
             }
 
@@ -69,6 +69,10 @@ namespace WordConverter.Services
             user.EMP_ID = this.inBo.empId.ToIntType();
             user.USER_NAME = this.inBo.userName;
             user.KENGEN = this.inBo.kengenSelectedIndex;
+            user.SANKA_KAHI = true;
+            user.MAIL_ID = this.inBo.empId;
+            user.MAIL_ADDRESS = this.inBo.empId;
+            user.PASSWORD = this.inBo.empId;
             userList.Add(user);
             outBo.userList = userList;
 

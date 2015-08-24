@@ -176,7 +176,7 @@
             this.Controls.Add(this.butsurimeiTextBox);
             this.Controls.Add(this.ronrimei2TextBox);
             this.Controls.Add(this.ronrimei1TextBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "Shinsei";
             this.Text = "申請・承認";

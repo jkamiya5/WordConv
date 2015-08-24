@@ -6,7 +6,7 @@ using WordConvTool.Service;
 
 namespace WordConverter.Models.OutBo
 {
-    class TanitsuTorokuSearchServiceOutBo : IBo
+    public class TanitsuTorokuSearchServiceOutBo : IBo
     {
         public List<WordConvertTool.HenshuWordBo> wordList { get; set; }
     }

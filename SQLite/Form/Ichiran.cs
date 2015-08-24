@@ -25,15 +25,6 @@ namespace WordConvertTool
 {
     public partial class Ichiran : Form
     {
-
-        [DllImport("user32.dll")]
-        extern static int RegisterHotKey(IntPtr HWnd, int ID, int MOD_KEY, int KEY);
-        [DllImport("user32.dll")]
-        extern static int UnregisterHotKey(IntPtr HWnd, int ID);
-
-        //マウスのクリック位置を記憶
-        private Point mousePoint;
-
         private static readonly Ichiran _instance = new Ichiran();
         public static Ichiran Instance
         {
@@ -80,34 +71,6 @@ namespace WordConvertTool
             this.Opacity = 0.94;
         }
 
-        ///// <summary>
-        ///// 一覧画面初期表示イベント
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void Ichiran_Load(object sender, EventArgs e)
-        //{
-        //    IchiranInitService initService = new IchiranInitService();
-        //    IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
-        //    initServiceInBo.clipboardText = Clipboard.GetText();
-        //    initServiceInBo.dispNumber = BaseForm.UserInfo.dispNumber;
-        //    initService.setInBo(initServiceInBo);
-        //    IchiranInitServiceOutBo initServiceOutBo = initService.execute();
-
-        //    ichiranDataGridView.DataSource = initServiceOutBo.wordList;
-        //    ichiranDataGridView.Columns["RONRI_NAME1"].Width = 110;
-        //    ichiranDataGridView.Columns["BUTSURI_NAME"].Width = 195;
-        //    ichiranDataGridView.ReadOnly = true;
-
-        //    //隠していたフォームを表示する
-        //    this.Show();
-        //    this.Activate();
-
-        //    //透過性
-        //    this.Opacity = 0.94;
-        //}
-
-
         /// <summary>
         /// 変換候補一覧のダブルクリックイベント
         /// </summary>
@@ -133,6 +96,8 @@ namespace WordConvertTool
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        //マウスのクリック位置を記憶
+        private Point mousePoint;
 
         /// <summary>
         /// マウス移動イベント
