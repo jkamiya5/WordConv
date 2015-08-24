@@ -49,7 +49,7 @@
             // 
             this.ronrimei1TextBox.Location = new System.Drawing.Point(65, 19);
             this.ronrimei1TextBox.Name = "ronrimei1TextBox";
-            this.ronrimei1TextBox.Size = new System.Drawing.Size(298, 19);
+            this.ronrimei1TextBox.Size = new System.Drawing.Size(322, 19);
             this.ronrimei1TextBox.TabIndex = 0;
             this.ronrimei1TextBox.Validated += new System.EventHandler(this.ronrimei1TextBox_Validated);
             // 
@@ -58,7 +58,7 @@
             this.ronrimei2TextBox.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.ronrimei2TextBox.Location = new System.Drawing.Point(65, 43);
             this.ronrimei2TextBox.Name = "ronrimei2TextBox";
-            this.ronrimei2TextBox.Size = new System.Drawing.Size(298, 19);
+            this.ronrimei2TextBox.Size = new System.Drawing.Size(322, 19);
             this.ronrimei2TextBox.TabIndex = 1;
             this.ronrimei2TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei2TextBox_Validating);
             this.ronrimei2TextBox.Validated += new System.EventHandler(this.ronrimei2TextBox_Validated);
@@ -67,47 +67,50 @@
             // 
             this.butsurimeiTextBox.Location = new System.Drawing.Point(65, 69);
             this.butsurimeiTextBox.Name = "butsurimeiTextBox";
-            this.butsurimeiTextBox.Size = new System.Drawing.Size(298, 19);
+            this.butsurimeiTextBox.Size = new System.Drawing.Size(322, 19);
             this.butsurimeiTextBox.TabIndex = 2;
             this.butsurimeiTextBox.Validated += new System.EventHandler(this.butsurimeiTextBox_Validated);
             // 
             // shinseiButton
             // 
-            this.shinseiButton.Location = new System.Drawing.Point(92, 101);
+            this.shinseiButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.shinseiButton.Location = new System.Drawing.Point(411, 63);
             this.shinseiButton.Name = "shinseiButton";
-            this.shinseiButton.Size = new System.Drawing.Size(100, 25);
+            this.shinseiButton.Size = new System.Drawing.Size(104, 25);
             this.shinseiButton.TabIndex = 3;
             this.shinseiButton.Text = "申請";
-            this.shinseiButton.UseVisualStyleBackColor = true;
+            this.shinseiButton.UseVisualStyleBackColor = false;
             this.shinseiButton.Click += new System.EventHandler(this.shinseiButton_Click);
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(222, 101);
+            this.clearButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.clearButton.Location = new System.Drawing.Point(529, 63);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(100, 25);
+            this.clearButton.Size = new System.Drawing.Size(104, 25);
             this.clearButton.TabIndex = 4;
             this.clearButton.Text = "クリア";
-            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.UseVisualStyleBackColor = false;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // shinseiDataGridView1
             // 
             this.shinseiDataGridView1.AllowUserToResizeColumns = false;
             this.shinseiDataGridView1.AllowUserToResizeRows = false;
-            this.shinseiDataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.shinseiDataGridView1.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.shinseiDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.shinseiDataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.shinseiDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.shinseiDataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.shinseiDataGridView1.Location = new System.Drawing.Point(37, 140);
+            this.shinseiDataGridView1.Location = new System.Drawing.Point(22, 113);
             this.shinseiDataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.shinseiDataGridView1.Name = "shinseiDataGridView1";
             this.shinseiDataGridView1.RowHeadersVisible = false;
             this.shinseiDataGridView1.RowTemplate.Height = 21;
             this.shinseiDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.shinseiDataGridView1.Size = new System.Drawing.Size(341, 170);
+            this.shinseiDataGridView1.Size = new System.Drawing.Size(674, 197);
             this.shinseiDataGridView1.TabIndex = 5;
+            this.shinseiDataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shinseiDataGridView1_CellContentClick);
             // 
             // label1
             // 
@@ -138,22 +141,24 @@
             // 
             // shounin
             // 
-            this.shounin.Location = new System.Drawing.Point(93, 326);
+            this.shounin.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.shounin.Location = new System.Drawing.Point(214, 326);
             this.shounin.Name = "shounin";
-            this.shounin.Size = new System.Drawing.Size(100, 25);
+            this.shounin.Size = new System.Drawing.Size(128, 25);
             this.shounin.TabIndex = 11;
             this.shounin.Text = "承認";
-            this.shounin.UseVisualStyleBackColor = true;
+            this.shounin.UseVisualStyleBackColor = false;
             this.shounin.Click += new System.EventHandler(this.shounin_Click);
             // 
             // kyakka
             // 
-            this.kyakka.Location = new System.Drawing.Point(223, 326);
+            this.kyakka.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.kyakka.Location = new System.Drawing.Point(361, 326);
             this.kyakka.Name = "kyakka";
-            this.kyakka.Size = new System.Drawing.Size(100, 25);
+            this.kyakka.Size = new System.Drawing.Size(128, 25);
             this.kyakka.TabIndex = 12;
             this.kyakka.Text = "却下";
-            this.kyakka.UseVisualStyleBackColor = true;
+            this.kyakka.UseVisualStyleBackColor = false;
             this.kyakka.Click += new System.EventHandler(this.kyakka_Click);
             // 
             // errorProvider1
@@ -164,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 378);
+            this.ClientSize = new System.Drawing.Size(732, 378);
             this.Controls.Add(this.kyakka);
             this.Controls.Add(this.shounin);
             this.Controls.Add(this.label3);
@@ -179,6 +184,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "Shinsei";
+            this.Opacity = 0.98D;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.Text = "申請・承認";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Shinsei_FormClosing);
             this.Load += new System.EventHandler(this.Shinsei_Load);

@@ -192,5 +192,6 @@ namespace WordConvTool.Forms
             e.Cancel = true;
             this.Hide();
         }
+
     }
 }

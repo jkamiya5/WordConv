@@ -146,6 +146,9 @@ namespace WordConvertTool
             ShinseiInitServiceOutBo initServiceOutBo = initService.execute();
             this.shinseiDataGridView1.DataSource = initServiceOutBo.dispShinseiList;
 
+            common.addCheckBox(ref shinseiDataGridView1, 0);
+            common.checkBoxWidthSetting(ref shinseiDataGridView1, 20, 100);
+
             shinseiDataGridView1.Columns["RONRI_NAME1"].HeaderText = "論理名1";
             shinseiDataGridView1.Columns["RONRI_NAME2"].HeaderText = "論理名2";
             shinseiDataGridView1.Columns["BUTSURI_NAME"].HeaderText = "物理名";
@@ -160,9 +163,14 @@ namespace WordConvertTool
             shinseiDataGridView1.Columns["STATUS"].ReadOnly = true;
             shinseiDataGridView1.Columns["USER_NAME"].ReadOnly = true;
             shinseiDataGridView1.Columns["CRE_DATE"].ReadOnly = true;
-
-            common.addCheckBox(ref shinseiDataGridView1, 0);
-            common.checkBoxWidthSetting(ref shinseiDataGridView1, 20, 100);
+            shinseiDataGridView1.Columns["STATUS"].Width = 80;
+            shinseiDataGridView1.Columns["USER_NAME"].Width = 120;
+            shinseiDataGridView1.Columns["CRE_DATE"].Width = 120;
+            shinseiDataGridView1.Columns["RONRI_NAME1"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            shinseiDataGridView1.Columns["RONRI_NAME2"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            shinseiDataGridView1.Columns["BUTSURI_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            shinseiDataGridView1.Columns["USER_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            shinseiDataGridView1.Columns["CRE_DATE"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         }
 
@@ -248,46 +256,6 @@ namespace WordConvertTool
             this.Shinsei_Load(sender, e);
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void shinseiDataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //DataGridViewColumn clickedColumn = this.shinseiDataGridView1.Columns[e.ColumnIndex];
-            //if (this.shinseiDataGridView1[0, 0].Value == null)
-            //{
-            //    this.allCheckBoxValue = false;
-            //}
-
-            //if (clickedColumn.Index == 0)
-            //{
-            //    for (int i = 0; i < this.shinseiDataGridView1.RowCount; i++)
-            //    {
-            //        if (i == 0)
-            //        {
-            //            DataGridViewCell tmp = shinseiDataGridView1.CurrentCell;
-            //            shinseiDataGridView1.CurrentCell = shinseiDataGridView1.Rows[0].Cells[0];
-            //            shinseiDataGridView1.EndEdit();
-            //            shinseiDataGridView1[0, 0].Value = !this.allCheckBoxValue;
-            //            shinseiDataGridView1.CurrentCell = tmp;
-            //            continue;
-            //        }
-            //        if (this.shinseiDataGridView1[0, i].Value != null)
-            //        {
-            //            this.shinseiDataGridView1[0, i].Value = !this.allCheckBoxValue;
-            //            this.allCheckBoxValue = !this.allCheckBoxValue;
-            //        }
-            //        else
-            //        {
-            //            this.shinseiDataGridView1[0, i].Value = true;
-            //        }
-            //    }
-            //}
-        }
-
         private void Shinsei_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -318,6 +286,11 @@ namespace WordConvertTool
         private void butsurimeiTextBox_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.butsurimeiTextBox, "");
+        }
+
+        private void shinseiDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

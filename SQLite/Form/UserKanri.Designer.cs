@@ -33,8 +33,8 @@ namespace WordConvTool.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.userKanriDataGridView1 = new System.Windows.Forms.DataGridView();
             this.regist = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
@@ -57,28 +57,28 @@ namespace WordConvTool.Forms
             this.userKanriDataGridView1.AllowUserToResizeColumns = false;
             this.userKanriDataGridView1.AllowUserToResizeRows = false;
             this.userKanriDataGridView1.BackgroundColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userKanriDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userKanriDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.userKanriDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userKanriDataGridView1.Location = new System.Drawing.Point(35, 174);
+            this.userKanriDataGridView1.Location = new System.Drawing.Point(36, 168);
             this.userKanriDataGridView1.Name = "userKanriDataGridView1";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userKanriDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userKanriDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.userKanriDataGridView1.RowHeadersVisible = false;
             this.userKanriDataGridView1.RowTemplate.Height = 21;
-            this.userKanriDataGridView1.Size = new System.Drawing.Size(837, 230);
+            this.userKanriDataGridView1.Size = new System.Drawing.Size(838, 235);
             this.userKanriDataGridView1.TabIndex = 6;
             this.userKanriDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.userKanriDataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -88,7 +88,7 @@ namespace WordConvTool.Forms
             // 
             this.regist.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.regist.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.regist.Location = new System.Drawing.Point(514, 422);
+            this.regist.Location = new System.Drawing.Point(292, 422);
             this.regist.Name = "regist";
             this.regist.Size = new System.Drawing.Size(143, 25);
             this.regist.TabIndex = 7;
@@ -100,7 +100,7 @@ namespace WordConvTool.Forms
             // 
             this.delete.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.delete.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.delete.Location = new System.Drawing.Point(692, 422);
+            this.delete.Location = new System.Drawing.Point(470, 422);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(143, 25);
             this.delete.TabIndex = 8;
@@ -120,9 +120,9 @@ namespace WordConvTool.Forms
             // 
             this.search.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.search.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.search.Location = new System.Drawing.Point(105, 126);
+            this.search.Location = new System.Drawing.Point(97, 124);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(120, 23);
+            this.search.Size = new System.Drawing.Size(127, 23);
             this.search.TabIndex = 4;
             this.search.Text = "検索";
             this.search.UseVisualStyleBackColor = false;
@@ -132,9 +132,9 @@ namespace WordConvTool.Forms
             // 
             this.add.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.add.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.add.Location = new System.Drawing.Point(386, 126);
+            this.add.Location = new System.Drawing.Point(415, 124);
             this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(120, 23);
+            this.add.Size = new System.Drawing.Size(127, 23);
             this.add.TabIndex = 5;
             this.add.Text = "追加";
             this.add.UseVisualStyleBackColor = true;
@@ -192,9 +192,9 @@ namespace WordConvTool.Forms
             // 
             this.clear.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.clear.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.clear.Location = new System.Drawing.Point(245, 126);
+            this.clear.Location = new System.Drawing.Point(256, 124);
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(120, 23);
+            this.clear.Size = new System.Drawing.Size(127, 23);
             this.clear.TabIndex = 11;
             this.clear.Text = "クリア";
             this.clear.UseVisualStyleBackColor = true;
@@ -213,6 +213,7 @@ namespace WordConvTool.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(908, 464);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.empId);
@@ -229,14 +230,13 @@ namespace WordConvTool.Forms
             this.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "UserKanri";
+            this.Opacity = 0.98D;
             this.Text = "ユーザー管理";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserKanri_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.Opacity = 0.98D;
 
         }
 

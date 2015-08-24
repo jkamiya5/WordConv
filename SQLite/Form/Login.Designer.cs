@@ -38,53 +38,59 @@
             // 
             // dataSourcePath
             // 
-            this.dataSourcePath.Location = new System.Drawing.Point(82, 51);
+            this.dataSourcePath.Location = new System.Drawing.Point(82, 53);
             this.dataSourcePath.Name = "dataSourcePath";
             this.dataSourcePath.Size = new System.Drawing.Size(223, 19);
             this.dataSourcePath.TabIndex = 0;
             // 
             // UserId
             // 
-            this.UserId.Location = new System.Drawing.Point(82, 14);
+            this.UserId.Location = new System.Drawing.Point(82, 17);
             this.UserId.Name = "UserId";
             this.UserId.Size = new System.Drawing.Size(223, 19);
             this.UserId.TabIndex = 1;
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(106, 90);
+            this.loginBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.loginBtn.Location = new System.Drawing.Point(106, 89);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(161, 25);
             this.loginBtn.TabIndex = 2;
             this.loginBtn.Text = "ログイン";
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            this.loginBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             // 
             // openFile
             // 
-            this.openFile.Location = new System.Drawing.Point(315, 49);
+            this.openFile.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.openFile.Location = new System.Drawing.Point(315, 51);
             this.openFile.Name = "openFile";
-            this.openFile.Size = new System.Drawing.Size(67, 25);
+            this.openFile.Size = new System.Drawing.Size(73, 25);
             this.openFile.TabIndex = 11;
             this.openFile.Text = "参照";
             this.openFile.UseVisualStyleBackColor = true;
             this.openFile.Click += new System.EventHandler(this.openFile_Click);
+            this.openFile.BackColor = System.Drawing.SystemColors.ButtonFace;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(13, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 12);
+            this.label1.Size = new System.Drawing.Size(64, 17);
             this.label1.TabIndex = 12;
             this.label1.Text = "ユーザーID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 54);
+            this.label2.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(13, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 12);
+            this.label2.Size = new System.Drawing.Size(45, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "DBパス";
             // 
@@ -106,6 +112,9 @@
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.Opacity = 0.98D;
 
         }
 

@@ -56,9 +56,10 @@
             // displayNumberRadioBtn1
             // 
             this.displayNumberRadioBtn1.AutoSize = true;
+            this.displayNumberRadioBtn1.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.displayNumberRadioBtn1.Location = new System.Drawing.Point(44, 88);
             this.displayNumberRadioBtn1.Name = "displayNumberRadioBtn1";
-            this.displayNumberRadioBtn1.Size = new System.Drawing.Size(35, 16);
+            this.displayNumberRadioBtn1.Size = new System.Drawing.Size(40, 21);
             this.displayNumberRadioBtn1.TabIndex = 1;
             this.displayNumberRadioBtn1.TabStop = true;
             this.displayNumberRadioBtn1.Text = "10";
@@ -67,9 +68,10 @@
             // displayNumberRadioBtn2
             // 
             this.displayNumberRadioBtn2.AutoSize = true;
+            this.displayNumberRadioBtn2.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.displayNumberRadioBtn2.Location = new System.Drawing.Point(85, 88);
             this.displayNumberRadioBtn2.Name = "displayNumberRadioBtn2";
-            this.displayNumberRadioBtn2.Size = new System.Drawing.Size(35, 16);
+            this.displayNumberRadioBtn2.Size = new System.Drawing.Size(40, 21);
             this.displayNumberRadioBtn2.TabIndex = 2;
             this.displayNumberRadioBtn2.TabStop = true;
             this.displayNumberRadioBtn2.Text = "20";
@@ -78,9 +80,10 @@
             // displayNumberRadioBtn3
             // 
             this.displayNumberRadioBtn3.AutoSize = true;
+            this.displayNumberRadioBtn3.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.displayNumberRadioBtn3.Location = new System.Drawing.Point(126, 88);
             this.displayNumberRadioBtn3.Name = "displayNumberRadioBtn3";
-            this.displayNumberRadioBtn3.Size = new System.Drawing.Size(35, 16);
+            this.displayNumberRadioBtn3.Size = new System.Drawing.Size(40, 21);
             this.displayNumberRadioBtn3.TabIndex = 3;
             this.displayNumberRadioBtn3.TabStop = true;
             this.displayNumberRadioBtn3.Text = "30";
@@ -89,9 +92,10 @@
             // pascalCaseCheckBox
             // 
             this.pascalCaseCheckBox.AutoSize = true;
+            this.pascalCaseCheckBox.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.pascalCaseCheckBox.Location = new System.Drawing.Point(45, 145);
             this.pascalCaseCheckBox.Name = "pascalCaseCheckBox";
-            this.pascalCaseCheckBox.Size = new System.Drawing.Size(84, 16);
+            this.pascalCaseCheckBox.Size = new System.Drawing.Size(84, 21);
             this.pascalCaseCheckBox.TabIndex = 4;
             this.pascalCaseCheckBox.Text = "PascalCase";
             this.pascalCaseCheckBox.UseVisualStyleBackColor = true;
@@ -99,9 +103,10 @@
             // camelCaseCheckBox
             // 
             this.camelCaseCheckBox.AutoSize = true;
+            this.camelCaseCheckBox.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.camelCaseCheckBox.Location = new System.Drawing.Point(45, 167);
             this.camelCaseCheckBox.Name = "camelCaseCheckBox";
-            this.camelCaseCheckBox.Size = new System.Drawing.Size(80, 16);
+            this.camelCaseCheckBox.Size = new System.Drawing.Size(83, 21);
             this.camelCaseCheckBox.TabIndex = 5;
             this.camelCaseCheckBox.Text = "camelCase";
             this.camelCaseCheckBox.UseVisualStyleBackColor = true;
@@ -109,15 +114,17 @@
             // snakeCaseCheckBox
             // 
             this.snakeCaseCheckBox.AutoSize = true;
+            this.snakeCaseCheckBox.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.snakeCaseCheckBox.Location = new System.Drawing.Point(45, 189);
             this.snakeCaseCheckBox.Name = "snakeCaseCheckBox";
-            this.snakeCaseCheckBox.Size = new System.Drawing.Size(95, 16);
+            this.snakeCaseCheckBox.Size = new System.Drawing.Size(98, 21);
             this.snakeCaseCheckBox.TabIndex = 6;
             this.snakeCaseCheckBox.Text = "SNAKE_CASE";
             this.snakeCaseCheckBox.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
+            this.groupBox1.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBox1.Location = new System.Drawing.Point(28, 125);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(148, 92);
@@ -127,9 +134,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBox2.Location = new System.Drawing.Point(27, 71);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(223, 39);
+            this.groupBox2.Size = new System.Drawing.Size(256, 48);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "表示件数";
@@ -137,38 +145,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(25, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 12);
+            this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 9;
             this.label1.Text = "起動ホットキー";
             // 
             // regist
             // 
-            this.regist.Location = new System.Drawing.Point(57, 262);
+            this.regist.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.regist.Location = new System.Drawing.Point(57, 258);
             this.regist.Name = "regist";
             this.regist.Size = new System.Drawing.Size(90, 23);
             this.regist.TabIndex = 10;
             this.regist.Text = "登録";
             this.regist.UseVisualStyleBackColor = true;
             this.regist.Click += new System.EventHandler(this.regist_Click);
+            this.regist.BackColor = System.Drawing.SystemColors.ButtonFace;
             // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(176, 262);
+            this.clear.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.clear.Location = new System.Drawing.Point(176, 258);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(90, 23);
             this.clear.TabIndex = 11;
             this.clear.Text = "クリア";
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
+            this.clear.BackColor = System.Drawing.SystemColors.ButtonFace;
             // 
             // displayNumberRadioBtn4
             // 
             this.displayNumberRadioBtn4.AutoSize = true;
+            this.displayNumberRadioBtn4.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.displayNumberRadioBtn4.Location = new System.Drawing.Point(165, 88);
             this.displayNumberRadioBtn4.Name = "displayNumberRadioBtn4";
-            this.displayNumberRadioBtn4.Size = new System.Drawing.Size(66, 16);
+            this.displayNumberRadioBtn4.Size = new System.Drawing.Size(70, 21);
             this.displayNumberRadioBtn4.TabIndex = 12;
             this.displayNumberRadioBtn4.TabStop = true;
             this.displayNumberRadioBtn4.Text = "制限なし";
@@ -199,6 +213,9 @@
             this.Load += new System.EventHandler(this.Kojin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.Opacity = 0.98D;
 
         }
 
