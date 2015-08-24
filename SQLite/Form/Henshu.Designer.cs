@@ -238,7 +238,6 @@ namespace WordConvTool.Forms
             this.tanitsuDataGridView.RowTemplate.Height = 21;
             this.tanitsuDataGridView.Size = new System.Drawing.Size(670, 240);
             this.tanitsuDataGridView.TabIndex = 18;
-            this.tanitsuDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tanitsuDataGridView_CellFormatting);
             this.tanitsuDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tanitsuDataGridView_CellValueChanged);
             this.tanitsuDataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.tanitsuDataGridView_CurrentCellDirtyStateChanged);
             // 
