@@ -68,7 +68,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(532, 483);
+            this.tabControl1.Size = new System.Drawing.Size(689, 483);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
@@ -76,6 +76,7 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
+            this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
@@ -91,10 +92,9 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(524, 450);
+            this.tabPage1.Size = new System.Drawing.Size(681, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "単一登録";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -122,52 +122,57 @@
             // 
             // delete
             // 
-            this.delete.Location = new System.Drawing.Point(258, 399);
+            this.delete.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.delete.Location = new System.Drawing.Point(356, 399);
             this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(138, 25);
+            this.delete.Size = new System.Drawing.Size(174, 30);
             this.delete.TabIndex = 20;
             this.delete.Text = "削除";
-            this.delete.UseVisualStyleBackColor = true;
+            this.delete.UseVisualStyleBackColor = false;
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(301, 99);
+            this.addBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.addBtn.Location = new System.Drawing.Point(324, 99);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(97, 23);
+            this.addBtn.Size = new System.Drawing.Size(87, 23);
             this.addBtn.TabIndex = 17;
             this.addBtn.Text = "追加";
-            this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.UseVisualStyleBackColor = false;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // registBtn
             // 
-            this.registBtn.Location = new System.Drawing.Point(102, 399);
+            this.registBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.registBtn.Location = new System.Drawing.Point(135, 399);
             this.registBtn.Name = "registBtn";
-            this.registBtn.Size = new System.Drawing.Size(138, 25);
+            this.registBtn.Size = new System.Drawing.Size(174, 30);
             this.registBtn.TabIndex = 19;
             this.registBtn.Text = "登録";
-            this.registBtn.UseVisualStyleBackColor = true;
+            this.registBtn.UseVisualStyleBackColor = false;
             this.registBtn.Click += new System.EventHandler(this.registBtn_Click);
             // 
             // searchBtn
             // 
+            this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.searchBtn.Location = new System.Drawing.Point(100, 99);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(73, 23);
+            this.searchBtn.Size = new System.Drawing.Size(87, 23);
             this.searchBtn.TabIndex = 15;
             this.searchBtn.Text = "検索";
-            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // clearBtn
             // 
-            this.clearBtn.Location = new System.Drawing.Point(186, 99);
+            this.clearBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.clearBtn.Location = new System.Drawing.Point(212, 99);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(73, 23);
+            this.clearBtn.Size = new System.Drawing.Size(87, 23);
             this.clearBtn.TabIndex = 16;
             this.clearBtn.Text = "クリア";
-            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.UseVisualStyleBackColor = false;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // butsurimeiTextBox
@@ -191,12 +196,13 @@
             // 
             this.tanitsuDataGridView.AllowUserToResizeColumns = false;
             this.tanitsuDataGridView.AllowUserToResizeRows = false;
+            this.tanitsuDataGridView.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.tanitsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tanitsuDataGridView.Location = new System.Drawing.Point(24, 139);
             this.tanitsuDataGridView.Name = "tanitsuDataGridView";
             this.tanitsuDataGridView.RowHeadersVisible = false;
             this.tanitsuDataGridView.RowTemplate.Height = 21;
-            this.tanitsuDataGridView.Size = new System.Drawing.Size(454, 239);
+            this.tanitsuDataGridView.Size = new System.Drawing.Size(611, 239);
             this.tanitsuDataGridView.TabIndex = 18;
             this.tanitsuDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tanitsuDataGridView_CellFormatting);
             this.tanitsuDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tanitsuDataGridView_CellValueChanged);
@@ -212,6 +218,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.ikkatsuRegistBtn);
             this.tabPage2.Controls.Add(this.ikkatsuDataGridView);
@@ -221,10 +228,9 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(524, 450);
+            this.tabPage2.Size = new System.Drawing.Size(681, 450);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "一括登録";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -236,51 +242,55 @@
             // 
             // ikkatsuRegistBtn
             // 
-            this.ikkatsuRegistBtn.Location = new System.Drawing.Point(289, 400);
+            this.ikkatsuRegistBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ikkatsuRegistBtn.Location = new System.Drawing.Point(410, 399);
             this.ikkatsuRegistBtn.Name = "ikkatsuRegistBtn";
-            this.ikkatsuRegistBtn.Size = new System.Drawing.Size(153, 30);
+            this.ikkatsuRegistBtn.Size = new System.Drawing.Size(174, 30);
             this.ikkatsuRegistBtn.TabIndex = 15;
             this.ikkatsuRegistBtn.Text = "登録";
-            this.ikkatsuRegistBtn.UseVisualStyleBackColor = true;
+            this.ikkatsuRegistBtn.UseVisualStyleBackColor = false;
             this.ikkatsuRegistBtn.Click += new System.EventHandler(this.ikkatsuRegistBtn_Click);
             // 
             // ikkatsuDataGridView
             // 
             this.ikkatsuDataGridView.AllowUserToResizeColumns = false;
             this.ikkatsuDataGridView.AllowUserToResizeRows = false;
+            this.ikkatsuDataGridView.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.ikkatsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ikkatsuDataGridView.Location = new System.Drawing.Point(24, 139);
             this.ikkatsuDataGridView.Name = "ikkatsuDataGridView";
             this.ikkatsuDataGridView.RowHeadersVisible = false;
             this.ikkatsuDataGridView.RowTemplate.Height = 21;
-            this.ikkatsuDataGridView.Size = new System.Drawing.Size(454, 239);
+            this.ikkatsuDataGridView.Size = new System.Drawing.Size(611, 239);
             this.ikkatsuDataGridView.TabIndex = 12;
             // 
             // readFile
             // 
+            this.readFile.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.readFile.Location = new System.Drawing.Point(50, 78);
             this.readFile.Name = "readFile";
             this.readFile.Size = new System.Drawing.Size(101, 27);
             this.readFile.TabIndex = 11;
             this.readFile.Text = "読み込み";
-            this.readFile.UseVisualStyleBackColor = true;
+            this.readFile.UseVisualStyleBackColor = false;
             this.readFile.Click += new System.EventHandler(this.readFile_Click);
             // 
             // openFile
             // 
-            this.openFile.Location = new System.Drawing.Point(361, 44);
+            this.openFile.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.openFile.Location = new System.Drawing.Point(440, 44);
             this.openFile.Name = "openFile";
-            this.openFile.Size = new System.Drawing.Size(104, 25);
+            this.openFile.Size = new System.Drawing.Size(107, 25);
             this.openFile.TabIndex = 10;
             this.openFile.Text = "開く";
-            this.openFile.UseVisualStyleBackColor = true;
+            this.openFile.UseVisualStyleBackColor = false;
             this.openFile.Click += new System.EventHandler(this.openFile_Click);
             // 
             // filePath
             // 
-            this.filePath.Location = new System.Drawing.Point(36, 47);
+            this.filePath.Location = new System.Drawing.Point(38, 47);
             this.filePath.Name = "filePath";
-            this.filePath.Size = new System.Drawing.Size(307, 19);
+            this.filePath.Size = new System.Drawing.Size(379, 19);
             this.filePath.TabIndex = 9;
             // 
             // errorProvider1
@@ -291,10 +301,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 485);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(689, 485);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Henshu";
+            this.Opacity = 0.98D;
             this.Text = "編集";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Henshu_FormClosing);
             this.Load += new System.EventHandler(this.Henshu_Load);

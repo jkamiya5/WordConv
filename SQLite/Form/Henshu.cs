@@ -70,11 +70,28 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void readFile_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(this.filePath.Text))
+            {
+                errorProvider1.SetError(this.filePath, MessageConst.ERR_001);
+                return;
+            }
+
             IkkatsuTorokuReadFileService readFileService = new IkkatsuTorokuReadFileService();
             IkkatsuTorokuReadFileServiceInBo readFileServiceInBo = new IkkatsuTorokuReadFileServiceInBo();
             readFileServiceInBo.Filename = this.filePath.Text;
             readFileService.setInBo(readFileServiceInBo);
             IkkatsuTorokuReadFileServiceOutBo registServiceOutBo = readFileService.execute();
+
+            if (!String.IsNullOrEmpty(registServiceOutBo.errorMessage))
+            {
+                MessageBox.Show(
+                    registServiceOutBo.errorMessage,
+                    MessageConst.ERR_003,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
         }
 
         private void ProgressDialog_DoWork(object sender, DoWorkEventArgs e)
@@ -370,7 +387,7 @@ namespace WordConvTool.Forms
                 inBo.clipboardText = this.henshuInBo.clipBoardText;
                 tanitsuService.setInBo(inBo);
                 TanitsuTorokuInitServiceOutBo outBo = tanitsuService.execute();
-                this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
+                this.henshuViewDispSetthing(ref this.tanitsuDataGridView, outBo.henshuWordBoList);
 
             }
             else if (e.TabPageIndex == Constant.IKKATSU_TOROKU)

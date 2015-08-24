@@ -8,5 +8,6 @@ namespace WordConverter.Models.OutBo
 {
     public class IkkatsuTorokuReadFileServiceOutBo : IBo
     {
+        public string errorMessage { get; set; }
     }
 }

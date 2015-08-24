@@ -35,6 +35,7 @@ namespace WordConverter.Services
         public IkkatsuTorokuReadFileServiceOutBo execute()
         {
             IkkatsuTorokuReadFileServiceOutBo outBo = new IkkatsuTorokuReadFileServiceOutBo();
+            
             Microsoft.Office.Interop.Excel.Application oExcelApp = null; // Excelオブジェクト
             Microsoft.Office.Interop.Excel.Workbook oExcelWBook = null;  // Excel Workbookオブジェクト
             try

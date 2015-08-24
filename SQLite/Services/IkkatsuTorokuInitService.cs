@@ -31,7 +31,6 @@ namespace WordConverter.Services
         internal IkkatsuTorokuInitServiceOutBo execute()
         {
             IkkatsuTorokuInitServiceOutBo outBo = new IkkatsuTorokuInitServiceOutBo();
-
             List<HenshuWordBo> wordList = new List<HenshuWordBo>();
 
             if (!String.IsNullOrEmpty(this.inBo.clipboardText))

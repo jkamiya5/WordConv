@@ -92,6 +92,8 @@ namespace WordConvTool.Forms
                 sankaValList.Add((bool)dataGridView1.Rows[i].Cells["SANKA_KAHI"].Value);
             }
             common.addCheckBox(ref dataGridView1, dataGridView1.Columns["SANKA_KAHI"].Index);
+            common.addCheckBox(ref dataGridView1, 0);
+            common.checkBoxWidthSetting(ref dataGridView1, 20, 100);
 
             dataGridView1.Columns["USER_ID"].HeaderText = "ユーザーID";
             dataGridView1.Columns["EMP_ID"].HeaderText = "社員ID";
@@ -115,11 +117,10 @@ namespace WordConvTool.Forms
             dataGridView1.Columns["DELETE_FLG"].ReadOnly = true;
             dataGridView1.Columns["VERSION"].ReadOnly = true;
             dataGridView1.Columns["CRE_DATE"].ReadOnly = true;
-
-            common.addCheckBox(ref dataGridView1, 0);
-            common.checkBoxWidthSetting(ref dataGridView1, 20, 100);
-
-            dataGridView1.Columns["MAIL_ADDRESS"].Width = 120;
+            dataGridView1.Columns["MAIL_ADDRESS"].Width = 150;
+            dataGridView1.Columns["KENGEN"].Width = 70;
+            dataGridView1.Columns["SANKA_KAHI"].Width = 70;
+            dataGridView1.Columns["CRE_DATE"].Width = 110;
             dataGridView1.Columns["EMP_ID"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["USER_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["KENGEN"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -129,7 +130,6 @@ namespace WordConvTool.Forms
             dataGridView1.Columns["SANKA_KAHI"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["CRE_DATE"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["USER_NAME"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
         }
 
         /// <summary>
@@ -230,19 +230,19 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void regist_Click(object sender, EventArgs e)
         {
-            UserKanriRegistServiceInBo userAddServiceInBo = new UserKanriRegistServiceInBo();
-            userAddServiceInBo.empId = this.empId.Text.ToString();
-            userAddServiceInBo.userName = this.userName.Text.ToString();
-            userAddServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
-            userAddServiceInBo.userKanriDataGridView1 = this.userKanriDataGridView1;
-            UserKanriRegistService userAddService = new UserKanriRegistService();
-            userAddService.setInBo(userAddServiceInBo);
-            UserKanriRegistServiceOutBo userAddServiceOutBo = userAddService.execute();
+            UserKanriRegistServiceInBo userRegistServiceInBo = new UserKanriRegistServiceInBo();
+            userRegistServiceInBo.empId = this.empId.Text.ToString();
+            userRegistServiceInBo.userName = this.userName.Text.ToString();
+            userRegistServiceInBo.kengenSelectedIndex = this.kengen.SelectedIndex;
+            userRegistServiceInBo.userKanriDataGridView1 = this.userKanriDataGridView1;
+            UserKanriRegistService userRegistService = new UserKanriRegistService();
+            userRegistService.setInBo(userRegistServiceInBo);
+            UserKanriRegistServiceOutBo userRegistServiceOutBo = userRegistService.execute();
 
-            if (!String.IsNullOrEmpty(userAddServiceOutBo.errorMessage))
+            if (!String.IsNullOrEmpty(userRegistServiceOutBo.errorMessage))
             {
                 MessageBox.Show(
-                    userAddServiceOutBo.errorMessage,
+                    userRegistServiceOutBo.errorMessage,
                     "入力エラー",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -271,10 +271,10 @@ namespace WordConvTool.Forms
                 }
                 using (var context = new MyContext())
                 {
-                    long condtion = this.userKanriDataGridView1.Rows[i].Cells["USER_ID"].Value.ToString().ToKeyType();
-                    var toRemoveWord = new UserMst { USER_ID = condtion };
-                    context.UserMst.Attach(toRemoveWord);
-                    context.UserMst.Remove(toRemoveWord);
+                    long condtion = Convert.ToInt64(this.userKanriDataGridView1.Rows[i].Cells["USER_ID"].Value.ToString());
+                    var u = context.UserMst.Single(x => x.USER_ID == condtion);
+                    u.DELETE_FLG = 1;
+                    u.CRE_DATE = System.DateTime.Now.ToString();
                     context.SaveChanges();
                 }
                 isExistCheck = true;
@@ -404,6 +404,13 @@ namespace WordConvTool.Forms
         private void kengen_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.kengen, "");
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            this.empId.Text = "";
+            this.userName.Text = "";
+            this.kengen.Text = "";
         }
     }
 }

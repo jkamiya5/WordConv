@@ -27,6 +27,7 @@ namespace WordConverter.Services
             using (var context = new MyContext())
             {
                 IQueryable<UserBo> users = from a in context.UserMst
+                                           where a.DELETE_FLG == 0
                                            select new UserBo
                                            {
                                                USER_ID = a.USER_ID,
