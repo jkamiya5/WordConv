@@ -160,6 +160,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\LinqExtension.cs" />
+    <Compile Include="Services\TanitsuTorokuAddService.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuAddServiceInBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuAddServiceOutBo.cs" />
     <Compile Include="Services\TanitsuTorokuSearchService.cs" />
     <Compile Include="Models\InBo\TanitsuTorokuSearchServiceInBo.cs" />
     <Compile Include="Models\OutBo\TanitsuTorokuSearchServiceOutBo.cs" />

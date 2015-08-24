@@ -110,7 +110,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 15);
             this.label2.TabIndex = 22;
-            this.label2.Text = "ひらがな";
+            this.label2.Text = "論理名2";
             // 
             // label1
             // 
@@ -118,7 +118,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 15);
             this.label1.TabIndex = 21;
-            this.label1.Text = "論理名";
+            this.label1.Text = "論理名1";
             // 
             // delete
             // 

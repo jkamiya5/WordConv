@@ -47,7 +47,7 @@
             // 
             // ronrimei1TextBox
             // 
-            this.ronrimei1TextBox.Location = new System.Drawing.Point(55, 19);
+            this.ronrimei1TextBox.Location = new System.Drawing.Point(65, 19);
             this.ronrimei1TextBox.Name = "ronrimei1TextBox";
             this.ronrimei1TextBox.Size = new System.Drawing.Size(298, 19);
             this.ronrimei1TextBox.TabIndex = 0;
@@ -56,7 +56,7 @@
             // ronrimei2TextBox
             // 
             this.ronrimei2TextBox.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.ronrimei2TextBox.Location = new System.Drawing.Point(55, 43);
+            this.ronrimei2TextBox.Location = new System.Drawing.Point(65, 43);
             this.ronrimei2TextBox.Name = "ronrimei2TextBox";
             this.ronrimei2TextBox.Size = new System.Drawing.Size(298, 19);
             this.ronrimei2TextBox.TabIndex = 1;
@@ -65,7 +65,7 @@
             // 
             // butsurimeiTextBox
             // 
-            this.butsurimeiTextBox.Location = new System.Drawing.Point(55, 69);
+            this.butsurimeiTextBox.Location = new System.Drawing.Point(65, 69);
             this.butsurimeiTextBox.Name = "butsurimeiTextBox";
             this.butsurimeiTextBox.Size = new System.Drawing.Size(298, 19);
             this.butsurimeiTextBox.TabIndex = 2;
@@ -73,7 +73,7 @@
             // 
             // shinseiButton
             // 
-            this.shinseiButton.Location = new System.Drawing.Point(78, 101);
+            this.shinseiButton.Location = new System.Drawing.Point(92, 101);
             this.shinseiButton.Name = "shinseiButton";
             this.shinseiButton.Size = new System.Drawing.Size(100, 25);
             this.shinseiButton.TabIndex = 3;
@@ -83,7 +83,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(208, 101);
+            this.clearButton.Location = new System.Drawing.Point(222, 101);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(100, 25);
             this.clearButton.TabIndex = 4;
@@ -100,7 +100,7 @@
             this.shinseiDataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.shinseiDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.shinseiDataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.shinseiDataGridView1.Location = new System.Drawing.Point(24, 140);
+            this.shinseiDataGridView1.Location = new System.Drawing.Point(37, 140);
             this.shinseiDataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.shinseiDataGridView1.Name = "shinseiDataGridView1";
             this.shinseiDataGridView1.RowHeadersVisible = false;
@@ -108,30 +108,29 @@
             this.shinseiDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.shinseiDataGridView1.Size = new System.Drawing.Size(341, 170);
             this.shinseiDataGridView1.TabIndex = 5;
-            this.shinseiDataGridView1.ReadOnly = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 21);
+            this.label1.Location = new System.Drawing.Point(13, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(47, 12);
             this.label1.TabIndex = 8;
-            this.label1.Text = "論理名";
+            this.label1.Text = "論理名1";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 45);
+            this.label2.Location = new System.Drawing.Point(13, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 12);
+            this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 9;
-            this.label2.Text = "よみがな";
+            this.label2.Text = "論理名2";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 71);
+            this.label3.Location = new System.Drawing.Point(13, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 10;
@@ -139,7 +138,7 @@
             // 
             // shounin
             // 
-            this.shounin.Location = new System.Drawing.Point(79, 326);
+            this.shounin.Location = new System.Drawing.Point(93, 326);
             this.shounin.Name = "shounin";
             this.shounin.Size = new System.Drawing.Size(100, 25);
             this.shounin.TabIndex = 11;
@@ -149,7 +148,7 @@
             // 
             // kyakka
             // 
-            this.kyakka.Location = new System.Drawing.Point(209, 326);
+            this.kyakka.Location = new System.Drawing.Point(223, 326);
             this.kyakka.Name = "kyakka";
             this.kyakka.Size = new System.Drawing.Size(100, 25);
             this.kyakka.TabIndex = 12;
@@ -165,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 378);
+            this.ClientSize = new System.Drawing.Size(416, 378);
             this.Controls.Add(this.kyakka);
             this.Controls.Add(this.shounin);
             this.Controls.Add(this.label3);

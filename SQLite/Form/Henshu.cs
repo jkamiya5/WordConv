@@ -134,14 +134,25 @@ namespace WordConvTool.Forms
         /// <param name="e"></param>
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            TanitsuTorokuSearchServiceInBo henshuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
-            TanitsuTorokuSearchService henshuSearchService = new TanitsuTorokuSearchService();
-            henshuSearchServiceInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
-            henshuSearchServiceInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
-            henshuSearchServiceInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
-            henshuSearchService.setInBo(henshuSearchServiceInBo);
-            TanitsuTorokuSearchServiceOutBo shinseiServiseOutBo = henshuSearchService.execute();
-            this.henshuViewDispSetthing(ref tanitsuDataGridView, shinseiServiseOutBo.wordList);
+            this.searchAction(ref this.tanitsuDataGridView, this);
+
+        }
+
+        /// <summary>
+        /// 検索サービス
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="henshu"></param>
+        private void searchAction(ref DataGridView dataGridView, Henshu henshu)
+        {
+            TanitsuTorokuSearchServiceInBo torokuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
+            TanitsuTorokuSearchService torokuSearchService = new TanitsuTorokuSearchService();
+            torokuSearchServiceInBo.ronrimei1TextBox = henshu.ronrimei1TextBox.Text;
+            torokuSearchServiceInBo.ronrimei2TextBox = henshu.ronrimei2TextBox.Text;
+            torokuSearchServiceInBo.butsurimeiTextBox = henshu.butsurimeiTextBox.Text;
+            torokuSearchService.setInBo(torokuSearchServiceInBo);
+            TanitsuTorokuSearchServiceOutBo torokuSearchServiceOutBo = torokuSearchService.execute();
+            this.henshuViewDispSetthing(ref dataGridView, torokuSearchServiceOutBo.wordList);
         }
 
 
@@ -186,32 +197,27 @@ namespace WordConvTool.Forms
                 return;
             }
 
-            using (var context = new MyContext())
+            TanitsuTorokuAddServiceInBo addServiseInBo = new TanitsuTorokuAddServiceInBo();
+            TanitsuTorokuAddService addService = new TanitsuTorokuAddService();
+            addServiseInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
+            addServiseInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
+            addServiseInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
+            addServiseInBo.tanitsuDataGridView = this.tanitsuDataGridView;
+            addService.setInBo(addServiseInBo);
+            TanitsuTorokuAddServiceOutBo addServiseOutBo = addService.execute();
+
+            if (!String.IsNullOrEmpty(addServiseOutBo.errorMessage))
             {
-                var products = context.WordDic
-                    .Where(x => x.RONRI_NAME1 == this.ronrimei1TextBox.Text)
-                    .ToArray();
+                MessageBox.Show(
+                    addServiseOutBo.errorMessage,
+                    MessageConst.ERR_003,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
-                if (products.Count() > 0)
-                {
-                    MessageBox.Show(
-                        MessageConst.ERR_002,
-                        MessageConst.ERR_003,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
+                return;
             }
 
-            List<HenshuWordBo> wordList = new List<HenshuWordBo>();
-            HenshuWordBo word = new HenshuWordBo();
-            word.RONRI_NAME1 = this.ronrimei1TextBox.Text;
-            word.RONRI_NAME2 = this.ronrimei2TextBox.Text;
-            word.BUTSURI_NAME = this.butsurimeiTextBox.Text;
-            wordList.Add(word);
-
-            this.henshuViewDispSetthing(ref this.tanitsuDataGridView, wordList);
+            this.henshuViewDispSetthing(ref this.tanitsuDataGridView, addServiseOutBo.wordList);
         }
 
 
@@ -229,7 +235,8 @@ namespace WordConvTool.Forms
             tanitsuRegistServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
             tanitsuRegistService.setInBo(tanitsuRegistServiceInBo);
             TanitsuTorokuRegistServiceOutBo tanitsuRegistServiceOutBo = tanitsuRegistService.execute();
-            this.searchAction(ref this.tanitsuDataGridView);
+
+            this.searchAction(ref this.tanitsuDataGridView, this);
             MessageBox.Show(MessageConst.CONF_001);
         }
 
@@ -305,7 +312,7 @@ namespace WordConvTool.Forms
             deleteServiceInBo.tanitsuDataGridView = this.tanitsuDataGridView;
             deleteService.setInBo(deleteServiceInBo);
             TanitsuTorokuDeleteServiceOutBo deleteServiceOutBo = (TanitsuTorokuDeleteServiceOutBo)deleteService.execute();
-            this.searchAction(ref this.tanitsuDataGridView);
+            this.searchAction(ref this.tanitsuDataGridView, this);
         }
 
         /// <summary>
@@ -433,40 +440,14 @@ namespace WordConvTool.Forms
         /// <param name="dataGridView"></param>
         private void searchAction(ref DataGridView dataGridView)
         {
-            List<HenshuWordBo> wordList = new List<HenshuWordBo>();
-            using (var context = new MyContext())
-            {
-                String condition = this.ronrimei1TextBox.Text.Trim();
-                IQueryable<HenshuWordBo> words = from a in context.WordDic
-                                                 join b in context.UserMst on a.USER_ID equals b.USER_ID
-                                                 where a.RONRI_NAME1.StartsWith(condition)
-                                                 select new HenshuWordBo
-                                                 {
-                                                     WORD_ID = a.WORD_ID,
-                                                     RONRI_NAME1 = a.RONRI_NAME1,
-                                                     RONRI_NAME2 = a.RONRI_NAME2,
-                                                     BUTSURI_NAME = a.BUTSURI_NAME,
-                                                     USER_NAME = b.USER_NAME,
-                                                     CRE_DATE = a.CRE_DATE,
-                                                     VERSION = (int)a.VERSION
-                                                 };
-                HenshuWordBo[] dispWords = words.ToArray();
-
-                foreach (var word in dispWords)
-                {
-                    HenshuWordBo w = new HenshuWordBo();
-                    w.WORD_ID = word.WORD_ID;
-                    w.RONRI_NAME1 = word.RONRI_NAME1;
-                    w.RONRI_NAME2 = word.RONRI_NAME2;
-                    w.BUTSURI_NAME = word.BUTSURI_NAME;
-                    w.USER_NAME = word.USER_NAME;
-                    w.CRE_DATE = word.CRE_DATE;
-                    w.VERSION = (int)word.VERSION;
-                    wordList.Add(w);
-                }
-            }
-
-            this.henshuViewDispSetthing(ref dataGridView, wordList);
+            TanitsuTorokuSearchServiceInBo torokuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
+            TanitsuTorokuSearchService torokuSearchService = new TanitsuTorokuSearchService();
+            torokuSearchServiceInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
+            torokuSearchServiceInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
+            torokuSearchServiceInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
+            torokuSearchService.setInBo(torokuSearchServiceInBo);
+            TanitsuTorokuSearchServiceOutBo torokuSearchServiceOutBo = torokuSearchService.execute();
+            this.henshuViewDispSetthing(ref dataGridView, torokuSearchServiceOutBo.wordList);
         }
 
         /// <summary>

@@ -183,7 +183,7 @@ namespace WordConvertTool
         {
             notifyIcon1.Visible = false;
             Application.Exit();
+            Environment.Exit(0);
         }
-
     }
 }

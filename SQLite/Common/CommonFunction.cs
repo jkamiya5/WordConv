@@ -160,5 +160,41 @@ namespace WordConverter.Common
             }
             doc.Save(appConfigPath);
         }
+
+        public string nullAble(string str)
+        {
+            if (String.IsNullOrEmpty(str))
+            {
+                return "";
+            }
+            return str;
+        }
+
+        public string nullAble(object p)
+        {
+            if (p == null)
+            {
+                return "";
+            }
+            if (String.IsNullOrEmpty(p.ToString()))
+            {
+                return "";
+            }
+            return p.ToString();
+        }
+
+
+        public int nullAbleInt(object p)
+        {
+            if (p == null)
+            {
+                return 0;
+            }
+            if (p.ToString().ToIntType() < 0)
+            {
+                return 0;
+            }
+            return p.ToString().ToIntType();
+        }
     }
 }

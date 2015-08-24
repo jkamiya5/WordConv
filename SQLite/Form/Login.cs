@@ -102,5 +102,11 @@ namespace WordConvertTool
                 this.dataSourcePath.Text = ofd.FileName;
             }
         }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
     }
 }
