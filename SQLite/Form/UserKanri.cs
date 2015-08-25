@@ -22,8 +22,9 @@ namespace WordConvTool.Forms
     public partial class UserKanri : Form
     {
         private static CommonFunction common = new CommonFunction();
-        List<int> comboValList = new List<int>();
+        List<int> kengenValList = new List<int>();
         List<bool> sankaValList = new List<bool>();
+        List<bool> checkValList = new List<bool>();
 
         /// <summary>
         /// 
@@ -140,8 +141,8 @@ namespace WordConvTool.Forms
         {
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                comboValList = new List<int>();
-                comboValList.Add((int)dataGridView1.Rows[i].Cells["Kengen"].Value);
+                kengenValList = new List<int>();
+                kengenValList.Add((int)dataGridView1.Rows[i].Cells["Kengen"].Value);
             }
             bool isExistComboBox = false;
             foreach (Object obj in dataGridView1.Columns)
@@ -198,6 +199,18 @@ namespace WordConvTool.Forms
                 return;
             }
 
+            checkValList = new List<bool>();
+            for (int i = 0; i < this.userKanriDataGridView1.Rows.Count; i++)
+            {
+                if (this.userKanriDataGridView1.Rows[i].Cells[0].Value != null &&
+                    (bool)this.userKanriDataGridView1.Rows[i].Cells[0].Value != false)
+                {
+                    checkValList.Add((bool)this.userKanriDataGridView1.Rows[i].Cells[0].Value);
+                    continue;
+                }
+                checkValList.Add(false);
+            }
+
             UserKanriAddServiceInBo userAddServiceInBo = new UserKanriAddServiceInBo();
             userAddServiceInBo.empId = this.empId.Text.ToString();
             userAddServiceInBo.userName = this.userName.Text.ToString();
@@ -218,9 +231,42 @@ namespace WordConvTool.Forms
                 return;
             }
             this.userKanriDataGridView1.DataSource = shinseiServiseOutBo.userList;
-            common.addCheckBox(ref userKanriDataGridView1, 0);
-            common.checkBoxWidthSetting(ref userKanriDataGridView1, 20, 100);
+            this.userKanriViewSetthing(ref this.userKanriDataGridView1);
+            this.setCheckValList(ref this.userKanriDataGridView1);
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        private void setCheckValList(ref DataGridView dataGridView)
+        {
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells["EMP_ID"].Value.ToString().ToIntType()
+                    != this.empId.Text.ToString().ToIntType())
+                {
+                    dataGridView.Rows[i].Cells[0].Value = checkValList[i];
+                    continue;
+                }
+                dataGridView.Rows[i].Cells[0].Value = true;
+                break;
+            }
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[0].Value != null &&
+                    (bool)dataGridView.Rows[i].Cells[0].Value == true)
+                {
+                    dataGridView.Rows[i].Cells["USER_NAME"].ReadOnly = false;
+                    dataGridView.Rows[i].Cells["KENGEN"].ReadOnly = false;
+                    dataGridView.Rows[i].Cells["MAIL_ID"].ReadOnly = false;
+                    dataGridView.Rows[i].Cells["MAIL_ADDRESS"].ReadOnly = false;
+                    dataGridView.Rows[i].Cells["PASSWORD"].ReadOnly = false;
+                    dataGridView.Rows[i].Cells["SANKA_KAHI"].ReadOnly = false;
+                    dataGridView.Rows[i].DefaultCellStyle.BackColor = Constant.CHECK_BOX_ON_COLOR;
+                }
+            }
         }
 
         /// <summary>
@@ -349,9 +395,9 @@ namespace WordConvTool.Forms
         {
             if (e.ColumnIndex == 3)
             {
-                if (e.RowIndex < comboValList.Count - 1)
+                if (e.RowIndex < kengenValList.Count - 1)
                 {
-                    string val = ((KengenKbn)comboValList[e.RowIndex]).ToString();
+                    string val = ((KengenKbn)kengenValList[e.RowIndex]).ToString();
                     e.Value = val;
                 }
             }

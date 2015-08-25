@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConvertTool;
+using WordConvTool.Const;
 
 namespace WordConverter.Common
 {
@@ -89,7 +90,7 @@ namespace WordConverter.Common
 
         internal System.Drawing.Color switchRowBackColor(DataGridViewRow dataGridViewRow)
         {
-            return dataGridViewRow.DefaultCellStyle.BackColor != Color.WhiteSmoke ? Color.WhiteSmoke : Color.White;
+            return dataGridViewRow.DefaultCellStyle.BackColor == Constant.CHECK_BOX_ON_COLOR ? Constant.CHECK_BOX_OFF_COLOR : Constant.CHECK_BOX_ON_COLOR;
 
         }
 

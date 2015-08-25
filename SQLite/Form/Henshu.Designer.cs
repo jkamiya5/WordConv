@@ -409,6 +409,5 @@ namespace WordConvTool.Forms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private TabStyle Chrome;
     }
 }
